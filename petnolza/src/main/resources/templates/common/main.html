@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        
+
+        section.small-container {
+            width: 50%;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        section.small-container > .btn-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            
+        }
+
+
+    </style>
+    
+    <link rel="stylesheet" href="/css/common.css"></link>
+
+</head>
+<body>
+
+    <section class="container">
+
+        <section class="small-container">
+            <h2>회원 상세 정보</h2>
+
+            <div class="inputForm">
+                <label>이메일</label>
+                <input type="text">
+             </div>
+
+            <div class="inputForm">
+                <label>비밀번호</label>
+                <input type="text">
+             </div>
+
+            <div class="inputForm">
+                <label>비밀번호 재확인</label>
+                <input type="text">
+             </div>
+
+            <div class="inputForm">
+                <label>이름</label>
+                <input type="text">
+             </div>
+
+            <div class="inputForm">
+                <label>닉네임</label>
+                <input type="text">
+             </div>
+
+             <div class="inputForm">
+                <label>주소</label>
+                <div>
+                    <input type="text" id="sample6_postcode" placeholder="우편번호">
+                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                </div>
+                <input type="text" id="sample6_address" placeholder="주소">
+                <input type="text" id="sample6_detailAddress" placeholder="상세주소">
+                
+
+             </div>
+
+             <div class="btn-area">
+                <button class="main-blue">수정</button>
+                <button class="grey-btn">탈퇴시키기</button>
+                <button class="grey-btn">관리자로 변경</button>
+             </div>
+
+        </section>
+
+
+        <section class="small-container">
+            <h2>예약 내역</h2>
+
+            <div>
+                <table class="board-area">
+                    <thead>
+                    
+                        <th>번호</th>
+                        <th>객실</th>
+                        <th>예약일</th>
+                        <th>리뷰여부</th>
+                    
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>5</td>
+                            <td>객실2</td>
+                            <td>2024-05-04</td>
+                            <td>리뷰여부</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="pagination-area">
+
+                    <ul class="pagination">
+    
+                        <!-- 첫 페이지로 이동 -->
+                        <li><a>&lt;&lt;</a></li>
+    
+                        <!-- 이전 목록 마지막 번호로 이동 -->
+                        <li><a>&lt;</a></li>
+    
+                        <!-- 특정 페이지로 이동 -->
+                        <th:block>
+                            
+                        <!-- 현재 보고있는 페이지 -->
+                            <li>
+                                <a class="current">1</a>
+                            </li>
+                            
+                            <!-- 보고있지 않은 페이지 -->
+                            <li>
+                                <a>2</a>
+                            </li>
+    
+                        </th:block>
+    
+    
+    
+                        
+                        <!-- 다음 목록 시작 번호로 이동 -->
+                        <li><a>&gt;</a></li>
+    
+                        <!-- 끝 페이지로 이동 -->
+                        <li><a>&gt;&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="inputForm searchForm">
+                <select>
+                    <option>객실</option>
+                    <option>예약일</option>
+                    <option>리뷰여부</option>
+                </select>
+                <input>
+                <div class="btn-area">
+                    <button class="grey-btn">검색</button>
+                </div>
+            </div>
+              
+
+        </section>
+
+    </section>
+
+    
+</body>
+</html>

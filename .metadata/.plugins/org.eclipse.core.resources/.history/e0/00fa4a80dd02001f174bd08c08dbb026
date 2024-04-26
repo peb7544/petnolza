@@ -1,0 +1,13 @@
+package edu.kh.pet;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PetnolzaApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(PetnolzaApplication.class, args);
+	}
+
+}
