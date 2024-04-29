@@ -1,0 +1,29 @@
+.top-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20%;
+  position: sticky;
+  top: 0;
+}
+
+.homelogo {
+  width: 130px;
+  
+}
+
+.navigator a{
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.navigator a:hover {
+  color: #00abe8;
+  text-decoration: underline;
+  text-underline-position : under;
+}
+
+a {
+  text-decoration: none;
+}
