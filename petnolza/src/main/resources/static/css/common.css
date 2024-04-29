@@ -12,21 +12,10 @@
 
 /* 공통 화면 크기 조절 */
 .container {
-    flex-direction: column; /*240426 은별 수정 */
+    flex-direction: column; /*220426 은별 수정 */
     margin: 10% 20%;
     display: flex;
 
-}
-
-/* textarea 사이즈  240429 은별 추가*/ 
-.content-area {
-    margin: 10px 0;
-    width: 100%;
-    border: 1px solid #666666;
-    border-radius: 5px;
-    resize: none;
-    height: 250px;
-    outline: none;
 }
 
 /* input 사이즈 */
@@ -40,23 +29,11 @@
 .inputForm input {
     height: 25px;
     margin-top: 3px;
-    outline: none; /*240429 은별 추가*/
 }
 
 .inputForm select {
     size: 25px;
     margin-top: 3px;
-}
-
-/*첨부파일 input*/
-.inputImg {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-}
-
-.inputImg input {
-    width: 80%;
 }
 
 /*검색창*/
@@ -88,17 +65,6 @@
     padding: 0px 15px;
     font-size: 15px;
     margin-top: 3px;
-}
-
-/* 흰색 버튼 240429 은별 추가*/
-.wbtn-area button {
-    padding: 0 10px;
-    font-size: smaller;
-    border: 1px solid #dfe2e9;
-    /*margin-top: 3px;*/
-    border-radius: 5px;
-    height: 25px;
-    background-color: white;
 }
 
 .grey-btn {
@@ -153,25 +119,3 @@ table.board-area tbody td {
     padding: 5px 0;
 }
 
-/*테이블 콤보박스 240429 은별 추가*/
-table.board-area select {
-    height: 25px;
-    border: 1px solid #dfe2e9;
-    width: 65px;
-}
-
-/*테이블 상태값 240429 한솔 추가*/
-.payComplete {
-    color: green;
-}
-.useComplete {
-    color: skyblue;
-}
-.notPay {
-    color: red;
-}
-
-/*a태그*/
-a {
-    text-decoration: none;
-}
