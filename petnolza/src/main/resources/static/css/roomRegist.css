@@ -1,0 +1,41 @@
+
+.box {
+    position: relative;
+    width: 23%;
+    background-color: skyblue;
+    display: inline-block;
+    }
+    .box::after {
+    display: block;
+    content: "";
+    padding-bottom: 100%;
+    }
+    .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+    .thumbChecked {
+        border: #00abe8 solid 5px;
+    }
+
+    .btn-upload {
+        width: 90px;
+        height: 31px;
+        background: rgba(102, 102, 102, 0.8);
+        border: 1px solid rgb(77,77,77);
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin: 10px 0;
+    }
+
+    #file {
+    display: none;
+    }

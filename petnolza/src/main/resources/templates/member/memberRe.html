@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        
+
+        section.max-container {
+            width: 100%;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        section.max-container > .btn-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            
+        }
+        
+        .payComplete {
+            color: green;
+        }
+        .useComplete {
+            color: skyblue;
+        }
+        .notPay {
+            color: red;
+        }
+
+    </style>
+    
+    <link rel="stylesheet" href="../css/common.css"></link>
+
+</head>
+<body>
+
+    <section class="container">
+
+        <section class="max-container">
+            <h2>회원 예약 정보</h2>
+
+            <div>
+                <table class="board-area">
+                    <thead>
+                    
+                        <th>예약번호</th>
+                        <th>예약자</th>
+                        <th>객실</th>
+                        <th>예약시작일</th>
+                        <th>예약종료일</th>
+                        <th>가격</th>
+                        <th>상태</th>
+                        <th>서비스</th>
+                        <th>알리미</th>
+                    
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>10</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="payComplete">결제완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td><button>등록</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="useComplete">이용완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>8</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="notPay">미결제</span></td>
+                            <td>   
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="payComplete">결제완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="payComplete">결제완료</span></td>
+                            <td>   
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="payComplete">결제완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                              </select>
+                            </td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="useComplete">이용완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td><button>등록</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="useComplete">이용완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td><button>등록</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="useComplete">이용완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td><button>등록</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>유저일</td>
+                            <td>객실1</td>
+                            <td>2024-05-04</td>
+                            <td>2024-05-04</td>
+                            <td>70000</td>
+                            <td><span class="useComplete">이용완료</span></td>
+                            <td>   <select>
+                                <option>캣타워</option>
+                                <option>에어컨</option>
+                                <option>장난감</option>
+                                <option>먹이제공</option>
+                                <option>24시간돌봄</option>
+                              </select>
+                            </td>
+                            <td><button>등록</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="pagination-area">
+
+                    <ul class="pagination">
+    
+                        <!-- 첫 페이지로 이동 -->
+                        <li><a>&lt;&lt;</a></li>
+    
+                        <!-- 이전 목록 마지막 번호로 이동 -->
+                        <li><a>&lt;</a></li>
+    
+                        <!-- 특정 페이지로 이동 -->
+                        <th:block>
+                            
+                        <!-- 현재 보고있는 페이지 -->
+                            <li>
+                                <a class="current">1</a>
+                            </li>
+                            
+                            <!-- 보고있지 않은 페이지 -->
+                            <li>
+                                <a>2</a>
+                            </li>
+    
+                        </th:block>
+    
+    
+    
+                        
+                        <!-- 다음 목록 시작 번호로 이동 -->
+                        <li><a>&gt;</a></li>
+    
+                        <!-- 끝 페이지로 이동 -->
+                        <li><a>&gt;&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="inputForm searchForm">
+                <select>
+                    <option>객실</option>
+                    <option>예약일</option>
+                    <option>리뷰여부</option>
+                </select>
+                <input>
+                <div class="btn-area">
+                    <button class="grey-btn">검색</button>
+                </div>
+            </div>
+              
+
+        </section>
+
+    </section>
+
+    
+</body>
+</html>
