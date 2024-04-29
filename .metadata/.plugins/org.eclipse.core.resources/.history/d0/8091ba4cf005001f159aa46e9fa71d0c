@@ -1,0 +1,5 @@
+package edu.kh.pet.common.auth;
+
+public class AuthController {
+
+}
