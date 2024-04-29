@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="/css/common.css"></link>
+
+        <style>
+            .container-login {
+                margin: 10% 20%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .input-area {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .login-btn {
+                width: -webkit-fill-available;
+                font-size: 19px;
+                background-color: #00abe8;
+                border: 1px solid #666666;
+                border-radius: 5px;
+                height: 30px;
+                color: white;
+                margin-bottom: 30px;
+                cursor: pointer;
+            }
+
+            .input-area form {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            h2 {
+                text-align: center;
+                color: #00abe8;
+                font-weight: bold;
+            }
+
+            .grey-long-btn {
+                width: -webkit-fill-available;
+                font-size: 19px;
+                background-color: #666666;
+                border: 1px solid black;
+                border-radius: 5px;
+                height: 30px;
+                color: white;
+                margin-bottom: 30px;
+                cursor: pointer;
+                margin-top: 30px;
+            }
+
+            
+        </style>
+
+    </head>
+    <body>
+
+        <section class="container-login">
+
+            <section class="top-logo">
+                <a href="/">
+                    <img src="/images/petnolzaLogo.png">
+                </a>
+            </section>
+
+            <section class="input-area">
+
+                <form name="login">
+
+                    <h2>이메일 찾기</h2>
+
+                    <div class="inputForm">
+                        <label>전화번호</label>
+                        <input type="text">
+                    </div>
+                    
+                    <div class="login-btn-area">
+                        <button class="login-btn">이메일 찾기</button>
+                    </div>
+
+                    <h2>비밀번호 찾기</h2>
+                    
+                    <div class="inputForm">
+                        <label>이메일</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="login-btn-area">
+                        <button class="login-btn">비밀번호 찾기</button>
+                    </div>
+
+                </form>
+
+                
+                <div class="login-btn-area">
+                    <a href="login">
+                        <button class="grey-long-btn">뒤로</button>
+                    </a>
+                </div>
+                
+
+            </section>
+
+        </section>
+        
+    </body>
+</html>
