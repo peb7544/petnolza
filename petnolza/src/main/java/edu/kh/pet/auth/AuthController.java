@@ -1,4 +1,4 @@
-package edu.kh.pet.common.auth;
+package edu.kh.pet.auth;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
