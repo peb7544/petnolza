@@ -8,7 +8,7 @@ public class MainController {
 
 	@RequestMapping("/")
 	public String mainPage() {
-		return "main/intro";
+		return "common/main";
 	}
 	
 }
