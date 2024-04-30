@@ -11,7 +11,7 @@
 
 /* 공통 화면 크기 조절 */
 .container {
-    
+    flex-direction: column; /*220426 은별 수정 */
     margin: 10% 20%;
     display: flex;
     
@@ -39,6 +39,8 @@
 .searchForm {
     display: flex;
     flex-direction: row;
+    width: 300px;  /* 240426 한솔 수정 */
+    margin: auto;  /* 240426 한솔 수정 */
 }
 
 .searchForm input {
@@ -81,6 +83,7 @@
     width: 20px;
     margin: 0 5px;
     text-align: center;
+    display: inline-block;  /* 240426 한솔 수정 */
 }
 
 .pagination a{
@@ -115,19 +118,3 @@ table.board-area tbody td {
     padding: 5px 0;
 }
 
-
-
-/*********************************************************************************************************/
-
-section.small-container {
-    width: 50%;
-    align-items: center;
-    padding: 0 15px;
-}
-
-section.small-container > .btn-area {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    
-}

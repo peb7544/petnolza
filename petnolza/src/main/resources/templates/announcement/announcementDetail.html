@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        
+        section.max-container {
+            width: 100%;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        section.max-container > .btn-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            
+        }
+        
+        .last-btn-area {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .last-btn-area button{
+            margin: 0 5px;
+        }
+
+    </style>
+    
+    <link rel="stylesheet" href="../css/common.css"></link>
+    <link rel="stylesheet" href="../css/board.css"></link>
+
+</head>
+<body>
+
+    <section class="container">
+
+        <section class="max-container">
+            <h2>공지사항</h2>
+
+            <div>
+                <table class="board-area">
+                    <thead>
+                    
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>조회수</th>
+                    
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td>10</td>
+                            <td>제목제목제목제목</td>
+                            <td>2024-05-04</td>
+                            <td>300</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+                <div>
+
+                    <div class="board-content-div">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+
+                    <div class="attachmentFileDiv">
+                        <div>
+                            첨부파일
+                        </div>
+                        <div>
+                            파일명
+                            <div class="btn-area" style="display: inline; border: 0;">
+                                <button class="grey-btn">첨부파일</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="btn-area last-btn-area">
+                    <button class="main-blue">목록</button>
+                    <button class="grey-btn">수정</button>
+                    <button class="grey-btn">삭제</button>
+                </div>
+            </div>
+              
+        </section>
+
+    </section>
+
+    
+</body>
+</html>
