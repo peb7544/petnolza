@@ -1,128 +1,166 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>객실 예약 목록</title>
+    <title>Document</title>
 
-    <link rel="stylesheet" href="/css/reserveList.css">
+
+    <style>
+        
+
+        section.max-container {
+            width: 100%;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        section.small-container > .btn-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            
+        }
+
+        
+
+        
+        /*--------------------*/
+        * {
+            box-sizing: border-box;
+
+            border: 1px solid black;
+        }
+
+        
+
+
+        .content {
+            width: 80%;
+            display: flex;
+            border-radius: 15px;
+            height: 290px;
+            border: 2px solid #666666;
+            margin-left: 10%;
+        }
+
+
+        .content > section:nth-last-of-type(1),
+        .content > section:nth-last-of-type(2) {
+            flex-basis: 3%;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        
+
+        b {
+            font-size: 28px;
+            text-align: center;
+        }
+
+
+        .roomList {
+            padding-left: 20px;
+            padding-top: 40px;
+        }
+
+    </style>
+    
+    <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
+
 </head>
 <body>
-    <main>
-        
 
-        <header>
-            <section>
-                <input type="text"><br>
+    <th:block th:replace="~{menu/top-menu-client-login}"></th:block>
+    <th:block th:replace="~{menu/side-navigator-login}"></th:block>
+
+    <section class="container2">
+
+        <section class="max-container">
             
-                <div class="input-container input-container-md">
-                    <div class="input-group">
-                        <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="date-rage-picker">
-                        <div class="input-group-tools">
-                            <button class="option type">
-                                <i class="Licon ico-calender"></i>
-                            </button>
-                            <button class="option error">
-                                <i class="Licon ico-warning"></i>
-                            </button>
-                            <button class="option success">
-                                <i class="Licon ico-check"></i>
-                            </button>
-                            <button class="clear on">
-                                <i class="material-icons">cancel</i>
-                            </button>
-                        </div>
-                    </div>
-                    <p class="status-message"></p>
+            <div class="content">
+                <div>
+                    <img src="/images/객실.png">
                 </div>
-                                    
-                <button type="submit">검색</button>
-            </section>
-        </header><br><br>
-
-        
-        <section class="content">
-            <section>
-                <img src="/images/객실.png">
-            </section>
-
-            <section>
-                <b>객실 1</b>
-                    <p>객실 제공사항</p>
-                        <button>캣타워</button>
-                        <button>에어컨</button>
-                        <button>장난감</button><br>
-                    <p>평균 평점</p><br>
-                <div class="rate">
-                    <span style="width: 50%"></span>
-                    <button onclick="location.href=">후기</button> 
-                </div>
-            </section>
-
-            <section>
-                <p><b>100,000원</b>(부가세 포함)</p><br>
-                <button onclick="location.href=">예약</button>
-            </section>
-        </section><br><br>
-
-
-        <section class="content">
-            <section>
-                <img src="/images/객실.png">
-            </section>
-
-            <section>
-                <b>객실 2</b>
-                    <p>객실 제공사항</p>
-                        <button>홈캠</button>
-                        <button>에어컨</button>
-                        <button>장난감</button>
-                        <button>먹이제공</button>
-                        <button>24시간 돌봄</button><br>
-                    <p>평균 평점</p><br>
-                <div class="rate">
-                    <span style="width: 50%"></span>
-                </div>
-                <button onclick="location.href=">후기</button>
-            </section>
-
-            <section>
-                <p><b>100,000원</b>(부가세 포함)</p><br>
-                <button onclick="location.href=">예약</button>
-            </section>
-        </section><br><br>
-
-
-        <section class="content">
-            <section>
-                <img src="/images/객실.png">
-            </section>
-
-            <section class="roomList">
-                <b>객실 3</b>
-                    <p>객실 제공사항</p>
-                        <div class="btn">
-                        <button>홈캠</button>
-                        <button>에어컨</button>
-                        <button>장난감</button>
-                        <button>먹이제공</button>
-                        <button>24시간 돌봄</button><br>
-                        </div>
-                    <p>평균 평점</p><br>
-                <div class="rate">
-                    <span style="width: 50%"></span>
-                </div>
-                <button onclick="location.href=">후기</button>
-                </pre>
-            </section>
-
-            <section class="roomList2">
-                <p><b>100,000원</b>(부가세 포함)</p><br>
-                <button onclick="location.href=">예약</button>
-            </section>
-        </section>
-    </main>
     
-    <script src="/js/roomList.js"></script>
+                <div class="roomList2">
+                    <b>객실 3</b>
+                        <p>객실 제공사항</p>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                            
+                        <p>평균 평점</p>
+                        ★★★★★
+                        <button onclick="location.href=">후기</button> 
+                </div>
+    
+                <div class="roomList3">
+                    <p><b>100,000원</b>(부가세 포함)</p><br>
+                    <button onclick="location.href=">예약</button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div>
+                    <img src="/images/객실.png">
+                </div>
+    
+                <div class="roomList2">
+                    <b>객실 3</b>
+                        <p>객실 제공사항</p>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                            
+                        <p>평균 평점</p>
+                        ★★★★★
+                        <button onclick="location.href=">후기</button> 
+                </div>
+    
+                <div class="roomList3">
+                    <p><b>100,000원</b>(부가세 포함)</p><br>
+                    <button onclick="location.href=">예약</button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div>
+                    <img src="/images/객실.png">
+                </div>
+    
+                <div class="roomList2">
+                    <b>객실 3</b>
+                        <p>객실 제공사항</p>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                            
+                        <p>평균 평점</p>
+                        ★★★★★
+                        <button onclick="location.href=">후기</button> 
+                </div>
+    
+                <div class="roomList3">
+                    <p><b>100,000원</b>(부가세 포함)</p><br>
+                    <button onclick="location.href=">예약</button>
+                </div>
+            </div>
+
+
+            
+              
+
+        </section>
+
+    </section>
+
+    
 </body>
 </html>
