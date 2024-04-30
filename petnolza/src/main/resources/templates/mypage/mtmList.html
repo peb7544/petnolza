@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:1문의</title>
+
+    <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/reserve/review.css"> <!-- 후기 CSS -->
+
+    <style>
+        /* 자주묻는질문 */
+        td.qa {
+            width: 50px;
+        }
+
+        tr.contentA td {
+            height: 110px;
+            background-color: #ececec;
+            vertical-align: top;
+        }
+
+        table.qnaTable tbody td {
+            text-align: left !important;
+            padding-left: 10px !important;
+        }
+
+        /* 1:1 문의 */
+        .sectionMargin {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <section>
+            <h2>자주묻는질문</h2>
+
+            <table class="board-area qnaTable">
+                <thead>
+                    
+                    <th></th>
+                    <th></th>
+                
+                </thead>
+    
+                <tbody>
+    
+                    <tr onclick="listClickFn(this)">
+                        <td class="qa">Q</td>
+                        <td>질문</td>
+                    </tr>
+    
+                    <tr class="contentA" style="display: none;">
+                        <td class="qa">A</td>
+                        <td>답변</td>
+                    </tr>
+    
+                    <tr onclick="listClickFn(this)">
+                        <td class="qa">Q</td>
+                        <td>질문</td>
+                    </tr>
+    
+                    <tr class="contentA" style="display: none;">
+                        <td class="qa">A</td>
+                        <td>답변</td>
+                    </tr>
+    
+                </tbody>
+            </table>
+        </section>
+
+        <section class="sectionMargin">
+            <h2>1:1문의</h2>
+
+            <div>
+                <table class="board-area">
+                    <thead>
+                    
+                        <th>번호</th>
+                        <th>질문 내용</th>
+                        <th>작성일</th>
+                        <th>상태</th>
+                        <th></th>
+                    
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>5</td>
+                            <td>질문1</td>
+                            <td>2024-05-04</td>
+                            <td>답변완료</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>질문2</td>
+                            <td>2024-05-04</td>
+                            <td class="notPay">답변예정</td>
+                            <td>
+                                <div class="wbtn-area">
+                                    <button>수정</button>
+                                    <button>취소</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <div class="btn-area">
+                    <button class="main-blue">등록</button>
+                 </div>
+
+                <div class="pagination-area">
+
+                    <ul class="pagination">
+    
+                        <!-- 첫 페이지로 이동 -->
+                        <li><a>&lt;&lt;</a></li>
+    
+                        <!-- 이전 목록 마지막 번호로 이동 -->
+                        <li><a>&lt;</a></li>
+    
+                        <!-- 특정 페이지로 이동 -->
+                        <th:block>
+                            
+                        <!-- 현재 보고있는 페이지 -->
+                            <li>
+                                <a class="current">1</a>
+                            </li>
+                            
+                            <!-- 보고있지 않은 페이지 -->
+                            <li>
+                                <a>2</a>
+                            </li>
+    
+                        </th:block>
+    
+    
+    
+                        
+                        <!-- 다음 목록 시작 번호로 이동 -->
+                        <li><a>&gt;</a></li>
+    
+                        <!-- 끝 페이지로 이동 -->
+                        <li><a>&gt;&gt;</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        
+        // 답변 보기 닫기
+        function listClickFn(element) {
+
+            // 기존에 활성화된 버튼
+            const before = document.getElementsByClassName("active")[0];
+
+            // 자신 이외에 이미 활성화된 버튼이 있을 경우
+            if(before && before != element) {
+
+                // 기존에 펼쳐진 내용 접고
+                before.nextElementSibling.style.display = 'none'; 
+
+                // 버튼 비활성화
+                before.classList.remove("active");
+            }
+
+            // 활성화 여부 toggle
+            element.classList.toggle("active");
+
+            const content = element.nextElementSibling;
+
+            // 버튼 다음 요소가 펼쳐져 있으면
+            if(content.style.display != 'none') {
+
+                // 접기
+                content.style.display = 'none';
+            } else {
+
+                // 접혀있는 경우 펼치기
+                content.style.display = 'contents';
+            }
+        }
+    </script>
+</body>
+</html>
