@@ -2,9 +2,12 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  margin: 0 20%;
-  position: sticky;
+  justify-content: space-evenly;
+  background-color: white;
+  
+  width: 100vw;
+  border-bottom: 1px solid #DFDFDF;
+  position: fixed;
   top: 0;
 }
 
@@ -14,7 +17,7 @@
 }
 
 .navigator a{
-  margin: 0 10px;
+  margin: 0 20px;
   font-size: 20px;
 }
 
@@ -34,6 +37,7 @@ a {
   flex-direction: column;
   align-items: center;
   position: fixed;
+  box-shadow: 5px 5px 5px 5px #DFDFDF;
   top: 40%;
   width: 150px;
   left: 85%;
@@ -43,7 +47,7 @@ a {
   
   font-size: 20px;
   width: 100%;
-  border: 1px solid black;
+  
   height: 50px;
   text-align: center;
   line-height: 50px;
@@ -65,3 +69,33 @@ a {
   border: 1px solid black;
 }
 */
+
+.myPageMenu {
+  display: flex;
+  flex-direction: column;
+  background-color: #F6F6F6;
+  text-align: center;
+  align-items: center;
+  width: 300px;
+  height: 100vh;
+  margin-left: -10px;
+  border: 1px solid #DFDFDF;
+  position: fixed;
+  top: 134.08px;
+
+}
+
+
+.myPageMenu a {
+  width: 300px;
+  border: 1px solid #DFDFDF;
+  font-size: 25px;
+  height: 70px;
+  line-height: 70px;
+  cursor: pointer;
+}
+
+.myPageMenu a:hover {
+  background-color: #00aae8;
+  color: white;
+}
