@@ -42,3 +42,18 @@ p {
     font-size: 22px;
 }
 
+/* 자주묻는질문 */
+td.qa {
+    width: 50px;
+}
+
+tr.contentA td {
+    height: 110px;
+    background-color: #ececec;
+    vertical-align: top;
+}
+
+table.qnaTable tbody td {
+    text-align: left !important;
+    padding-left: 10px !important;
+}
