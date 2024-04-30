@@ -13,6 +13,10 @@
 body {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 /* 공통 화면 크기 조절 */
