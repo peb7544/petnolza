@@ -1,0 +1,90 @@
+/* 객실 예약 목록 */
+
+.content {
+    display: flex;
+    border-radius: 15px;
+    height: 290px;
+    border: 2px solid #666666;
+}
+
+
+.content > section:nth-last-of-type(1),
+.content > section:nth-last-of-type(2) {
+    flex-basis: 35%;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+button {
+    background-color: transparent;
+    border-radius: 6px;
+    text-align: right;
+    
+}
+
+b {
+    font-size: 28px;
+    text-align: center;
+}
+
+
+.roomList {
+    padding-left: 20px;
+    padding-top: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
