@@ -10,12 +10,17 @@
     color: #666666;
 }
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 /* 공통 화면 크기 조절 */
 .container {
     flex-direction: column; /*240426 은별 수정 */
     margin: 10% 20%;
     display: flex;
-
+    align-items: center;
 }
 
 /* textarea 사이즈  240429 은별 추가*/ 
@@ -174,4 +179,26 @@ table.board-area select {
 /*a태그*/
 a {
     text-decoration: none;
+}
+
+.footer {
+    background-color: rgba(102, 102, 102, 20%);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    
+}
+
+.footer-nav {
+    border-bottom: 1px solid #666666;
+    padding-bottom: 10px;
+}
+
+.footer section {
+    margin: 15px;
+}
+
+.footer-nav a {
+    padding: 0 5px;
 }

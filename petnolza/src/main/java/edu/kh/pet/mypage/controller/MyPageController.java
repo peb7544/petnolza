@@ -52,4 +52,20 @@ public class MyPageController {
 		
 		return "mypage/mtmDetail";
 	}
+	
+	/**	마이페이지 - 정보수정
+	 * @return
+	 */
+	@GetMapping("memberUpdate")
+	public String memberUpdate() {
+		
+		return "mypage/memberUpdate";
+	}
+	
+	
+	@GetMapping("withdrawal")
+	public String withdrawal() {
+		
+		return "mypage/withdrawal";
+	}
 }
