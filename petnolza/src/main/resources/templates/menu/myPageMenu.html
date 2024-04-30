@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <link rel="stylesheet" href="/css/common.css"></link>
+        <link rel="stylesheet" href="/css/menu.css"></link>
+        <link rel="stylesheet" href="/css/login.css"></link>
+        
+
+    </head>
+    <body>
+
+        <th:block th:replace="~{menu/top-menu-client-login}"></th:block>
+
+        <section class="myPageMenu">
+
+            <h2>마이 페이지</h2>
+
+            <div>정보 수정</div>
+            <div>예약 내역 확인</div>
+            <div>알리미 서비스</div>
+            <div>1:1 문의</div>
+            <div>탈퇴하기</div>
+
+        </section>
+        
+    </body>
+</html>

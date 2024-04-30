@@ -1,0 +1,67 @@
+.top-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20%;
+  position: sticky;
+  top: 0;
+}
+
+.homelogo {
+  width: 130px;
+  
+}
+
+.navigator a{
+  margin: 0 10px;
+  font-size: 20px;
+}
+
+.navigator a:hover {
+  color: #00abe8;
+  text-decoration: underline;
+  text-underline-position : under;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.side-navigator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 40%;
+  width: 150px;
+  left: 85%;
+}
+
+.side-navigator a {
+  
+  font-size: 20px;
+  width: 100%;
+  border: 1px solid black;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+
+.side-navigator a:hover {
+  background-color: #00aae8;
+  color: white;
+}
+
+.side-navigator a:first-child {
+  background-color: #00aae8;
+  color: white;
+}
+
+
+/*
+* {
+  border: 1px solid black;
+}
+*/
