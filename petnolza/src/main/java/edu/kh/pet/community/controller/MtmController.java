@@ -16,4 +16,13 @@ public class MtmController {
 		
 		return "mtm/qna";
 	}
+	
+	/** 관리자 1:1문의 답변 등록
+	 * @return
+	 */
+	@GetMapping("qnaRegi")
+	public String qnaRegi() {
+		
+		return "mtm/qnaRegi";
+	}
 }
