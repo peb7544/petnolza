@@ -33,6 +33,7 @@
     </style>
     
     <link rel="stylesheet" href="../css/common.css"></link>
+    <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
 
     <!-- 부트스트랩 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -78,7 +79,7 @@
 
             <div class="reserveRegistDiv">
                 <h4>객실1</h4>
-                ★★★★★ <!-- 별점 -->
+                <div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
                 <p>
                 복층형 객실입니다. <br>
                 위층에는 창문이 설치되어있어서 풍경도 볼 수 있습니다.
