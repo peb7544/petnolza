@@ -1,0 +1,25 @@
+.terms {
+    height: 500px;
+    overflow-y: auto;
+    border: 1px solid black;
+    width: 40%;
+}
+
+.agree-checkbox {
+    margin: 20px 0;
+    font-size: 20px;
+}
+
+.inputEmail-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputEmail-area input {
+    width: 400px;
+}
+
+.inputEmail-area button {
+    font-size: 15px;
+    width: 150px;
+}

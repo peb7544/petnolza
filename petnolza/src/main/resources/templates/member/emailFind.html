@@ -6,9 +6,9 @@
         <title>Document</title>
 
         <link rel="stylesheet" href="/css/common.css"></link>
-
+        <link rel="stylesheet" href="/css/login.css"></link>
+        <!--  
         <style>
-
             .container-login {
                 margin: 10% 20%;
                 display: flex;
@@ -31,29 +31,38 @@
                 border-radius: 5px;
                 height: 30px;
                 color: white;
+                margin-bottom: 30px;
                 cursor: pointer;
             }
-            
-            a {
-                text-decoration: none;
-            }
 
-            .ggg {
+            .input-area form {
                 display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-                margin: 10px 0;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            h2 {
+                text-align: center;
+                color: #00abe8;
+                font-weight: bold;
+            }
+
+            .grey-long-btn {
+                width: -webkit-fill-available;
+                font-size: 19px;
+                background-color: #666666;
+                border: 1px solid black;
+                border-radius: 5px;
+                height: 30px;
+                color: white;
+                margin-bottom: 30px;
+                cursor: pointer;
+                margin-top: 30px;
             }
 
             
-
-            .error {
-                color: red;
-            }
-
-            
-
         </style>
+        -->
     </head>
     <body>
 
@@ -69,39 +78,36 @@
 
                 <form name="login">
 
+                    <h2>이메일 찾기</h2>
+
+                    <div class="inputForm">
+                        <label>전화번호</label>
+                        <input type="text">
+                    </div>
+                    
+                    <div class="login-btn-area">
+                        <button class="login-btn">이메일 찾기</button>
+                    </div>
+
+                    <h2>비밀번호 찾기</h2>
+                    
                     <div class="inputForm">
                         <label>이메일</label>
                         <input type="text">
                     </div>
-                    
-                    <div class="inputForm">
-                        <label>비밀번호</label>
-                        <input type="text">
-                    </div>
 
                     <div class="login-btn-area">
-                        <button class="login-btn">로그인</button>
-                    </div>
-
-                    <div class="ggg">
-                        <a href="join">회원가입</a>
-
-                        <div>
-                            <input type="checkbox">
-                            <label>이메일 기억하기</label>
-                        </div>
-                    </div>
-
-                    <div class="ggg">
-                        <a href="emailFind" class="error">이메일/비밀번호를 잊어버리셨나요?</a>
+                        <button class="login-btn">비밀번호 찾기</button>
                     </div>
 
                 </form>
 
-            </section>
-
-            <section class="api-area">
-
+                
+                <div class="login-btn-area">
+                    <a href="login">
+                        <button class="grey-long-btn">뒤로</button>
+                    </a>
+                </div>
                 
 
             </section>
