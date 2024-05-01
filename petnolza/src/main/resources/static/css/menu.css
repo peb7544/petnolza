@@ -4,11 +4,11 @@
   align-items: center;
   justify-content: space-evenly;
   background-color: white;
-  
-  width: 100vw;
+  /*width: 100vw;*/
   border-bottom: 1px solid #DFDFDF;
-  position: fixed;
+  position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
 .homelogo {
@@ -80,8 +80,7 @@ a {
   height: 100vh;
   margin-left: -10px;
   border: 1px solid #DFDFDF;
-  position: fixed;
-  top: 134.08px;
+  position: sticky;
 
 }
 
@@ -98,4 +97,10 @@ a {
 .myPageMenu a:hover {
   background-color: #00aae8;
   color: white;
+}
+
+/*마이페이지 세션*/
+section.mypageContainer {
+  display: flex;
+  flex-direction: row;
 }

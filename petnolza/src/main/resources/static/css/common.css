@@ -24,7 +24,7 @@ body {
     flex-direction: column; /*240426 은별 수정 */
     margin: 10% 20%;
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 /* textarea 사이즈  240429 은별 추가*/ 
