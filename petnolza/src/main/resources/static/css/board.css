@@ -18,6 +18,10 @@
     padding: 15px;
 }
 
+/* 게시글 리스트 제목 */
+.boardTableTitle {
+    width: 60%
+}
 
 /* 게시판 중간메뉴 */
 .middle-menu {
@@ -34,6 +38,7 @@
     height: 100%;
     text-align: center;
     line-height: 50px;
+    cursor: pointer;
 }
 .middle-menu-current {
     font-weight: bold;

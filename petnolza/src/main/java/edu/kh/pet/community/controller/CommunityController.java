@@ -1,19 +1,41 @@
 package edu.kh.pet.community.controller;
 
+import edu.kh.pet.community.service.CommunityService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("community")
+@RequiredArgsConstructor
 public class CommunityController {
+
+	private final CommunityService communityService;
 
 	/** 공지사항 목록
 	 * @return
 	 */
 	@GetMapping("noticeList")
-	public String noticeList() {
-		
+	public String noticeList(@RequestParam(value="cp", defaultValue = "1") int cp,
+		Model model, @RequestParam Map<String, Object> paramMap) {
+
+		Map<String, Object> map = null;
+
+		if(paramMap.get("key") == null) { // 검색이 아닌 경우
+			map = communityService.selectBoardList("NOTICE", cp);
+		} else {
+			paramMap.put("boardCode", "NOTICE");
+			map = communityService.selectSearchList(paramMap, cp);
+		}
+
+		model.addAttribute("pagination", map.get("paginamtion"));
+		model.addAttribute("boardList", map.get("boardList"));
+
 		return "community/noticeList";
 	}
 	
