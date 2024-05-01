@@ -41,3 +41,22 @@
     color: white !important;
     letter-spacing: 0 !important;
 }
+
+
+/* 게시판 상세보기 하단 버튼이 오른쪽 정렬일 경우 */
+.last-btn-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.last-btn-area button{
+    margin: 0 5px;
+}
+
+/* 닫기 버튼 클래스 */
+.closeBtn-area {
+    text-align: right;
+}
+.closeBtn-area a {
+    font-size: larger;
+}
