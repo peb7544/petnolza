@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 내역 확인</title>
+
+    <link rel="stylesheet" href="/css/common.css"> <!-- 공통 CSS -->
+</head>
+<body>
+<section class="container">
+    <h2>예약 내역 확인</h2>
+
+    <div>
+        <table class="board-area">
+            <thead>
+
+            <th>번호</th>
+            <th>객실</th>
+            <th>예약시작일</th>
+            <th>예약종료일</th>
+            <th>가격</th>
+            <th>상태</th>
+            <th>서비스</th>
+            <th></th>
+            </thead>
+
+            <tbody>
+
+            <!--  1  -->
+            <tr>
+                <td>5</td>
+                <td>객실1</td>
+                <td>2024-01-05</td>
+                <td>2024-01-07</td>
+                <td>70000</td>
+                <td class="notPay">미결제</td>
+                <td>
+                    <div>
+                        <select>
+                            <option>산책</option>
+                            <option>수영장</option>
+                            <option>홈캠</option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="wbtn-area">
+                        <button>취소</button>
+                        <button>결제</button>
+                    </div>
+                </td>
+            </tr>
+
+            <!--  2  -->
+            <tr>
+                <td>4</td>
+                <td>객실2</td>
+                <td>2024-01-05</td>
+                <td>2024-01-07</td>
+                <td>70000</td>
+                <td class="payComplete">결제완료</td>
+                <td>
+                    <div>
+                        <select>
+                            <option>홈캠</option>
+                        </select>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+
+            <!--  3  -->
+            <tr>
+                <td>3</td>
+                <td>객실1</td>
+                <td>2024-01-05</td>
+                <td>2024-01-07</td>
+                <td>70000</td>
+                <td class="useComplete">이용완료</td>
+                <td></td>
+                <td>
+                    <div class="wbtn-area">
+                        <button>후기 작성</button>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="pagination-area">
+
+            <ul class="pagination">
+
+                <!-- 첫 페이지로 이동 -->
+                <li><a>&lt;&lt;</a></li>
+
+                <!-- 이전 목록 마지막 번호로 이동 -->
+                <li><a>&lt;</a></li>
+
+                <!-- 특정 페이지로 이동 -->
+                <th:block>
+
+                    <!-- 현재 보고있는 페이지 -->
+                    <li>
+                        <a class="current">1</a>
+                    </li>
+
+                    <!-- 보고있지 않은 페이지 -->
+                    <li>
+                        <a>2</a>
+                    </li>
+
+                </th:block>
+
+
+
+
+                <!-- 다음 목록 시작 번호로 이동 -->
+                <li><a>&gt;</a></li>
+
+                <!-- 끝 페이지로 이동 -->
+                <li><a>&gt;&gt;</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>
