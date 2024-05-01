@@ -69,16 +69,20 @@
 
             <section class="input-area">
 
-                <form name="login">
+                <form action="/member/login" method="POST" id="loginForm">
 
                     <div class="inputForm">
                         <label>이메일</label>
-                        <input type="text">
+                        <input type="text"
+                               name="memberEmail"
+                               placeholder="이메일">
                     </div>
                     
                     <div class="inputForm">
                         <label>비밀번호</label>
-                        <input type="text">
+                        <input type="password"
+                               name="memberPw"
+                               placeholder="비밀번호">
                     </div>
 
                     <div class="login-btn-area">
@@ -109,6 +113,12 @@
             </section>
 
         </section>
+
+        <script th:inline="javascript">
+            const message =  /*[[${message}]]*/ "전달 받은 message";
+          
+            if(message != null) alert(message);
+        </script>
         
     </body>
 </html>
