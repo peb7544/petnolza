@@ -8,33 +8,6 @@
 
     <style>
         
-
-        section.max-container {
-            width: 100%;
-            align-items: center;
-            padding: 0 15px;
-        }
-
-        section.small-container > .btn-area {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            
-        }
-
-        
-
-        
-        /*--------------------*/
-        * {
-            box-sizing: border-box;
-
-            border: 1px solid black;
-        }
-
-        
-
-
         .content {
             width: 80%;
             display: flex;
@@ -42,12 +15,7 @@
             height: 290px;
             border: 2px solid #666666;
             margin-left: 10%;
-        }
-
-
-        .content > section:nth-last-of-type(1),
-        .content > section:nth-last-of-type(2) {
-            flex-basis: 3%;
+            box-shadow: 5px 5px 10px grey;
         }
 
         img {
@@ -56,19 +24,73 @@
             border-radius: 15px;
         }
 
-        
-
         b {
             font-size: 28px;
             text-align: center;
+            color: #666666;
         }
 
+        p {
+            color: #666666;
+        }
 
         .roomList {
             padding-left: 20px;
             padding-top: 40px;
         }
 
+        span {
+            border-radius: 5px;
+        }
+
+        .roomList3 {
+            border-left : thin solid #666666;
+            height : 220px;
+            padding-left: 7%;
+            padding-top: 3%;
+        }
+
+        .roomList2 {
+            padding-left: 3%;
+            padding-top: 3%;
+        }
+
+        .reserv {
+            position: relative;
+            top: 67px;
+            left: 230px;
+        }
+
+        .search { 
+            width: 50%;
+            height: 100px;
+            background-color: hsl(0, 7%, 92%);
+            border: 1px solid color hsl(0, 7%, 92%);
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px grey;
+            margin-left: 25%;
+        }
+
+        .search-btn {
+            margin-left: 38%;
+            width: 180px;
+            height: 30px;
+            background-color: #00abe8;
+            color: white;
+            border-radius: 8px;
+        }
+
+        input {
+            margin-left: 10%;
+            width: 80%;
+            height: 30px;
+            border-radius: 8px;
+            border-color: #666666;
+            margin-top: 3%;
+        }
+
+
+        
     </style>
     
     <link rel="stylesheet" href="/css/common.css"></link>
@@ -83,13 +105,20 @@
     <section class="container2">
 
         <section class="max-container">
+
+            <section class="max-container">
+                <div class="search"> <!-- 검색창 -->
+                    <input>
+                    <input>
+                    <button class="search-btn">검색</button> 
+                </div><br>
             
-            <div class="content">
-                <div>
+            <div class="content"> <!-- 첫번째 객실 박스-->
+                <div style="width: 40%;" class="img">
                     <img src="/images/객실.png">
                 </div>
     
-                <div class="roomList2">
+                <div class="roomList2" style="width: 36%;">
                     <b>객실 3</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
@@ -98,21 +127,21 @@
                             
                         <p>평균 평점</p>
                         ★★★★★
-                        <button onclick="location.href=">후기</button> 
+                        <button class="review" onclick="location.href=">후기</button> 
                 </div>
     
-                <div class="roomList3">
-                    <p><b>100,000원</b>(부가세 포함)</p><br>
-                    <button onclick="location.href=">예약</button>
+                <div class="roomList3" style="width: 24%;">
+                    <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
+                    <button class="reserv" onclick="location.href=">예약</button>
                 </div>
-            </div>
+            </div><br><br>
 
-            <div class="content">
-                <div>
+            <div class="content"> <!-- 두번째 객실 박스 -->
+                <div style="width: 40%;" class="img">
                     <img src="/images/객실.png">
                 </div>
     
-                <div class="roomList2">
+                <div class="roomList2" style="width: 36%;">
                     <b>객실 3</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
@@ -121,21 +150,21 @@
                             
                         <p>평균 평점</p>
                         ★★★★★
-                        <button onclick="location.href=">후기</button> 
+                        <button class="review" onclick="location.href=">후기</button> 
                 </div>
     
-                <div class="roomList3">
-                    <p><b>100,000원</b>(부가세 포함)</p><br>
-                    <button onclick="location.href=">예약</button>
+                <div class="roomList3" style="width: 24%;">
+                    <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
+                    <button class="reserv" onclick="location.href=">예약</button>
                 </div>
-            </div>
+            </div><br><br>
 
-            <div class="content">
-                <div>
+            <div class="content"> <!-- 세번째 객실 박스 -->
+                <div style="width: 40%;" class="img">
                     <img src="/images/객실.png">
                 </div>
     
-                <div class="roomList2">
+                <div class="roomList2" style="width: 36%;">
                     <b>객실 3</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
@@ -144,23 +173,20 @@
                             
                         <p>평균 평점</p>
                         ★★★★★
-                        <button onclick="location.href=">후기</button> 
+                        <button class="review" onclick="location.href=">후기</button> 
                 </div>
     
-                <div class="roomList3">
-                    <p><b>100,000원</b>(부가세 포함)</p><br>
-                    <button onclick="location.href=">예약</button>
+                <div class="roomList3" style="width: 24%;">
+                    <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
+                    <button class="reserv" onclick="location.href=">예약</button>
                 </div>
-            </div>
+            </div><br><br>
 
-
-            
-              
 
         </section>
 
     </section>
 
-    
+    <th:block th:replace="~{menu/footer}"></th:block>
 </body>
 </html>
