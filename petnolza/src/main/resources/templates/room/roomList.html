@@ -15,7 +15,7 @@
             border: 1px solid color hsl(0, 7%, 92%);
             border-radius: 8px;
             box-shadow: 5px 5px 10px grey;
-            margin-left: 25%;
+            margin-left: 23%;
         }
 
 
@@ -78,13 +78,14 @@
             left: 190px;
         }
 
-        input {
+        .searchsquare {
             margin-left: 10%;
             width: 80%;
             height: 30px;
             border-radius: 8px;
             border-color: #666666;
             margin-top: 3%;
+            
         }
 
         .service-btn {
@@ -92,17 +93,18 @@
         }
 
         .search-btn {
-            margin-left: 38%;
-            width: 180px;
-            height: 30px;
+            margin-left: 35%;
+            width: 260px;
+            height: 38px;
             background-color: #00abe8;
             color: white;
             border-radius: 8px;
-            
+            font-size: 24px;
         }
 
     </style>
     
+    <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/menu.css"></link>
 
@@ -115,11 +117,14 @@
 
         <section class="max-container">
             <div class="search"> <!-- 검색창 -->
-                <input><br><br>
-                <button class="search-btn">검색</button> 
-            </div><br>
+                <label style="position: relative; display: flex;">
+                    <button class="fa-solid fa-magnifying-glass" style="color: #666666; border: none; left: 105px; position: absolute; bottom: 2px;"></button>
+                    <input class="searchsquare"><br><br>
+                </label>
+                <button class="search-btn" type="submit">검색</button> 
+            </div><br><br><br>
 
-            <div>
+            <div> <!-- 관리자 버튼 -->
                 <button class="service-btn">서비스 등록</button>
                 <button class="room-btn">객실 등록</button>
             </div><br>
@@ -130,7 +135,7 @@
                 </div>
         
                 <div class="roomList2" style="width: 36%;">
-                    <b>객실 3</b>
+                    <b>객실 1</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
@@ -154,7 +159,7 @@
                 </div>
         
                 <div class="roomList2" style="width: 36%;">
-                    <b>객실 3</b>
+                    <b>객실 2</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
