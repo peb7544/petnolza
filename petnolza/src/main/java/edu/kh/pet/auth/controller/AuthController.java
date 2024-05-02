@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -98,5 +99,45 @@ public class AuthController {
 		return "member/join";
 				
 	}
+	
+	@PostMapping("join")
+	public String join(@ModelAttribute Member member) {
+		
+		return "";
+	}
+	
+	@ResponseBody
+	@GetMapping("checkEmail")
+	public int checkEmail(@RequestParam("memberEmail") String memberEmail) {
+		
+		return service.checkEmail(memberEmail);
+	}
+	
+	@ResponseBody
+	@GetMapping("checkNickname")
+	public int checkNickname(@RequestParam("memberNickname") String memberNickname) {
+		
+		return service.checkNickname(memberNickname);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
