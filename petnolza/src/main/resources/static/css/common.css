@@ -16,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100vh;
+    /*height: 100vh;*/
 }
 
 /* 공통 화면 크기 조절 */

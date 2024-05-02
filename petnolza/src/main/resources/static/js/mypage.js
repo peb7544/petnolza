@@ -14,5 +14,21 @@ document.querySelector("#mtminsert").addEventListener("click", () => {
     // 경로
     const path = location.pathname.replace('mtmList', 'mtmWrite');
 
-    window.open(path,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',scrollbars=yes,resizable=no,toolbar=no,titlebar=no,menubar=no,location=no,fullscreen=no');
+    window.open(path,'','width='+popupW+',height='+popupH+',left='+left+',top='+top+',popup=true');
+
+    // 팝업창 닫을 때 딤프레이어 block
+    document.getElementById("popOpen").style.display = "block";
 });
+
+// 상세화면이동
+const mtmListCnt = document.querySelector(".mtmList").rows.length;
+
+for(let i=0; i<mtmListCnt-1; i++) {
+    document.querySelector('#row'+i).addEventListener('click', ()=>{
+        const rowId = document.querySelector('#row'+i);
+        const rowChild = rowId.children;
+        
+        location.href= '/mypage/mtmDetail?mtmNo=' + rowChild[0].innerText;
+
+    });
+}

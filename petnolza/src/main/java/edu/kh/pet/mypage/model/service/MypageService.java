@@ -1,6 +1,10 @@
 package edu.kh.pet.mypage.model.service;
 
-import edu.kh.pet.mypage.model.dto.MTM;
+import java.util.List;
+import java.util.Map;
+
+import edu.kh.pet.community.dto.Board;
+import edu.kh.pet.mypage.model.dto.Mtm;
 
 public interface MypageService {
 
@@ -9,7 +13,19 @@ public interface MypageService {
 	 * @param inputMtm
 	 * @return mtmNo
 	 */
-	int mtmInsert(MTM inputMtm);
+	int mtmInsert(Mtm inputMtm);
+
+	/** 1:1문의 페이지 목록 조회
+	 * @param cp
+	 * @param cp2 
+	 * @return
+	 */
+	Map<String, Object> selectMtmList(int memberNo, int cp2);
+
+	/** 자주묻는질문조회
+	 * @return
+	 */
+	List<Board> selectQnaList();
 	
 	/*********************************************************************************************/
 

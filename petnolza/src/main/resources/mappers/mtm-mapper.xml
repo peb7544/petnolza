@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.pet.community.model.mapper.MtmMapper">
+ 	
+ 	<!-- 1:1문의 게시글 Count -->
+ 	<select id="getListCount">
+ 		SELECT 
+			COUNT(*)
+		FROM MTM 
+ 	</select>
+ 	
+ 	<!-- 1:1문의 조회 -->
+ 	<select id="selectMtmList">
+ 		SELECT 
+			 MTM_NO 
+			,MTM_TITLE 
+			,MEMBER_NICKNAME  
+			,<![CDATA[
+			 CASE 
+			 	WHEN SYSDATE - MTM_DATE < 1 / 24 / 60
+			 	THEN FLOOR( (SYSDATE - MTM_DATE) * 24 * 60 * 60 ) || '초 전'
+			 	WHEN SYSDATE - MTM_DATE < 1 / 24
+			 	THEN FLOOR( (SYSDATE - MTM_DATE) * 24 * 60 ) || '분 전'
+			 	WHEN SYSDATE - MTM_DATE < 1
+			 	THEN FLOOR( (SYSDATE - MTM_DATE) * 24 ) || '시간 전'
+			 	ELSE TO_CHAR( MTM_DATE, 'YYYY-MM-DD' )
+			 END MTM_DATE
+			]]>
+			,DECODE(MTM_ANSWER, NULL, '답변예정', '답변완료') MTM_ANSWER
+		FROM MTM
+		JOIN "MEMBER" USING(MEMBER_NO)
+		ORDER BY MTM_NO DESC
+ 	</select>
+ 	
+</mapper>
