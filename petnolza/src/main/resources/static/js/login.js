@@ -4,7 +4,6 @@ const loginEmail = document.querySelector("#loginForm input[name='memberEmail']"
 
 const loginPassword = document.querySelector("#loginForm input[name='memberPassword']");
 
-const saveIdCheck = document.querySelector("input[name='saveId']");
 
 
 // 제출 이벤트 발생 시
@@ -29,5 +28,6 @@ loginForm.addEventListener("submit", (e) => {
     return;
   }
 
+  
 });
 

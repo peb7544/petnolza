@@ -13,13 +13,35 @@
 .inputEmail-area {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
+button.greyBtn {
+    height: 25px;
+}
+/*
 .inputEmail-area input {
     width: 330px;
 }
-
-.inputEmail-area button {
-    font-size: 15px;
+*/
+.greyBtn {
+    font-size: 13px;
     width: 100px;
+}
+
+.required {
+    color: #00abe8;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+}
+
+.confirm {
+    color: green;
+}
+
+.textMessage {
+    font-size: 13px;
 }

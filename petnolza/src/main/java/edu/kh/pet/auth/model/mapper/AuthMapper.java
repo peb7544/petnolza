@@ -14,4 +14,20 @@ public interface AuthMapper {
 	 */
 	Member login(String memberEmail);
 
+	
+	
+	/** 이메일 중복검사
+	 * @param memberEmail
+	 * @return
+	 */
+	int checkEmail(String memberEmail);
+
+
+
+	/** 닉네임 중복검사
+ 	 * @param memberNickname
+	 * @return
+	 */
+	int checkNickname(String memberNickname);
+
 }

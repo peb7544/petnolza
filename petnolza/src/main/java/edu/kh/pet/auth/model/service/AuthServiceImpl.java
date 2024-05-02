@@ -49,4 +49,42 @@ public class AuthServiceImpl implements AuthService {
 		return loginMember;
 	}
 
+	
+	// 이메일 중복검사
+	@Override
+	public int checkEmail(String memberEmail) {
+		
+		return mapper.checkEmail(memberEmail);
+	}
+
+	
+	// 닉네임 중복검사
+	@Override
+	public int checkNickname(String memberNickname) {
+		
+		return mapper.checkNickname(memberNickname);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
