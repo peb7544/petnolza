@@ -1,4 +1,4 @@
-package edu.kh.pet.community.dto;
+package edu.kh.pet.community.model.dto;
 
 import lombok.*;
 

@@ -3,7 +3,7 @@ package edu.kh.pet.mypage.model.service;
 import java.util.List;
 import java.util.Map;
 
-import edu.kh.pet.community.dto.Board;
+import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.mypage.model.dto.Mtm;
 
 public interface MypageService {

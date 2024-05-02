@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
-import edu.kh.pet.community.dto.Pagination;
+import edu.kh.pet.community.model.dto.Pagination;
 import edu.kh.pet.community.model.mapper.MtmMapper;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import lombok.RequiredArgsConstructor;

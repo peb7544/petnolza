@@ -1,8 +1,8 @@
-package edu.kh.pet.community.service;
+package edu.kh.pet.community.model.service;
 
-import edu.kh.pet.community.dto.Board;
-import edu.kh.pet.community.dto.Pagination;
-import edu.kh.pet.community.mapper.CommunityMapper;
+import edu.kh.pet.community.model.dto.Board;
+import edu.kh.pet.community.model.dto.Pagination;
+import edu.kh.pet.community.model.mapper.CommunityMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;

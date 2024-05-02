@@ -1,8 +1,8 @@
 package edu.kh.pet.community.controller;
 
-import edu.kh.pet.community.dto.Board;
-import edu.kh.pet.community.dto.BoardImg;
-import edu.kh.pet.community.service.CommunityService;
+import edu.kh.pet.community.model.dto.Board;
+import edu.kh.pet.community.model.dto.BoardImg;
+import edu.kh.pet.community.model.service.CommunityService;
 import edu.kh.pet.member.model.dto.Member;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
