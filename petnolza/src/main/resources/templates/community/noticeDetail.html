@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr"  xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,19 +32,21 @@
         }
 
     </style>
-    
+
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/board.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
+<th:block th:replace="~{menu/topMenu}"></th:block>
 
     <section class="container">
 
         <section class="max-container">
             <h2>공지사항</h2>
 
-            <div>
+            <div th:object="${board}">
                 <table class="board-area">
                     <thead>
                     
@@ -56,11 +58,11 @@
                     </thead>
                     <tbody>
 
-                        <tr>
-                            <td>10</td>
-                            <td>제목제목제목제목</td>
-                            <td>2024-05-04</td>
-                            <td>300</td>
+                        <tr style="pointer-events : none;">
+                            <td th:text="*{boardNo}">10</td>
+                            <td th:text="*{boardTitle}">제목</td>
+                            <td th:text="*{boardWriteDate}">2024-05-04</td>
+                            <td th:text="*{readCount}">300</td>
                         </tr>
 
                     </tbody>
@@ -69,7 +71,7 @@
 
                 <div>
 
-                    <div class="board-content-div">
+                    <div class="board-content-div" th:text="*{boardContent}">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
 
@@ -100,6 +102,8 @@
 
     </section>
 
-    
+    <th:block th:replace="~{menu/sideMenu}"></th:block>
+    <th:block th:replace="~{menu/footer}"></th:block>
+
 </body>
 </html>

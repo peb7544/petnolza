@@ -27,7 +27,7 @@ public interface CommunityMapper {
      * @param map
      * @return board
      */
-    Board selectOne(Map<String, Integer> map);
+    Board selectOne(Map<String, Object> map);
 
     /** 조회수 1 증가
      * @param boardNo
