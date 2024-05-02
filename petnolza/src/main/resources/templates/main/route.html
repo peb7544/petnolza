@@ -21,9 +21,9 @@
         .detail-2 {padding-right: 48px;}
         .detail-3 {padding-right: 48px;}
 
-        b {color: #00abe8;}
+        span {color: #00abe8;}
 
-        p {font-size: 22px;}
+        div {font-size: 22px;}
 
     </style>
     
@@ -38,21 +38,34 @@
 <body>
     <th:block th:replace="~{menu/adminTopMenu}"></th:block> 
 
-    <section class="container2">
+    <section class="container">
 
         <section class="max-container">
-            <div class="routeDetail">
-                지도 api 삽입예정
-            </div>
+            <div id="map" style="width: 500px; height: 400px;"></div> 
 
             <div class="routeDetail">
-                <p><b class="detail-1">지하철역</b>을지로입구역 3번출구</p>
-                <p><b class="detail-2">버스</b>103, 9401,...</p>
-                <p><b class="detail-3">주소</b>서울 중구 남대문로 120 대일빌딩 2층, 3층</p>
+               <pre>
+                <span>지하철역</span> 을지로입구역 3번출구
+                <span>버스</span>     103, 9401, ...
+                <span>주소</span>     서울 중구 남대문로 120 대일빌딩 2층, 3층
+               </pre>
             </div>
         </section>
 
     </section>
+	
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6cf589d35d7569187436ea45e755d300"></script>
+	<script>
+	
+        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+        var options = { //지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+            level: 3 //지도의 레벨(확대, 축소 정도)
+        };
+
+        var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	</script>
 
     <th:block th:replace="~{menu/footer}"></th:block>
 </body>
