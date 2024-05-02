@@ -13,9 +13,10 @@
             display: flex;
             border-radius: 15px;
             height: 290px;
-            border: 2px solid #666666;
+            border: 2px solid #bebebe;
             margin-left: 10%;
             box-shadow: 5px 5px 10px grey;
+            border-width: thin;
         }
 
         img {
@@ -44,7 +45,7 @@
         }
 
         .roomList3 {
-            border-left : thin solid #666666;
+            border-left : thin solid #bebebe;
             height : 220px;
             padding-left: 7%;
             padding-top: 3%;
@@ -57,29 +58,42 @@
 
         .reserv {
             position: relative;
-            top: 67px;
-            left: 230px;
+            left: 77%;
+            top: 190%;
+            background-color: #00abe8;
+            color: white;
+            border-radius: 6px;
+            border-width: thin;
         }
 
         .search { 
             width: 50%;
             height: 170px;
-            background-color: hsl(0, 7%, 92%);
-            border: 1px solid color hsl(0, 7%, 92%);
+            background-color: hsl(0, 13%, 95%);
+            border: 1px solid color hsl(0, 20%, 96%);
             border-radius: 8px;
             box-shadow: 5px 5px 10px grey;
             margin-left: 23%;
         }
 
+        .review {
+            background-color: #666666;
+            color: white;
+            border-radius: 6px;
+            border-width: thin;
+        } 
+
         .search-btn {
             margin-left: 35%;
-            margin-top: 2%;
+            margin-top: 2.5%;
             width: 260px;
             height: 38px;
             background-color: #00abe8;
             color: white;
             border-radius: 8px;
             font-size: 24px;
+            border-width: thin;
+
         }
 
         input {
@@ -91,10 +105,31 @@
             margin-top: 3%;
         }
 
+        .searchsquare {
+            margin-left: 10%;
+            width: 80%;
+            height: 30px;
+            border-radius: 8px;
+            border-color: #bebebe;
+            margin-top: 3%;
+            border-width: thin;
+            outline: none;
+        }
 
-        
+        .date {
+            border-width: thin;
+            border-color: #bebebe;
+            outline: none;
+        }
+
+        .input-container input-container-md {
+            border-width: thin;
+            border-color: #bebebe;
+        }
+
     </style>
     
+    <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/menu.css"></link>
 
@@ -109,10 +144,34 @@
         <section class="max-container">
 
             <section class="max-container">
-                <div class="search"> <!-- 검색창 -->
-                    <input>
-                    <input>
-                    <button class="search-btn" type="submit">검색</button> 
+                <div class="search"> <!-- 검색창 영역 -->
+                    <label style="position: relative; display: flex;">
+                        <button class="fa-solid fa-magnifying-glass fa-lg" style="color: #666666; border: none; left: 98px; position: absolute; bottom: 17px; background-color: white;"></button>
+                        <input class="searchsquare"><br><br>
+                    </label>
+
+                    <div class="input-container input-container-md"> <!-- 달력 날짜 예약-->
+                        <div class="input-group">
+                            <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="date-rage-picker" style="border-width: thin; border-color: #bebebe; outline: none;">
+                            <div class="input-group-tools">
+                                <button class="option type">
+                                    <i class="Licon ico-calender"></i>
+                                </button>
+                                <button class="option error">
+                                    <i class="Licon ico-warning"></i>
+                                </button>
+                                <button class="option success">
+                                    <i class="Licon ico-check"></i>
+                                </button>
+                                <button class="clear on">
+                                    <i class="material-icons">cancel</i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="status-message">상태메세지는 이곳에 쓰여집니다.</p>
+                    </div>
+                    
+                    <button class="search-btn" type="submit">검색</button> <!-- 검색 버튼 -->
                 </div><br><br><br><br><br>
             
             <div class="content"> <!-- 첫번째 객실 박스-->
@@ -123,9 +182,9 @@
                 <div class="roomList2" style="width: 36%;">
                     <b>객실 1</b>
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
                             
                         <p>평균 평점</p>
                         ★★★★★
@@ -146,9 +205,9 @@
                 <div class="roomList2" style="width: 36%;">
                     <b>객실 2</b>
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
                             
                         <p>평균 평점</p>
                         ★★★★★
@@ -169,9 +228,9 @@
                 <div class="roomList2" style="width: 36%;">
                     <b>객실 3</b>
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
                             
                         <p>평균 평점</p>
                         ★★★★★
@@ -184,11 +243,31 @@
                 </div>
             </div><br><br>
 
-
         </section>
 
     </section>
 
-    <th:block th:replace="~{menu/footer}"></th:block>
+    <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
+
+    <script> // 달력 자바스크립트
+        $('#date-rage-picker')
+                .daterangepicker(
+                        {
+                            format : 'YYYY. MM. DD hh:mm A',
+                            applyButtonClasses : 'btn btn-container btn-secondary btn-sm wth-80',
+                            cancelClass : 'btn btn-container btn-gray btn-sm wth-80',
+                            // locale: moment.locale('ko'),
+                            locale : {
+                                daysOfWeek : moment
+                                        .locale('ko').daysOfWeek,
+                                monthNames : moment
+                                        .locale('ko').monthNames,
+                                'applyLabel' : '적용',
+                                'cancelLabel' : '취소'
+                            },
+                        // timePicker: true
+                        });
+    </script>
+
 </body>
 </html>

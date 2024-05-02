@@ -11,11 +11,12 @@
         .search {
             width: 50%;
             height: 100px;
-            background-color: hsl(0, 7%, 92%);
+            background-color: hsl(0, 13%, 95%);
             border: 1px solid color hsl(0, 7%, 92%);
             border-radius: 8px;
             box-shadow: 5px 5px 10px grey;
             margin-left: 23%;
+            
         }
 
 
@@ -24,9 +25,10 @@
             display: flex;
             border-radius: 15px;
             height: 290px;
-            border: 2px solid #666666;
+            border: 2px solid #bebebe;
             margin-left: 10%;
             box-shadow: 5px 5px 10px grey;
+            border-width: thin;
         }
 
         img {
@@ -55,7 +57,7 @@
         }
 
         .roomList3 {
-            border-left : thin solid #666666;
+            border-left : thin solid #bebebe;
             height : 220px;
             padding-left: 7%;
             padding-top: 3%;
@@ -66,30 +68,29 @@
             padding-top: 3%;
         }
 
-        .del {
-            position: relative;
-            top: 67px;
-            left: 200px;
-        }
-
-        .update {
-            position: relative;
-            top: 67px;
-            left: 190px;
-        }
-
         .searchsquare {
             margin-left: 10%;
             width: 80%;
             height: 30px;
             border-radius: 8px;
-            border-color: #666666;
+            border-color: #bebebe;
             margin-top: 3%;
-            
+            border-width: thin;
         }
 
         .service-btn {
             margin-left: 1510px;
+            background-color: #666666;
+            color: white;
+            border-radius: 6px;
+            border-width: thin;
+        }
+
+        .room-btn {
+            background-color: #00abe8;
+            color: white;
+            border-radius: 6px;
+            border-width: thin;
         }
 
         .search-btn {
@@ -100,6 +101,29 @@
             color: white;
             border-radius: 8px;
             font-size: 24px;
+            margin-top: 2%;
+            border-width: thin;
+        }
+
+        .review {
+            background-color: #666666;
+            border-radius: 6px;
+            border-width: thin;
+            color: white;      
+        }
+
+        .del {
+            background-color: #666666;
+            border-radius: 6px;
+            border-width: thin;
+            color: white;            
+        }
+
+        .update {
+            background-color: #00abe8;
+            border-radius: 6px;
+            border-width: thin;
+            color: white;
         }
 
     </style>
@@ -118,15 +142,15 @@
         <section class="max-container">
             <div class="search"> <!-- 검색창 -->
                 <label style="position: relative; display: flex;">
-                    <button class="fa-solid fa-magnifying-glass" style="color: #666666; border: none; left: 105px; position: absolute; bottom: 2px;"></button>
+                    <button class="fa-solid fa-magnifying-glass fa-lg" style="color: #666666; border: none; left: 98px; position: absolute; bottom: 17px; background-color: white;"></button>
                     <input class="searchsquare"><br><br>
                 </label>
                 <button class="search-btn" type="submit">검색</button> 
             </div><br><br><br>
 
             <div> <!-- 관리자 버튼 -->
-                <button class="service-btn">서비스 등록</button>
-                <button class="room-btn">객실 등록</button>
+                <button class="service-btn" style="#00abe8">서비스 등록</button>
+                <button class="room-btn" style="#bebebe">객실 등록</button>
             </div><br>
 
             <div class="content"> <!-- 첫번째 객실 박스 -->
@@ -137,9 +161,9 @@
                 <div class="roomList2" style="width: 36%;">
                     <b>객실 1</b>
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
                             
                         <p>평균 평점</p>
                         ★★★★★
@@ -148,8 +172,8 @@
 
                 <div class="roomList3" style="width: 24%;">
                     <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
-                    <button class="reserv" onclick="location.href=">수정</button>
-                    <button class="reserv" onclick="location.href=">삭제</button>
+                    <button class="update" onclick="location.href=">수정</button>
+                    <button class="del" onclick="location.href=">삭제</button>
                 </div>
             </div><br><br>
 
@@ -161,9 +185,9 @@
                 <div class="roomList2" style="width: 36%;">
                     <b>객실 2</b>
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
                             
                         <p>평균 평점</p>
                         ★★★★★
@@ -172,8 +196,8 @@
 
                 <div class="roomList3" style="width: 24%;">
                     <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
-                    <button class="reserv" onclick="location.href=">수정</button>
-                    <button class="reserv" onclick="location.href=">삭제</button>
+                    <button class="update" onclick="location.href=">수정</button>
+                    <button class="del" onclick="location.href=">삭제</button>
                 </div>
             </div><br><br>
 
@@ -185,9 +209,9 @@
                 <div class="roomList2" style="width: 36%;">
                     <b>객실 3</b>
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
                             
                         <p>평균 평점</p>
                         ★★★★★
@@ -196,8 +220,8 @@
 
                 <div class="roomList3" style="width: 24%;">
                     <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
-                    <button class="reserv" onclick="location.href=">수정</button>
-                    <button class="reserv" onclick="location.href=">삭제</button>
+                    <button class="update" onclick="location.href=">수정</button>
+                    <button class="del" onclick="location.href=">삭제</button>
                 </div>
             </div><br><br>
 
