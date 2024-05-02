@@ -1,0 +1,28 @@
+<!-- 로그인 상태 사이드바 -->
+<th:block th:unless="${session.loginMember == null}">
+  <section class="side-navigator">
+
+    <a href="#">맨위로</a>
+    <a href="#">인스타그램</a>
+    <a href="#">카카오톡 문의</a>
+    <a href="/main/route">찾아오시는길</a>
+    <a href="/mypage/memberUpdate">마이페이지</a>
+    <a href="/mypage/mtmList">1:1 문의</a>
+
+  </section>
+</th:block>
+
+
+<!-- 로그아웃 상태 사이드바 -->
+<th:block th:if="${session.loginMember == null}">
+
+  <section class="side-navigator">
+
+    <a href="#top-menu">맨위로</a>
+    <a href="#">인스타그램</a>
+    <a href="#">카카오톡 문의</a>
+    <a href="#">찾아오시는길</a>
+
+  </section>
+
+</th:block>

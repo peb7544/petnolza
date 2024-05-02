@@ -1,29 +1,33 @@
 const loginForm = document.querySelector("#loginForm");
 
-const loginPw = document.querySelector("#loginForm input[name='memberPw']");
+const loginEmail = document.querySelector("#loginForm input[name='memberEmail']");
 
-// loginForm 이 화면에 존재할 때 (== 로그인 상태 아닐 때)
-if(loginForm != null) {
+const loginPassword = document.querySelector("#loginForm input[name='memberPassword']");
 
-  // 제출 이벤트 발생 시
-  loginForm.addEventListener("submit", (e) => {
+const saveIdCheck = document.querySelector("input[name='saveId']");
 
-    // 이메일 미작성
-    if(loginEmail.value.trim().length === 0) {
-      alert("이메일을 작성해주세요!");
-      e.preventDefault();   // 기본 이벤트(제출) 막기
-      loginEmail.focus();   // 초점 이동
-      return;
-    }
 
-    // 비밀번호 미작성
-    if(loginPw.value.trim().length === 0) {
-      alert("비밀번호를 작성해주세요!");
-      e.preventDefault();   // 기본 이벤트(제출) 막기
-      loginPw.focus();   // 초점 이동
-      return;
-    }
+// 제출 이벤트 발생 시
 
-  });
+loginForm.addEventListener("submit", (e) => {
 
-}
+  console.log("테스트");
+
+  // 이메일 미작성
+  if(loginEmail.value.trim().length === 0) {
+    alert("이메일을 작성해주세요!");
+    e.preventDefault();   
+    loginEmail.focus();   
+    return;
+  }
+
+  // 비밀번호 미작성
+  if(loginPassword.value.trim().length === 0) {
+    alert("비밀번호를 작성해주세요!");
+    e.preventDefault();   
+    loginPassword.focus();   
+    return;
+  }
+
+});
+

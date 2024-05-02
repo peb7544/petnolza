@@ -1,8 +1,8 @@
-package edu.kh.pet.auth.mapper;
+package edu.kh.pet.auth.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import edu.kh.pet.member.dto.Member;
+import edu.kh.pet.member.model.dto.Member;
 
 @Mapper
 public interface AuthMapper {
