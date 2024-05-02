@@ -67,7 +67,7 @@
                             <tr th:each="board : ${boardList}" th:object="${board}">
                                 <td th:text="*{boardNo}">게시글 번호</td>
                                 <td>
-                                    <a th:href="@{/board/{boardCode}/{boardNo} (boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
+                                    <a th:href="@{/board/{groupCode}/{boardNo} (groupCode=${groupCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
                                        th:text="*{boardTitle}">게시글 제목</a>
                                 </td>
                                 <!-- 작성일 -->
@@ -87,10 +87,10 @@
                     <ul class="pagination" th:object="${pagination}">
 
                         <!-- 첫 페이지로 이동 -->
-                        <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
+                        <li><a th:href="@{/board/{groupCode}(groupCode=${groupCode}, cp=1)}">&lt;&lt;</a></li>
 
                         <!-- 이전 목록 마지막 번호로 이동 -->
-                        <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{prevPage})}">&lt;</a></li>
+                        <li><a th:href="@{/board/{groupCode}(groupCode=${groupCode}, cp=*{prevPage})}">&lt;</a></li>
 
                         <!-- 특정 페이지로 이동 -->
 
@@ -103,16 +103,16 @@
 
                             <!-- 보고있지 않은 페이지 -->
                             <li th:unless="${i} == *{currentPage}">
-                                <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i})}"
+                                <a th:href="@{/board/{groupCode}(groupCode=${groupCode}, cp=${i})}"
                                    th:text="${i}">이동할 페이지</a>
                             </li>
                         </th:block>
 
                         <!-- 다음 목록 시작 번호로 이동 -->
-                        <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{nextPage})}">&gt;</a></li>
+                        <li><a th:href="@{/board/{groupCode}(groupCode=${groupCode}, cp=*{nextPage})}">&gt;</a></li>
 
                         <!-- 끝 페이지로 이동 -->
-                        <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
+                        <li><a th:href="@{/board/{groupCode}(groupCode=${groupCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
                     </ul>
                 </div>
 
@@ -139,7 +139,7 @@
     <th:block th:replace="~{menu/footer}"></th:block>
 
     <script th:inline="javascript">
-        const boardCode = /*[[${boardCode}]]*/ "게시판 코드 번호";
+        const groupCode = /*[[${groupCode}]]*/ "게시판 코드 번호";
     </script>
 
     <script src="/js/board/boardList.js"></script>

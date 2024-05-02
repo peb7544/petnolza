@@ -17,14 +17,14 @@ public class CommunityService {
 
     private final CommunityMapper communityMapper;
 
-    public Map<String, Object> selectBoardList(String boardCode, int cp) {
-        int listCount = communityMapper.getListCount(boardCode);
+    public Map<String, Object> selectBoardList(String groupCode, int cp) {
+        int listCount = communityMapper.getListCount(groupCode);
         Pagination pagination = new Pagination(cp, listCount);
         int limit = pagination.getLimit();
         int offset = (cp -1 ) * limit;
         RowBounds rowBounds = new RowBounds(offset, limit);
 
-        List<Board> boardList = communityMapper.selectBoardList(boardCode, rowBounds);
+        List<Board> boardList = communityMapper.selectBoardList(groupCode, rowBounds);
 
         Map<String, Object> map = new HashMap<String, Object>();
 

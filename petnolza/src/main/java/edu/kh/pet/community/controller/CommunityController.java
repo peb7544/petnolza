@@ -29,11 +29,11 @@ public class CommunityController {
 		if(paramMap.get("key") == null) { // 검색이 아닌 경우
 			map = communityService.selectBoardList("NOTICE", cp);
 		} else {
-			paramMap.put("boardCode", "NOTICE");
+			paramMap.put("groupCode", "NOTICE");
 			map = communityService.selectSearchList(paramMap, cp);
 		}
 
-		model.addAttribute("pagination", map.get("paginamtion"));
+		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
 
 		return "community/noticeList";
