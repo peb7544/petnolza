@@ -63,21 +63,23 @@
 
         .search { 
             width: 50%;
-            height: 100px;
+            height: 170px;
             background-color: hsl(0, 7%, 92%);
             border: 1px solid color hsl(0, 7%, 92%);
             border-radius: 8px;
             box-shadow: 5px 5px 10px grey;
-            margin-left: 25%;
+            margin-left: 23%;
         }
 
         .search-btn {
-            margin-left: 38%;
-            width: 180px;
-            height: 30px;
+            margin-left: 35%;
+            margin-top: 2%;
+            width: 260px;
+            height: 38px;
             background-color: #00abe8;
             color: white;
             border-radius: 8px;
+            font-size: 24px;
         }
 
         input {
@@ -98,7 +100,7 @@
 
 </head>
 <body>
-
+ 
     <th:block th:replace="~{menu/topMenu-Login}"></th:block>
     <th:block th:replace="~{menu/sideMenu-Login}"></th:block>
 
@@ -110,8 +112,8 @@
                 <div class="search"> <!-- 검색창 -->
                     <input>
                     <input>
-                    <button class="search-btn">검색</button> 
-                </div><br>
+                    <button class="search-btn" type="submit">검색</button> 
+                </div><br><br><br><br><br>
             
             <div class="content"> <!-- 첫번째 객실 박스-->
                 <div style="width: 40%;" class="img">
@@ -119,7 +121,7 @@
                 </div>
     
                 <div class="roomList2" style="width: 36%;">
-                    <b>객실 3</b>
+                    <b>객실 1</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
@@ -142,7 +144,7 @@
                 </div>
     
                 <div class="roomList2" style="width: 36%;">
-                    <b>객실 3</b>
+                    <b>객실 2</b>
                         <p>객실 제공사항</p>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
                         <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
