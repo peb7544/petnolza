@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import edu.kh.pet.auth.service.AuthService;
-import edu.kh.pet.member.dto.Member;
+import edu.kh.pet.auth.model.service.AuthService;
+import edu.kh.pet.member.model.dto.Member;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,7 +42,9 @@ public class AuthController {
 	@PostMapping("login")
 	public String login(@ModelAttribute Member inputMember,
 						RedirectAttributes ra,
-						Model model) {
+						Model model,
+						@RequestParam(value="saveId", required=false) String saveId,
+						HttpServletResponse resp) {
 		
 		Member loginMember = service.login(inputMember);
 		
@@ -47,6 +52,7 @@ public class AuthController {
 		
 		if(loginMember == null) {
 			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			return "redirect:/member/login";
 		}
 		
 		if(loginMember != null) {
@@ -54,9 +60,30 @@ public class AuthController {
 			model.addAttribute("loginMember", loginMember);
 			log.debug("로그인 성공");
 			
+			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+			
+			cookie.setPath("/");
+			
+			if(saveId != null) {
+				cookie.setMaxAge(60 * 60 * 24 * 30);
+			} else {
+				cookie.setMaxAge(0);
+			}
+			
+			resp.addCookie(cookie);
+			
 		}
 		 
 		return "redirect:/";
+	}
+	
+	@GetMapping("logout")
+	public String logout(SessionStatus status) {
+		
+		status.setComplete();
+		
+		return "redirect:/";
+		
 	}
 	
 	@GetMapping("emailFind")

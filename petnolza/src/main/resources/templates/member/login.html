@@ -81,7 +81,7 @@
                     <div class="inputForm">
                         <label>비밀번호</label>
                         <input type="password"
-                               name="memberPw"
+                               name="memberPassword"
                                placeholder="비밀번호">
                     </div>
 
@@ -93,7 +93,7 @@
                         <a href="join">회원가입</a>
 
                         <div>
-                            <input type="checkbox">
+                            <input type="checkbox" name="saveId">
                             <label>이메일 기억하기</label>
                         </div>
                     </div>
@@ -118,7 +118,11 @@
             const message =  /*[[${message}]]*/ "전달 받은 message";
           
             if(message != null) alert(message);
+
+            
         </script>
+
+        <script src="/js/login.js"></script>
         
     </body>
 </html>

@@ -1,6 +1,6 @@
-package edu.kh.pet.auth.service;
+package edu.kh.pet.auth.model.service;
 
-import edu.kh.pet.member.dto.Member;
+import edu.kh.pet.member.model.dto.Member;
 
 public interface AuthService {
 

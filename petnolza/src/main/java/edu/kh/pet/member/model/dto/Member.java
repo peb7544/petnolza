@@ -1,4 +1,4 @@
-package edu.kh.pet.member.dto;
+package edu.kh.pet.member.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
