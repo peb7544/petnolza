@@ -2,3 +2,16 @@
 .sectionMargin {
     margin-top: 30px;
 }
+
+/* 딤프레이어 (부모창 비활성화) */
+#popOpen {
+    position: fixed; 
+    top: 0px; 
+    left: 0px;
+    width: 100%; 
+    height: 100%; 
+    z-index: 1001; 
+    opacity: 0.5; 
+    background-color: rgb(0, 0, 0);
+    display: none;
+}

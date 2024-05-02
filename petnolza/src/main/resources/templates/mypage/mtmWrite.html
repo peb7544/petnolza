@@ -15,12 +15,12 @@
         <form action="mtmInsert" method="POST" id="mtmInsert">
             <div class="inputForm">
                 <label>제목</label>
-                <input type="text">
+                <input type="text" name="mtmTitle">
             </div>
 
             <div class="inputForm">
                 <label>내용</label>
-                <textarea class="content-area"></textarea>
+                <textarea class="content-area" name="mtmContent"></textarea>
             </div>
 
             <div class="btn-area">
@@ -28,5 +28,12 @@
             </div>
         </form>
     </section>
+
+    <script>
+        // 팝업창 닫을 때 딤프레이어 none
+        window.addEventListener('beforeunload', function(event) {
+            opener.document.getElementById("popOpen").style.display = "none";
+        });
+    </script>
 </body>
 </html>

@@ -1,8 +1,12 @@
 package edu.kh.pet.mypage.model.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 
-import edu.kh.pet.mypage.model.dto.MTM;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
+
+import edu.kh.pet.community.dto.Board;
+import edu.kh.pet.mypage.model.dto.Mtm;
 
 @Mapper
 public interface MypageMapper {
@@ -13,7 +17,24 @@ public interface MypageMapper {
 	 * @param inputMtm
 	 * @return result
 	 */
-	int mtmInsert(MTM inputMtm);
+	int mtmInsert(Mtm inputMtm);
+
+	/**1:1문의 Count 조회
+	 * @param memberNo
+	 * @return
+	 */
+	int getListCount(int memberNo);
+
+	/** 1:1문의 조회
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Mtm> selectMtmList(int memberNo, RowBounds rowBounds);
+
+	/** 자주묻는질문 조회
+	 * @return
+	 */
+	List<Board> selectQnaList();
 	
 	/*********************************************************************************************/
 
