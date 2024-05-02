@@ -1,6 +1,6 @@
-package edu.kh.pet.community.mapper;
+package edu.kh.pet.community.model.mapper;
 
-import edu.kh.pet.community.dto.Board;
+import edu.kh.pet.community.model.dto.Board;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 

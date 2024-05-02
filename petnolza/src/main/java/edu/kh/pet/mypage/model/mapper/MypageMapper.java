@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
-import edu.kh.pet.community.dto.Board;
+import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.mypage.model.dto.Mtm;
 
 @Mapper

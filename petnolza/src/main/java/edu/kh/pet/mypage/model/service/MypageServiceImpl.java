@@ -8,8 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.kh.pet.community.dto.Board;
-import edu.kh.pet.community.dto.Pagination;
+import edu.kh.pet.community.model.dto.Board;
+import edu.kh.pet.community.model.dto.Pagination;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import edu.kh.pet.mypage.model.mapper.MypageMapper;
 import lombok.RequiredArgsConstructor;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import edu.kh.pet.community.dto.Board;
+import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import edu.kh.pet.mypage.model.service.MypageService;
 import lombok.RequiredArgsConstructor;
