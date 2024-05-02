@@ -101,7 +101,11 @@ public class AuthController {
 	}
 	
 	@PostMapping("join")
-	public String join(@ModelAttribute Member member) {
+	public String join(@ModelAttribute Member inputMember,
+					   @RequestParam("memberAddress") String[] memberAddress,
+					   RedirectAttributes ra) {
+		
+		
 		
 		return "";
 	}
