@@ -136,8 +136,117 @@
 </head>
 <body>
  
-    <th:block th:replace="~{menu/topMenu-Login}"></th:block>
-    <th:block th:replace="~{menu/sideMenu-Login}"></th:block>
+    <!-- 로그인 상태 탑메뉴 -->
+<th:block th:unless="${session.loginMember == null}">
+
+<section class="top-menu" id="top-menu">
+
+  <section class="homelogo">
+    <a href="/">
+      <img src="/images/petnolzaLogo.png" class="homelogo">
+    </a>
+  </section>
+
+  <section class="navigator">
+    
+    <nav>
+      
+      <a href="/reserve/reserveList">객실예약</a>
+      
+      <a href="/announcement/announcementList">공지사항</a>
+      
+      <a href="/main/qna">자주묻는 질문</a>
+      
+      <a href="/main/service">서비스</a>
+      
+      <a href="/main/route">오시는 길</a>
+      
+    </nav>
+
+  </section>
+
+  <section class="login-area">
+    <a href="/member/logout">로그아웃</a>
+
+    <span>|</span>
+
+    <a href="/mypage/memberUpdate">마이페이지</a>
+  </section>
+  
+
+</section>
+
+</th:block>
+
+<!-- 로그아웃 상태 탑메뉴 -->
+
+<th:block th:if="${session.loginMember == null}">
+
+<section class="top-menu" id="top-menu">
+
+  <section class="homelogo">
+    <a href="/">
+      <img src="/images/petnolzaLogo.png" class="homelogo">
+    </a>
+  </section>
+
+  <section class="navigator">
+    
+    <nav>
+      
+      <a href="/reserve/reserveList">객실예약</a>
+      
+      <a href="/announcement/announcementList">공지사항</a>
+      
+      <a href="/main/qna">자주묻는 질문</a>
+      
+      <a href="/main/service">서비스</a>
+      
+      <a href="/main/route">오시는 길</a>
+      
+    </nav>
+
+  </section>
+
+  <section class="login-area">
+    <a href="/member/login">로그인</a>
+
+    <span>|</span>
+
+    <a href="/member/join">회원가입</a>
+  </section>
+  
+</section>
+</th:block>
+
+<!-- 로그인 상태 사이드바 -->
+<th:block th:unless="${session.loginMember == null}">
+  <section class="side-navigator">
+
+    <a href="#">맨위로</a>
+    <a href="#">인스타그램</a>
+    <a href="#">카카오톡 문의</a>
+    <a href="/main/route">찾아오시는길</a>
+    <a href="/mypage/memberUpdate">마이페이지</a>
+    <a href="/mypage/mtmList">1:1 문의</a>
+
+  </section>
+</th:block>
+
+<!-- 로그아웃 상태 사이드바 -->
+<th:block th:if="${session.loginMember == null}">
+
+  <section class="side-navigator">
+
+    <a href="#top-menu">맨위로</a>
+    <a href="#">인스타그램</a>
+    <a href="#">카카오톡 문의</a>
+    <a href="#">찾아오시는길</a>
+
+  </section>
+
+</th:block>
+
 
     <section class="container2">
 
@@ -150,26 +259,7 @@
                         <input class="searchsquare"><br><br>
                     </label>
 
-                    <div class="input-container input-container-md"> <!-- 달력 날짜 예약-->
-                        <div class="input-group">
-                            <input type="text" placeholder="yyyy. mm. dd" class="input-box" id="date-rage-picker" style="border-width: thin; border-color: #bebebe; outline: none;">
-                            <div class="input-group-tools">
-                                <button class="option type">
-                                    <i class="Licon ico-calender"></i>
-                                </button>
-                                <button class="option error">
-                                    <i class="Licon ico-warning"></i>
-                                </button>
-                                <button class="option success">
-                                    <i class="Licon ico-check"></i>
-                                </button>
-                                <button class="clear on">
-                                    <i class="material-icons">cancel</i>
-                                </button>
-                            </div>
-                        </div>
-                        <p class="status-message">상태메세지는 이곳에 쓰여집니다.</p>
-                    </div>
+                   
                     
                     <button class="search-btn" type="submit">검색</button> <!-- 검색 버튼 -->
                 </div><br><br><br><br><br>
