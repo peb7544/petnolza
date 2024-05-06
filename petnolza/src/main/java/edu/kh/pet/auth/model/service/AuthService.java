@@ -27,4 +27,13 @@ public interface AuthService {
 	 */
 	int checkNickname(String memberNickname);
 
+
+
+	/** 회원가입
+	 * @param inputMember
+	 * @param memberAddress
+	 * @return result
+	 */
+	int join(Member inputMember, String[] memberAddress);
+
 }

@@ -30,4 +30,12 @@ public interface AuthMapper {
 	 */
 	int checkNickname(String memberNickname);
 
+
+
+	/** 회원가입
+	 * @param inputMember
+	 * @return result
+	 */
+	int join(Member inputMember);
+
 }
