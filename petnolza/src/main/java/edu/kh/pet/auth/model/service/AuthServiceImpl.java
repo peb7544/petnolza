@@ -65,6 +65,30 @@ public class AuthServiceImpl implements AuthService {
 		return mapper.checkNickname(memberNickname);
 	}
 
+	// 회원가입
+	@Override
+	public int join(Member inputMember, String[] memberAddress) {
+		
+		
+		if( !inputMember.getMemberAddr().equals(",,") ) {
+			
+			String address = String.join("^^^", memberAddress);
+			
+			inputMember.setMemberAddr(address);
+			
+		} else {
+			
+			inputMember.setMemberAddr(null);
+			
+		}
+		
+		String encPw = bcrypt.encode(inputMember.getMemberPassword());
+		
+		inputMember.setMemberPassword(encPw);
+		
+		return mapper.join(inputMember);
+	}
+
 }
 
 

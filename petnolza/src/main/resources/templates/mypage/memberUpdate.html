@@ -27,12 +27,13 @@
                 
                 <section class="input-area">
 
+                    <div class="inputForm">
+                        <label>이메일</label>
+                        <input type="text" th:placeholder="${loginMember.memberEmail}" readonly>
+                    </div>
+
                     <form name="login">
 
-                        <div class="inputForm">
-                            <label>이메일</label>
-                            <input type="text" placeholder="이메일" readonly>
-                        </div>
                         
                         <div class="inputForm">
                             <label>비밀번호</label>
@@ -46,29 +47,29 @@
 
                         <div class="inputForm">
                             <label>이름</label>
-                            <input type="text">
+                            <input type="text" th:placeholder="${loginMember.memberName}">
                         </div>
 
                         <div class="inputForm">
                             <label>닉네임</label>
-                            <input type="text">
+                            <input type="text" th:placeholder="${loginMember.memberNickname}">
                         </div>
 
                         <div class="inputForm">
                             <label>전화번호</label>
-                            <input type="text">
+                            <input type="text" th:placeholder="${loginMember.memberTel}">
                         </div>
 
                         <div class="inputForm">
-                            <label>주소</label>
+                            <label>
+                                주소
+                            </label>
                             <div>
-                                <input type="text" id="sample6_postcode" placeholder="우편번호">
-                                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                                <input type="text" name="memberAddress" placeholder="우편번호" id="postcode">
+                                <button  type="button" class="greyBtn" id="searchAddress">우편번호 찾기</button>
                             </div>
-                            <input type="text" id="sample6_address" placeholder="주소">
-                            <input type="text" id="sample6_detailAddress" placeholder="상세주소">
-                            
-            
+                            <input type="text" name="memberAddress" placeholder="도로명/지번 주소" id="address">
+                            <input type="text" name="memberAddress" placeholder="상세주소" id="detailAddress">
                         </div>
 
                         <div class="login-btn-area">

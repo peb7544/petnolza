@@ -269,6 +269,7 @@ join.addEventListener("submit", e => {
         console.log("확인");
         alert("이용약관에 동의해주세요.");
         e.preventDefault();
+        location.href = "#terms"
         // 이용약관 체크 박스로 이동하기 추가
         return;
     }

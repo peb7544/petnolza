@@ -105,7 +105,9 @@ public class AuthController {
 					   @RequestParam("memberAddress") String[] memberAddress,
 					   RedirectAttributes ra) {
 		
-		
+		int result = service.join(inputMember, memberAddress);
+		String path = null;
+		String message = null;
 		
 		return "";
 	}
