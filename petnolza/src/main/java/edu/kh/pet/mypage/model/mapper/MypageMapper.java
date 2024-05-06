@@ -35,6 +35,12 @@ public interface MypageMapper {
 	 * @return
 	 */
 	List<Board> selectQnaList();
+
+	/** 1:1문의 상세조회
+	 * @param mtmNo
+	 * @return
+	 */
+	Mtm selectMtmDetail(int mtmNo);
 	
 	/*********************************************************************************************/
 

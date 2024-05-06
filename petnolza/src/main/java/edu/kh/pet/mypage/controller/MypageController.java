@@ -6,12 +6,16 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.pet.community.model.dto.Board;
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import edu.kh.pet.mypage.model.service.MypageService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("mypage")
 @RequiredArgsConstructor
 @Slf4j
+@SessionAttributes({"loginMember"})
 public class MypageController {
 	
 	private final MypageService service;
@@ -41,15 +46,6 @@ public class MypageController {
 	public String reviewWrite() {
 		
 		return "mypage/reviewWrite";
-	}
-	
-	/** 1:1문의 답변
-	 * @return
-	 */
-	@GetMapping("mtmDetail")
-	public String mtmDetail() {
-		
-		return "mypage/mtmDetail";
 	}
 	
 	/**	마이페이지 - 정보수정
@@ -91,11 +87,12 @@ public class MypageController {
 	@PostMapping("mtmInsert")
 	public String mtmInsert(
 				Mtm inputMtm,
-				RedirectAttributes ra
+				RedirectAttributes ra,
+				@SessionAttribute("loginMember") Member loginMember
 			) {
 		
 		// 로그인한 회원번호 세팅
-		inputMtm.setMemberNo(2);  // session 처리 후 수정 inputMtm.setMemberNo(loginMember.getMemberNo());
+		inputMtm.setMemberNo(loginMember.getMemberNo());
 		
 		// 서비스 메서드 호출 후 문의번호 받기
 		int mtmNo = service.mtmInsert(inputMtm);
@@ -105,7 +102,7 @@ public class MypageController {
 		
 		if(mtmNo > 0) {
 			
-			path = "/mypage/mtmDetail";
+			path = "/mypage/mtmDetail/" + mtmNo;
 			message = "문의가 정상적으로 접수되었습니다.";
 		} else {
 			
@@ -129,7 +126,7 @@ public class MypageController {
 		
 		int memberNo = 2; // 로그인 처리후 변경
 		
-		// 1:1 조회 서비스 호출 후 결과 반환
+		// 1:1 문의 조회 서비스 호출 후 결과 반환
 		Map<String, Object> map = service.selectMtmList(memberNo, cp); // 로그인ID 변경
 		
 		model.addAttribute("pagination", map.get("pagination"));
@@ -141,6 +138,24 @@ public class MypageController {
 		model.addAttribute("qnaList", qnaList);
 		
 		return "mypage/mtmList";
+	}
+	
+	/** 1:1문의 답변
+	 * @return
+	 */
+	@GetMapping("mtmDetail/{mtmNo:[0-9]+}")
+	public String mtmDetail(
+				@PathVariable("mtmNo") int mtmNo,
+				Model model,
+				RedirectAttributes ra
+			) {
+		
+		// 1:1 문의 상세 서비스 호출 후 결과 반환
+		Mtm mtm = service.selectMtmDetail(mtmNo);
+		
+		model.addAttribute("mtm", mtm);
+		
+		return "mypage/mtmDetail";
 	}
 	
 	/*********************************************************************************************/

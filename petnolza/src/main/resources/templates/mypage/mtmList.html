@@ -84,7 +84,7 @@
 
                                  <!-- 게시글이 존재할 때 -->
                                 <th:block th:unless="${#lists.isEmpty(mtmList)}">
-                                    <tr th:each="mtm : ${mtmList}" th:object="${mtm}" th:id="|row${mtmStat.index}|">
+                                    <tr th:each="mtm : ${mtmList}" th:object="${mtm}" th:id="|row${mtmStat.index}|" class="">
                                         <td th:text="*{mtmNo}">문의 번호</td>
                                         <td th:text="*{mtmTitle}">문의 제목</td>
                                         <td th:text="*{mtmDate}">작성일</td>
@@ -151,6 +151,10 @@
 
     <!-- 딤프레이어 (부모창 비활성화) -->
     <div id="popOpen"></div>
+
+    <script th:inline="javascript">
+        const cp = /*[[${pagination.prevPage}]]*/ "현재페이지";
+    </script>
 
     <script src="/js/main.js"></script>
     <script src="/js/mypage.js"></script>
