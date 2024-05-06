@@ -73,6 +73,13 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectQnaList();
 	}
+
+	// 1:1문의 상세
+	@Override
+	public Mtm selectMtmDetail(int mtmNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectMtmDetail(mtmNo);
+	}
 	
 	/*********************************************************************************************/
 
