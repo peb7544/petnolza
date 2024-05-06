@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/menu.css"></link>
+    <link rel="stylesheet" href="/css/mypage.css"></link> <!-- 딤프레이어 -->
 </head>
 <body>
     <section class="topContainer">
@@ -18,7 +19,7 @@
             <h2>1:1문의</h2>
 
             <div>
-                <table class="board-area">
+                <table class="board-area qnaList">
                     <thead>
                     
                         <th>문의 번호</th>
@@ -38,7 +39,7 @@
 
                         <!-- 게시글이 존재할 때 -->
                         <th:block th:unless="${#lists.isEmpty(mtmList)}">
-                            <tr th:each="mtm : ${mtmList}" th:object="${mtm}">
+                            <tr th:each="mtm : ${mtmList}" th:object="${mtm}" th:id="|row${mtmStat.index}|">
                                 <td th:text="*{mtmNo}">문의 번호</td>
                                 <td th:text="*{mtmTitle}">문의 제목</td>
                                 <td th:text="*{memberNickname}">작성자</td>
@@ -92,5 +93,10 @@
         <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
+
+    <!-- 딤프레이어 (부모창 비활성화) -->
+    <div id="popOpen"></div>
+
+    <script src="/js/mtm.js"></script>
 </body>
 </html>

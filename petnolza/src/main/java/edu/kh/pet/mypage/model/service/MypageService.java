@@ -26,6 +26,12 @@ public interface MypageService {
 	 * @return
 	 */
 	List<Board> selectQnaList();
+
+	/** 1:1문의 상세 조회
+	 * @param mtmNo
+	 * @return
+	 */
+	Mtm selectMtmDetail(int mtmNo);
 	
 	/*********************************************************************************************/
 

@@ -17,33 +17,43 @@
     </style>
 </head>
 <body>
-    <section class="container">
+    <section class="container" th:object="${mtm}">
         <h2>1:1문의</h2>
 
         <div class="inputForm">
             <div class="qnaTitle">
                 <label>제목</label>
                 <div>
+                    <label>작성자</label>
+                    <label th:text="*{memberNickname}">유저일</label>
+                    &emsp;
                     <label>작성일</label>
-                    <label>2024-05-04</label>
+                    <label th:text="*{mtmDate}">2024-05-04</label>
                 </div>
             </div>
             
-            <input type="text">
+            <input type="text" th:value="*{mtmTitle}">
         </div>
 
         <div class="inputForm">
             <label>내용</label>
-            <textarea class="content-area" readonly></textarea>
+            <textarea class="content-area" th:text="*{mtmContent}" readonly></textarea>
         </div>
 
         <div class="inputForm">
             <label>답변</label>
-            <textarea class="content-area"></textarea>
+            <textarea class="content-area" th:text="*{mtmAnswer}"></textarea>
         </div>
         <div class="btn-area">
             <button class="main-blue">등록</button>
         </div>
     </section>
+
+    <script>
+        // 팝업창 닫을 때 딤프레이어 none
+        window.addEventListener('beforeunload', function(event) {
+            opener.document.getElementById("popOpen").style.display = "none";
+        });
+    </script>
 </body>
 </html>

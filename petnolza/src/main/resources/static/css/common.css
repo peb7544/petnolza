@@ -14,7 +14,7 @@
 /* 공통 화면 크기 조절 */
 .container {
     flex-direction: column; /*240426 은별 수정 */
-    margin: 10% 20%;
+    margin: 5% 20%; /*240502 은별 수정 */
     display: flex;
     width: 60%; /*240501 은별 수정 */
     /*align-items: center;*/
