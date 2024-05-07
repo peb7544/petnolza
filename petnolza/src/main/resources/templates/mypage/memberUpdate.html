@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
 
-    <link rel="stylesheet" href="/css/common.css"></link>
-    <link rel="stylesheet" href="/css/menu.css"></link>
-    <link rel="stylesheet" href="/css/login.css"></link>
-    <link rel="stylesheet" href="/css/join.css"></link>
+        <link rel="stylesheet" href="/css/common.css"></link>
+        <link rel="stylesheet" href="/css/menu.css"></link>
+        <link rel="stylesheet" href="/css/login.css"></link>
+        <link rel="stylesheet" href="/css/join.css"></link>
 
 
-</head>
-<body>
+    </head>
+    <body>
 
-    <section class="topContainer">
-        <th:block th:replace="~{menu/topMenu}"></th:block>
+        <section class="topContainer">
+            <th:block th:replace="~{menu/topMenu}"></th:block>
 
-        <section class="mypageContainer">
-            <th:block th:replace="~{menu/myPageMenu}"></th:block>
+            <section class="mypageContainer">
+                <th:block th:replace="~{menu/myPageMenu}"></th:block>
 
-            <th:block th:replace="~{menu/sideMenu}"></th:block>
+                <th:block th:replace="~{menu/sideMenu}"></th:block>
 
-            <form class="container">
-            
                 
-                <section class="input-area">
+                
+                    
+                <section class="container">
 
                     
-                    <form action="/mypage/memberUpdate" method="POST" id="updateForm">
+                    <form action="/mypage/memberUpdate" method="POST" name="updateForm" id="updateForm" class="input-area">
                         
                         <div class="inputForm">
                             <label>이메일</label>
-                            <input type="text" th:value="${loginMember.memberEmail}" readonly>
+                            <input type="text" name="memberEmail" th:value="${loginMember.memberEmail}" readonly>
                         </div>
                         
 
                         <div class="inputForm">
                             <label>이름</label>
-                            <input type="text" th:value="${loginMember.memberName}" id="memberName">
+                            <input type="text" name="memberName" th:value="${loginMember.memberName}" id="memberName">
                         </div>
 
                         <div class="inputForm">
                             <label>닉네임</label>
-                            <input type="text" th:value="${loginMember.memberNickname}" id="memberNickname" maxlength="10">
+                            <input type="text" name="memberNickname" th:value="${loginMember.memberNickname}" id="memberNickname" maxlength="10">
                         </div>
 
                         <div class="inputForm">
                             <label>전화번호</label>
-                            <input type="text" th:value="${loginMember.memberTel}" id="memberTel" maxlength="11">
+                            <input type="text" name="memberTel" th:value="${loginMember.memberTel}" id="memberTel" maxlength="11">
                         </div>
 
                         <div class="inputForm">
@@ -57,28 +57,30 @@
                             </label>
                             <div>
                                 <input type="text" name="memberAddr" placeholder="우편번호" id="postcode" th:value="${postcode}">
-                                <button  type="button" class="greyBtn" id="searchAddress">우편번호 찾기</button>
+                                <button  type="button" onclick="execDaumPost()" class="greyBtn" id="searchAddress">우편번호 찾기</button>
                             </div>
                             <input type="text" name="memberAddr" placeholder="도로명/지번 주소" id="address" th:value="${address}">
                             <input type="text" name="memberAddr" placeholder="상세주소" id="detailAddress" th:value="${detailAddress}">
                         </div>
 
                         <div class="login-btn-area">
-                            <button class="login-btn">수정하기</button>
+                            <button class="login-btn" id="updateBtn">수정하기</button>
                         </div>
 
                     </form>
 
                 </section>
 
-            </form>
+                
+            </section>
+
+            <th:block th:replace="~{menu/footer}"></th:block>
+            
         </section>
 
-        <th:block th:replace="~{menu/footer}"></th:block>
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         
-    </section>
-    
-    <script src="/js/memberUpdate.js"></script>
-    
-</body>
+        <script src="/js/memberUpdate.js"></script>
+        
+    </body>
 </html>

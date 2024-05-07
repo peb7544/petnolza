@@ -1,4 +1,4 @@
-function execDaumPostcode() {
+function execDaumPost() {
     new daum.Postcode({
         oncomplete: function(data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -24,21 +24,26 @@ function execDaumPostcode() {
         }
     }).open();
   }
-  
-  // 주소 검색 버튼 클릭 시 
-  document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode); 
 
 
 // ===============================================================================================
 
 
 const updateForm = document.querySelector("#updateForm");
+const memberName = document.querySelector("#memberName");
+const memberNickname = document.querySelector("#memberNickname");
+const memberTel = document.querySelector("#memberTel");
+const memberAddr = document.querySelectorAll("[name= 'memberAddr']");
 
 updateForm.addEventListener("submit", e => {
 
-    const memberNickname = document.querySelector("#memberNickname");
-    const memberTel = document.querySelector("#memberTel");
-    const memberAddr = document.querySelectorAll("[name= 'memberAddr']");
+
+    // 이름
+    if(memberName.value.trim().length === 0) {
+        alert("이름을 입력해주세요.");
+        e.preventDefault();
+        return;
+    }
 
     // 닉네임 유효성 검사
     if(memberNickname.value.trim().length === 0) {
@@ -69,6 +74,7 @@ updateForm.addEventListener("submit", e => {
         return;
     }
 
+    
     // 주소 유효성 검사
     const addr0 = memberAddr[0].value.trim().length == 0;    // true or false
     const addr1 = memberAddr[1].value.trim().length == 0;
@@ -83,9 +89,9 @@ updateForm.addEventListener("submit", e => {
     // 모두 입력 또는 모두 미입력이 아니면
     if( !(result1 || result2) ) {
 
-        alert("주소를 모두 작성해주세요.");
+        alert("주소는 미작성하시거나 모든 주소를 상세히 입력해주세요.");
         e.preventDefault();
 
     }
-
+    
 });

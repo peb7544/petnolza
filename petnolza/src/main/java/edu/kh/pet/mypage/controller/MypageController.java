@@ -75,10 +75,10 @@ public class MypageController {
 	
 	
 	@PostMapping("memberUpdate")
-	public String memberUpdate(@ModelAttribute Member inputMember,
-							@SessionAttribute("loginMember") Member loginMember,
-							@RequestParam("memberAddr") String[] memberAddr,
-							RedirectAttributes ra) {
+	public String memberUpdate(	@ModelAttribute Member inputMember,
+								@SessionAttribute("loginMember") Member loginMember,
+								@RequestParam("memberAddr") String[] memberAddr,
+								RedirectAttributes ra) {
 		
 		int memberNo = loginMember.getMemberNo();
 		inputMember.setMemberNo(memberNo);
@@ -93,6 +93,7 @@ public class MypageController {
 			loginMember.setMemberName( inputMember.getMemberName() );
 			loginMember.setMemberNickname( inputMember.getMemberNickname() );
 			loginMember.setMemberTel( inputMember.getMemberTel() );
+			loginMember.setMemberAddr( inputMember.getMemberAddr() );
 			
 		} else {
 			message = "회원정보 수정에 실패하였습니다.";
@@ -100,7 +101,7 @@ public class MypageController {
 		
 		ra.addFlashAttribute("message", message);
 		
-		return "redirect:memberUpdate";
+		return "redirect:/";
 	}
 	
 	@GetMapping("pwUpdate")
