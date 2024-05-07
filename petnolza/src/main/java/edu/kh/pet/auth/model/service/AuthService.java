@@ -34,6 +34,22 @@ public interface AuthService {
 	 * @param memberAddress
 	 * @return result
 	 */
-	int join(Member inputMember, String[] memberAddress);
+	int join(Member inputMember, String[] memberAddr);
+
+
+
+	/** 이메일 찾기
+	 * @param inputTel
+	 * @return result
+	 */
+	String emailFind(String inputTel);
+
+
+
+	/** 비밀번호*(임의) 찾기
+	 * @param inputEmail
+	 * @return result
+	 */
+	int pwFind(String htmlName, String inputEmail);
 
 }

@@ -27,37 +27,37 @@
                 
                 <section class="input-area">
 
-                    <div class="inputForm">
-                        <label>이메일</label>
-                        <input type="text" th:placeholder="${loginMember.memberEmail}" readonly>
-                    </div>
-
-                    <form name="login">
-
+                    
+                    <form action="/mypage/memberUpdate" method="POST" id="updateForm">
+                        
+                        <div class="inputForm">
+                            <label>이메일</label>
+                            <input type="text" th:value="${loginMember.memberEmail}" readonly>
+                        </div>
                         
                         <div class="inputForm">
                             <label>비밀번호</label>
-                            <input type="text">
+                            <input type="password" id="memberPassword" maxlength="20">
                         </div>
 
                         <div class="inputForm">
                             <label>비밀번호 재확인</label>
-                            <input type="text">
+                            <input type="password" id="memberPassword2" maxlength="20">
                         </div>
 
                         <div class="inputForm">
                             <label>이름</label>
-                            <input type="text" th:placeholder="${loginMember.memberName}">
+                            <input type="text" th:value="${loginMember.memberName}" id="memberName">
                         </div>
 
                         <div class="inputForm">
                             <label>닉네임</label>
-                            <input type="text" th:placeholder="${loginMember.memberNickname}">
+                            <input type="text" th:value="${loginMember.memberNickname}" id="memberNickname" maxlength="10">
                         </div>
 
                         <div class="inputForm">
                             <label>전화번호</label>
-                            <input type="text" th:placeholder="${loginMember.memberTel}">
+                            <input type="text" th:value="${loginMember.memberTel}" id="memberTel" maxlength="11">
                         </div>
 
                         <div class="inputForm">
@@ -65,11 +65,11 @@
                                 주소
                             </label>
                             <div>
-                                <input type="text" name="memberAddress" placeholder="우편번호" id="postcode">
+                                <input type="text" name="memberAddress" placeholder="우편번호" id="postcode" th:value="${postcode}">
                                 <button  type="button" class="greyBtn" id="searchAddress">우편번호 찾기</button>
                             </div>
-                            <input type="text" name="memberAddress" placeholder="도로명/지번 주소" id="address">
-                            <input type="text" name="memberAddress" placeholder="상세주소" id="detailAddress">
+                            <input type="text" name="memberAddress" placeholder="도로명/지번 주소" id="address" th:value="${address}">
+                            <input type="text" name="memberAddress" placeholder="상세주소" id="detailAddress" th:value="${detailAddress}">
                         </div>
 
                         <div class="login-btn-area">
@@ -87,7 +87,7 @@
         
     </section>
     
-
+    <script src="/js/memberUpdate.js"></script>
     
 </body>
 </html>

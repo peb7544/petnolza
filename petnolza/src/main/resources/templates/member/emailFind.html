@@ -76,36 +76,37 @@
 
             <section class="input-area">
 
-                <form name="login">
+                
 
-                    <h2>이메일 찾기</h2>
+                <h2>이메일 찾기</h2>
 
-                    <div class="inputForm">
-                        <label>전화번호</label>
-                        <input type="text">
-                    </div>
+                <div class="inputForm">
+                    <label>전화번호</label>
+                    <input type="text" name="memberTel" id="memberTel" maxlength="11">
+                </div>
+                
+                <div class="login-btn-area">
+                    <button type="button" class="login-btn" id="emailFindBtn">이메일 찾기</button>
+                </div>
+
+                
+                <h2>비밀번호 찾기</h2>
+                
+                <div class="inputForm">
+                    <label>이메일</label>
+                    <input type="text" name="memberEmail" id="memberEmail">
+                </div>
+                
+                <div class="login-btn-area">
+                    <button type="button" class="login-btn" id="pwFindBtn">비밀번호 찾기</button>
+                </div>
                     
-                    <div class="login-btn-area">
-                        <button class="login-btn">이메일 찾기</button>
-                    </div>
-
-                    <h2>비밀번호 찾기</h2>
-                    
-                    <div class="inputForm">
-                        <label>이메일</label>
-                        <input type="text">
-                    </div>
-
-                    <div class="login-btn-area">
-                        <button class="login-btn">비밀번호 찾기</button>
-                    </div>
-
-                </form>
+                
 
                 
                 <div class="login-btn-area">
                     <a href="login">
-                        <button class="grey-long-btn">뒤로</button>
+                        <button type="button" class="grey-long-btn">뒤로</button>
                     </a>
                 </div>
                 
@@ -114,5 +115,7 @@
 
         </section>
         
+
+        <script src="/js/emailFind.js"></script>
     </body>
 </html>
