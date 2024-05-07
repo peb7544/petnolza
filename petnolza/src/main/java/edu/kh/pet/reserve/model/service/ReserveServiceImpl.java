@@ -28,24 +28,16 @@ public class ReserveServiceImpl implements ReserveService {
 		
 		for(Reserve reserve : reserveList) {
 			
-			String[] codeArr = reserve.getCodeNameList().split(",");
+			/*String[] codeArr = reserve.getCodeNameList().split(",");
 			
 			List<String> codeList = new ArrayList<>();
 			
 			for(int i=0; i<codeArr.length; i++) {
 				
-				
+				codeList.add(codeArr[i]);
 			}
 			
-			//String salesTeam = "홍길동,유관순,강감찬";
-			
-			//String[] salesTeamArray = salesTeam.split(","); 
-			
-			//List<String> salesTeamList = new ArrayList<>();
-			
-			//for (int i = 0; i < salesTeamArray.length; i++) {    salesTeamList.add(salesTeamArray[i]);}
-			
-			log.debug("inputMember : " + reserve.getCodeNameList());
+			reserve.setCodeName(codeList); ddd*/
 		}
 		
 		
