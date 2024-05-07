@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
+    <link rel="stylesheet" href="/css/login.css"></link>
+    <link rel="stylesheet" href="/css/join.css"></link>
+
+</head>
+<body>
+
+    <section class="topContainer">
+
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+
+        <section class="mypageContainer">
+
+            <th:block th:replace="~{menu/myPageMenu}"></th:block>
+
+            <th:block th:replace="~{menu/sideMenu}"></th:block>
+
+            <section class="container">
+
+                <form class="input-area">
+
+                    <div class="inputForm">
+                        <label>현재 비밀번호</label>
+                        <input type="password" id="currPw" maxlength="20">
+                    </div>
+    
+                    <div class="inputForm">
+                        <label>새 비밀번호</label>
+                        <input type="password" id="newPw" maxlength="20">
+                    </div>
+        
+                    <div class="inputForm">
+                        <label>새 비밀번호 확인</label>
+                        <input type="password" id="newPwConfirm" maxlength="20">
+                    </div>
+
+                    <div class="login-btn-area">
+                        <button class="login-btn">비밀번호 변경하기</button>
+                    </div>
+
+
+                </form>
+
+
+            </section>
+
+
+        </section>
+
+        <th:block th:replace="~{menu/footer}"></th:block>
+
+    </section>
+
+    
+</body>
+</html>

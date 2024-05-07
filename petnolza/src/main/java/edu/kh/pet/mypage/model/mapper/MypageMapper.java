@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.pet.community.model.dto.Board;
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
 
 @Mapper
@@ -41,7 +42,13 @@ public interface MypageMapper {
 	 * @return
 	 */
 	Mtm selectMtmDetail(int mtmNo);
+
 	
 	/*********************************************************************************************/
 
+	/**	회원 정보 수정
+	 * @param inputMember
+	 * @return result
+	 */
+	int memberUpdate(Member inputMember);
 }
