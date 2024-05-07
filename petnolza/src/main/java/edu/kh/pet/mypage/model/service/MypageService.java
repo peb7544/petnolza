@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.pet.community.model.dto.Board;
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
 
 public interface MypageService {
@@ -32,7 +33,18 @@ public interface MypageService {
 	 * @return
 	 */
 	Mtm selectMtmDetail(int mtmNo);
+
+	
+	
 	
 	/*********************************************************************************************/
+
+	/**	회원 정보 수정
+	 * @param inputMember
+	 * @param memberAddr
+	 * @return result
+	 */
+	int memberUpdate(Member inputMember, String[] memberAddr);
+
 
 }

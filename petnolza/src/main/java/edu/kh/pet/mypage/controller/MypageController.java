@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,10 +75,38 @@ public class MypageController {
 	
 	
 	@PostMapping("memberUpdate")
-	public int memberUpdate() {
+	public String memberUpdate(@ModelAttribute Member inputMember,
+							@SessionAttribute("loginMember") Member loginMember,
+							@RequestParam("memberAddr") String[] memberAddr,
+							RedirectAttributes ra) {
 		
+		int memberNo = loginMember.getMemberNo();
+		inputMember.setMemberNo(memberNo);
 		
-		return 0;
+		int result = service.memberUpdate(inputMember, memberAddr);
+		
+		String message = null;
+		
+		if(result > 0) {
+			message = "회원정보 수정이 완료되었습니다.";
+			
+			loginMember.setMemberName( inputMember.getMemberName() );
+			loginMember.setMemberNickname( inputMember.getMemberNickname() );
+			loginMember.setMemberTel( inputMember.getMemberTel() );
+			
+		} else {
+			message = "회원정보 수정에 실패하였습니다.";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:memberUpdate";
+	}
+	
+	@GetMapping("pwUpdate")
+	public String pwUpdate() {
+		
+		return "mypage/pwUpdate";
 	}
 	
 	

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.community.model.dto.Pagination;
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import edu.kh.pet.mypage.model.mapper.MypageMapper;
 import lombok.RequiredArgsConstructor;
@@ -80,7 +81,43 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectMtmDetail(mtmNo);
 	}
+
 	
 	/*********************************************************************************************/
+	
+	// 회원 정보 수정
+	@Override
+	public int memberUpdate(Member inputMember, String[] memberAddr) {
+		
+		if(inputMember.getMemberAddr().equals(",,")) {
+			
+			inputMember.setMemberAddr(null);
+			
+		} else {
+			
+			String address = String.join("^^^", memberAddr);
+			
+			inputMember.setMemberAddr(address);
+			
+		}
+		
+		return mapper.memberUpdate(inputMember);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
