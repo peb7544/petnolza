@@ -38,4 +38,25 @@ public interface AuthMapper {
 	 */
 	int join(Member inputMember);
 
+
+
+	/** 이메일 찾기
+	 * @param inputTel
+	 * @return result
+	 */
+	String emailFind(String inputTel);
+
+
+
+	/** 비밀번호(임의) 찾기
+	 * @param inputEmail
+	 * @param encPw
+	 * @return result
+	 */
+	int randomPw(Member member);
+
+
+
+	
+
 }

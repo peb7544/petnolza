@@ -54,9 +54,30 @@ public class MypageController {
 	 * @return
 	 */
 	@GetMapping("memberUpdate")
-	public String memberUpdate() {
+	public String memberUpdate(@SessionAttribute("loginMember") Member loginMember,
+							   Model model) {
+		
+		String memberAddr = loginMember.getMemberAddr();
+		
+		if(memberAddr != null) {
+			
+			String[] arr = memberAddr.split("\\^\\^\\^");
+			
+			model.addAttribute("postcode", arr[0]);
+			model.addAttribute("address", arr[1]);
+			model.addAttribute("detailAddress", arr[2]);
+			
+		}
 		
 		return "mypage/memberUpdate";
+	}
+	
+	
+	@PostMapping("memberUpdate")
+	public int memberUpdate() {
+		
+		
+		return 0;
 	}
 	
 	
