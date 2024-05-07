@@ -37,7 +37,7 @@ public class ReserveServiceImpl implements ReserveService {
 				codeList.add(codeArr[i]);
 			}
 			
-			reserve.setCodeName(codeList);*/
+			reserve.setCodeName(codeList); ddd*/
 		}
 		
 		
