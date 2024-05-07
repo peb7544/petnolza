@@ -41,6 +41,7 @@ a {
   top: 40%;
   width: 150px;
   left: 85%;
+  background: white; /*240507 박은별 추가*/
 }
 
 .side-navigator a {
