@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -78,6 +79,11 @@ public class AuthController {
 		return "redirect:/";
 	}
 	
+	
+	/** 로그아웃
+	 * @param status
+	 * @return
+	 */
 	@GetMapping("logout")
 	public String logout(SessionStatus status) {
 		
@@ -87,6 +93,11 @@ public class AuthController {
 		
 	}
 	
+	
+	
+	/**	이메일 찾기 
+	 * @return
+	 */
 	@GetMapping("emailFind")
 	public String emailFind() {
 		
@@ -94,22 +105,61 @@ public class AuthController {
 		
 	}
 	
+	@ResponseBody
+	@PostMapping("emailFind")
+	public String emailFind(@RequestParam(value="inputTel", required=false) String inputTel) {
+		
+		
+		return service.emailFind(inputTel);
+	}
+	
+	@ResponseBody
+	@PostMapping("pwFind")
+	public int pwFind(@RequestBody String inputEmail) {
+		
+		int result = service.pwFind("pwFind",inputEmail);
+		
+		return result;
+	}
+	
+	
 	@GetMapping("join")
 	public String join() {
 		return "member/join";
 				
 	}
 	
+	
+	/** 회원가입
+	 * @param inputMember
+	 * @param memberAddress
+	 * @param ra
+	 * @return
+	 */
 	@PostMapping("join")
 	public String join(@ModelAttribute Member inputMember,
-					   @RequestParam("memberAddress") String[] memberAddress,
+					   @RequestParam("memberAddr") String[] memberAddr,
 					   RedirectAttributes ra) {
 		
-		int result = service.join(inputMember, memberAddress);
+		int result = service.join(inputMember, memberAddr);
 		String path = null;
 		String message = null;
 		
-		return "";
+		if(result > 0) {
+			
+			message = inputMember.getMemberNickname() + "님의 가입을 환영합니다 :)";
+			path = "login";
+			
+		} else {
+			
+			message = "회원가입에 실패하였습니다.";
+			path = "join";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
 	}
 	
 	@ResponseBody

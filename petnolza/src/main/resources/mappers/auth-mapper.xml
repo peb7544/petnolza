@@ -29,7 +29,36 @@
 	
 	
 	<!-- 회원가입 -->
+	<insert id="join">
+		INSERT INTO "MEMBER"
+		VALUES (SEQ_MEMBER_NO.NEXTVAL,
+				#{memberEmail},
+				#{memberPassword},
+				#{memberNickname},
+				#{memberName},
+				#{memberTel},
+				#{memberAddr},
+				DEFAULT,
+				DEFAULT,
+				'MEMBER',
+				DEFAULT)
+	</insert>
 	
+	
+	<!-- 이메일 찾기 -->
+	<select id="emailFind">
+		SELECT MEMBER_EMAIL FROM "MEMBER"
+		WHERE MEMBER_TEL = #{inputTel}
+	</select>
+	
+	
+	<!-- 비밀번호(임의) 찾기 -->
+	<update id="randomPw">
+		UPDATE "MEMBER" SET
+		MEMBER_PASSWORD = #{memberPassword}
+		WHERE MEMBER_DEL_FL = 'N'
+		AND MEMBER_EMAIL = #{memberEmail}
+	</update>
 
 </mapper>
 
