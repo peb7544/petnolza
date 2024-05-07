@@ -24,6 +24,7 @@ public class Reserve {
 	 private int roomPrice;         // 객실가격
 	 private List<String> codeName; // 편의시설
 	 private int reviewGrade;       // 평점
+	 private String fileRename;     // 파일명
 	 
 	 private String codeNameList;
 	 

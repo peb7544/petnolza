@@ -29,6 +29,11 @@
     position: relative;
 }
 
+.searchInput input {
+    padding-left: 5%;
+    width: 75% !important;
+}
+
 /* 검색버튼 */
 .fa-solid {
     color: rgba(102, 102, 102, 0.6);
@@ -53,7 +58,7 @@
     margin-top: -21px;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
 }
 
 .search-btn button {
@@ -69,7 +74,7 @@ section.max-container {
     width: 100%;
     display: flex;
     border-radius: 10px;
-    /*height: 290px;*/
+    height: 250px;
     border-width: thin;
     margin-top: 5%;
 }
@@ -78,8 +83,13 @@ section.max-container {
 .roomImg {
     height: 100%;
     width: 100%;
-    border-radius: 10px 0 0 10px;
     width: 30%;
+}
+
+.roomImg img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
 }
 
 .roomList {
