@@ -1,41 +1,145 @@
 /* 객실 예약 목록 */
 
-.content {
+/* 그림자 */
+.div-shadow {
+    box-shadow: 1px 3px 1px 1px #DFDFDF;
+}
+
+/* 선 */
+.div-border {
+    border: 1px solid rgba(102, 102, 102, 0.4);
+}
+
+/* 검색 */
+.search-container {
+    position: relative;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.search { 
+    /*height: 170px;*/
+    background-color: hsl(0, 13%, 95%);
+    border: 1px solid hsl(0, 20%, 96%);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.searchInput {
+    position: relative;
+}
+
+/* 검색버튼 */
+.fa-solid {
+    color: rgba(102, 102, 102, 0.6);
+    border: none; 
+    position: absolute;
+    left: 10%;
+    top: 55%;
+    /*bottom: 17px;*/ 
+    background-color: transparent;
+}
+
+/* 검색 입력 */
+.inputForm input {
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 5px;
+}
+
+/* 검색버튼 */
+.search-btn {
+    position: absolute;
+    margin-top: -21px;
+    width: 100%;
     display: flex;
-    border-radius: 15px;
-    height: 290px;
-    border: 2px solid #666666;
+    justify-content: center;
 }
 
-
-.content > section:nth-last-of-type(1),
-.content > section:nth-last-of-type(2) {
-    flex-basis: 35%;
+.search-btn button {
+    width: 260px;
 }
 
-img {
+/* 예약 목록 */
+section.max-container {
+    margin-top: 5%;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    border-radius: 10px;
+    /*height: 290px;*/
+    border-width: thin;
+    margin-top: 5%;
+}
+
+/* 객실Img */
+.roomImg {
     height: 100%;
     width: 100%;
-    border-radius: 15px;
+    border-radius: 10px 0 0 10px;
+    width: 30%;
 }
-
-button {
-    background-color: transparent;
-    border-radius: 6px;
-    text-align: right;
-    
-}
-
-b {
-    font-size: 28px;
-    text-align: center;
-}
-
 
 .roomList {
     padding-left: 20px;
     padding-top: 40px;
 }
+
+.roomList2 {
+    padding-left: 3%;
+    padding-top: 3%;
+    width: 30%;
+}
+
+.roomList3 {
+    border-left: thin solid #bebebe;
+    height: 220px;
+    padding-left: 7%;
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 가격 */
+.price-content {
+    display: flex;
+}
+
+.price-content label {
+    margin-top: 30px;
+    margin-left: 5px;
+}
+
+.badge span {
+    border: solid 1px #bebebe;
+    border-radius: 5px;
+    padding: 2px;
+    font-size: small;
+    background-color: white;
+}
+
+/* 후기버튼 */
+.grade-content {
+    display: flex;
+    align-items: center;
+}
+
+.grade-content button {
+    margin-left: 15px;
+}
+
+/* 예약버튼 */
+.roomList3 button {
+    margin-bottom: 7%;
+}
+
+
+
+
+
 
 
 

@@ -5,359 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-
-    <style>
-        
-        .content {
-            width: 80%;
-            display: flex;
-            border-radius: 15px;
-            height: 290px;
-            border: 2px solid #bebebe;
-            margin-left: 10%;
-            box-shadow: 5px 5px 10px grey;
-            border-width: thin;
-        }
-
-        img {
-            height: 100%;
-            width: 100%;
-            border-radius: 15px;
-        }
-
-        b {
-            font-size: 28px;
-            text-align: center;
-            color: #666666;
-        }
-
-        p {
-            color: #666666;
-        }
-
-        .roomList {
-            padding-left: 20px;
-            padding-top: 40px;
-        }
-
-        span {
-            border-radius: 5px;
-        }
-
-        .roomList3 {
-            border-left : thin solid #bebebe;
-            height : 220px;
-            padding-left: 7%;
-            padding-top: 3%;
-        }
-
-        .roomList2 {
-            padding-left: 3%;
-            padding-top: 3%;
-        }
-
-        .reserv {
-            position: relative;
-            left: 77%;
-            top: 190%;
-            background-color: #00abe8;
-            color: white;
-            border-radius: 6px;
-            border-width: thin;
-        }
-
-        .search { 
-            width: 50%;
-            height: 170px;
-            background-color: hsl(0, 13%, 95%);
-            border: 1px solid color hsl(0, 20%, 96%);
-            border-radius: 8px;
-            box-shadow: 5px 5px 10px grey;
-            margin-left: 23%;
-        }
-
-        .review {
-            background-color: #666666;
-            color: white;
-            border-radius: 6px;
-            border-width: thin;
-        } 
-
-        .search-btn {
-            margin-left: 35%;
-            margin-top: 2.5%;
-            width: 260px;
-            height: 38px;
-            background-color: #00abe8;
-            color: white;
-            border-radius: 8px;
-            font-size: 24px;
-            border-width: thin;
-
-        }
-
-        input {
-            margin-left: 10%;
-            width: 80%;
-            height: 30px;
-            border-radius: 8px;
-            border-color: #666666;
-            margin-top: 3%;
-        }
-
-        .searchsquare {
-            margin-left: 10%;
-            width: 80%;
-            height: 30px;
-            border-radius: 8px;
-            border-color: #bebebe;
-            margin-top: 3%;
-            border-width: thin;
-            outline: none;
-        }
-
-        .date {
-            border-width: thin;
-            border-color: #bebebe;
-            outline: none;
-        }
-
-        .input-container input-container-md {
-            border-width: thin;
-            border-color: #bebebe;
-        }
-
-    </style>
-    
-    <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/menu.css"></link>
+    <link rel="stylesheet" href="/css/reserve.css"></link>
+    <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /><!-- 날짜 -->
 
 </head>
 <body>
- 
-    <!-- 로그인 상태 탑메뉴 -->
-<th:block th:unless="${session.loginMember == null}">
 
-<section class="top-menu" id="top-menu">
+    <section class="topContainer">
 
-  <section class="homelogo">
-    <a href="/">
-      <img src="/images/petnolzaLogo.png" class="homelogo">
-    </a>
-  </section>
+        <th:block th:replace="~{menu/topMenu}"></th:block>
 
-  <section class="navigator">
-    
-    <nav>
-      
-      <a href="/reserve/reserveList">객실예약</a>
-      
-      <a href="/announcement/announcementList">공지사항</a>
-      
-      <a href="/main/qna">자주묻는 질문</a>
-      
-      <a href="/main/service">서비스</a>
-      
-      <a href="/main/route">오시는 길</a>
-      
-    </nav>
+        <th:block th:replace="~{menu/sideMenu}"></th:block>
 
-  </section>
+        <section class="container">
 
-  <section class="login-area">
-    <a href="/member/logout">로그아웃</a>
+            <!-- 검색창 영역 -->
+            <div class="search-container">
+                <div class="search div-shadow"> 
+                    <!-- <label style="position: relative; display: flex;"></label> -->
+                    <div class="searchInput inputForm">
+                        <button class="fa-solid fa-magnifying-glass fa-lg"></button>
+                        <input class="div-border"/>
+                    </div>
+                    
+                    <!-- 기간 -->
+                    <div class="inputForm">
+                        <input type="text" name="datefilter" value="" class="div-border" placeholder="MM/DD/YYYY - MM/DD/YYYY"/>
+                    </div>
+                </div>
 
-    <span>|</span>
-
-    <a href="/mypage/memberUpdate">마이페이지</a>
-  </section>
-  
-
-</section>
-
-</th:block>
-
-<!-- 로그아웃 상태 탑메뉴 -->
-
-<th:block th:if="${session.loginMember == null}">
-
-<section class="top-menu" id="top-menu">
-
-  <section class="homelogo">
-    <a href="/">
-      <img src="/images/petnolzaLogo.png" class="homelogo">
-    </a>
-  </section>
-
-  <section class="navigator">
-    
-    <nav>
-      
-      <a href="/reserve/reserveList">객실예약</a>
-      
-      <a href="/announcement/announcementList">공지사항</a>
-      
-      <a href="/main/qna">자주묻는 질문</a>
-      
-      <a href="/main/service">서비스</a>
-      
-      <a href="/main/route">오시는 길</a>
-      
-    </nav>
-
-  </section>
-
-  <section class="login-area">
-    <a href="/member/login">로그인</a>
-
-    <span>|</span>
-
-    <a href="/member/join">회원가입</a>
-  </section>
-  
-</section>
-</th:block>
-
-<!-- 로그인 상태 사이드바 -->
-<th:block th:unless="${session.loginMember == null}">
-  <section class="side-navigator">
-
-    <a href="#">맨위로</a>
-    <a href="#">인스타그램</a>
-    <a href="#">카카오톡 문의</a>
-    <a href="/main/route">찾아오시는길</a>
-    <a href="/mypage/memberUpdate">마이페이지</a>
-    <a href="/mypage/mtmList">1:1 문의</a>
-
-  </section>
-</th:block>
-
-<!-- 로그아웃 상태 사이드바 -->
-<th:block th:if="${session.loginMember == null}">
-
-  <section class="side-navigator">
-
-    <a href="#top-menu">맨위로</a>
-    <a href="#">인스타그램</a>
-    <a href="#">카카오톡 문의</a>
-    <a href="#">찾아오시는길</a>
-
-  </section>
-
-</th:block>
-
-
-    <section class="container2">
-
-        <section class="max-container">
+                <div class="btn-area search-btn">
+                    <button class="main-blue" type="submit">검색</button> <!-- 검색 버튼 -->
+                </div>
+            </div>
 
             <section class="max-container">
-                <div class="search"> <!-- 검색창 영역 -->
-                    <label style="position: relative; display: flex;">
-                        <button class="fa-solid fa-magnifying-glass fa-lg" style="color: #666666; border: none; left: 98px; position: absolute; bottom: 17px; background-color: white;"></button>
-                        <input class="searchsquare"><br><br>
-                    </label>
 
-                   
-                    
-                    <button class="search-btn" type="submit">검색</button> <!-- 검색 버튼 -->
-                </div><br><br><br><br><br>
-            
-            <div class="content"> <!-- 첫번째 객실 박스-->
-                <div style="width: 40%;" class="img">
-                    <img src="/images/객실.png">
-                </div>
-    
-                <div class="roomList2" style="width: 36%;">
-                    <b>객실 1</b>
+                <div th:each="reserve : ${reserveList}" class="content div-shadow div-border" th:object="${reserve}">
+                    <div class="roomImg">
+                        <img src="/images/객실.png">
+                    </div>
+
+                    <div class="roomList2" >
+                        <h2 th:text="*{roomName}">객실 1</h2>
+
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
-                            
+                        <div th:each="code : *{codeName}" th:object="${code}" class="badge">
+                            <span th:text="*{codeName}">캣타워</span>
+                        </div>
+                                
                         <p>평균 평점</p>
-                        ★★★★★
-                        <button class="review" onclick="location.href=">후기</button> 
-                </div>
-    
-                <div class="roomList3" style="width: 24%;">
-                    <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
-                    <button class="reserv" onclick="location.href=">예약</button>
-                </div>
-            </div><br><br>
 
-            <div class="content"> <!-- 두번째 객실 박스 -->
-                <div style="width: 40%;" class="img">
-                    <img src="/images/객실.png">
+                        <div class="grade-content">
+                            <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
+                        
+                            <div class="btn-area">
+                                <button class="grey-btn">후기</button>
+                            </div>
+                        </div>
+                            
+                    </div>
+
+                    <div class="roomList3"> <!--style="width: 24%;"-->
+                        <div class="price-content">
+                            <h2 th:text="*{roomPrice}">100,000원</h2>
+                            <label>(부가세 포함)</label>
+                        </div>
+
+                        <div class="btn-area">
+                            <button class="main-blue">예약</button>
+                        </div>
+                    </div>
                 </div>
-    
-                <div class="roomList2" style="width: 36%;">
-                    <b>객실 2</b>
+
+
+
+                <!--<div class="content div-shadow div-border"> 
+                    <div class="roomImg">
+                        <img src="/images/객실.png">
+                    </div>
+        
+                    <div class="roomList2" >
+                        <h2>객실 1</h2>
+
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
-                            
+                        <div class="badge">
+                            <span>캣타워</span>
+                            <span>에어컨</span>
+                            <span>장난감</span>
+                        </div>
+                                
                         <p>평균 평점</p>
-                        ★★★★★
-                        <button class="review" onclick="location.href=">후기</button> 
-                </div>
-    
-                <div class="roomList3" style="width: 24%;">
-                    <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
-                    <button class="reserv" onclick="location.href=">예약</button>
-                </div>
-            </div><br><br>
 
-            <div class="content"> <!-- 세번째 객실 박스 -->
-                <div style="width: 40%;" class="img">
-                    <img src="/images/객실.png">
+                        <div class="grade-content">
+                            <div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
+                        
+                            <div class="btn-area">
+                                <button class="grey-btn">후기</button>
+                            </div>
+                        </div>
+                            
+                    </div>
+        
+                    <div class="roomList3"> style="width: 24%;"
+                        <div class="price-content">
+                            <h2>100,000원</h2>
+                            <label>(부가세 포함)</label>
+                        </div>
+
+                        <div class="btn-area">
+                            <button class="main-blue">예약</button>
+                        </div>
+                    </div>
                 </div>
     
-                <div class="roomList2" style="width: 36%;">
-                    <b>객실 3</b>
+                <div class="content div-shadow div-border">
+                    <div class="roomImg">
+                        <img src="/images/객실.png">
+                    </div>
+        
+                    <div class="roomList2">
+                        <h2>객실 2</h2>
+
                         <p>객실 제공사항</p>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">캣타워</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">에어컨</span>
-                        <span class="badge text-bg-light" style="border: solid 1px #bebebe;">장난감</span>
-                            
+                        <div class="badge">
+                            <span>캣타워</span>
+                            <span>에어컨</span>
+                            <span>장난감</span>
+                        </div>
+                                
                         <p>평균 평점</p>
-                        ★★★★★
-                        <button class="review" onclick="location.href=">후기</button> 
-                </div>
-    
-                <div class="roomList3" style="width: 24%;">
-                    <p><b>100,000원</b>&nbsp;&nbsp;(부가세 포함)</p><br>
-                    <button class="reserv" onclick="location.href=">예약</button>
-                </div>
-            </div><br><br>
+                        <div class="grade-content">
+                            <div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
+                        
+                            <div class="btn-area">
+                                <button class="grey-btn">후기</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="roomList3">
+                        <div class="price-content">
+                            <h2>100,000원</h2>
+                            <label>(부가세 포함)</label>
+                        </div>
+                        
+                        <div class="btn-area">
+                            <button class="main-blue">예약</button>
+                        </div>
+                    </div>
+                </div> -->
 
+            </section>
         </section>
 
+        <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>
 
-    <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
+    <!-- 날짜 -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <script> // 달력 자바스크립트
-        $('#date-rage-picker')
-                .daterangepicker(
-                        {
-                            format : 'YYYY. MM. DD hh:mm A',
-                            applyButtonClasses : 'btn btn-container btn-secondary btn-sm wth-80',
-                            cancelClass : 'btn btn-container btn-gray btn-sm wth-80',
-                            // locale: moment.locale('ko'),
-                            locale : {
-                                daysOfWeek : moment
-                                        .locale('ko').daysOfWeek,
-                                monthNames : moment
-                                        .locale('ko').monthNames,
-                                'applyLabel' : '적용',
-                                'cancelLabel' : '취소'
-                            },
-                        // timePicker: true
-                        });
+    <script type="text/javascript">
+        $(function() {
+        
+          $('input[name="datefilter"]').daterangepicker({
+              autoUpdateInput: false,
+              locale: {
+                  cancelLabel: 'Clear'
+              }
+          });
+        
+          $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+              $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+          });
+        
+          $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+          });
+        
+        });
     </script>
 
+    <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
 </body>
 </html>
