@@ -1,6 +1,7 @@
 package edu.kh.pet.reserve.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,13 +13,5 @@ public interface ReserveMapper {
 	/** 객실 예약 목록 조회
 	 * @return reserveList
 	 */
-	List<Reserve> selectReserveList();
-
-	/** 객실 예약 검색 조회
-	 * @param reserveStart
-	 * @param reserveEnd
-	 * @param inputRoomNm
-	 * @return reserveList
-	 */
-	List<Reserve> searchReserveList(String reserveStart, String reserveEnd, String inputRoomNm);
+	List<Reserve> selectReserveList(Map<String, Object> paramList);
 }

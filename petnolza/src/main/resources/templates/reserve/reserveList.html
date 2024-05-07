@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,38 +24,42 @@
         <section class="container">
 
             <!-- 검색창 영역 -->
-            <div class="search-container">
+            <form action="reserveList" method="get" class="search-container">
                 <div class="search div-shadow"> 
                     <!-- <label style="position: relative; display: flex;"></label> -->
                     <div class="searchInput inputForm">
                         <button class="fa-solid fa-magnifying-glass fa-lg"></button>
-                        <input class="div-border"/>
+                        <input class="div-border" name="inputRoomNm"/>
                     </div>
                     
                     <!-- 기간 -->
                     <div class="inputForm">
-                        <input type="text" name="datefilter" value="" class="div-border" placeholder="MM/DD/YYYY - MM/DD/YYYY"/>
+                        <input type="text" id="datefilter" name="datefilter" value="" class="div-border" placeholder="MM/DD/YYYY - MM/DD/YYYY"/>
+                        <input type="text" id="inputStart" name="inputStart" hidden>
+                        <input type="text" id="inputEnd" name="inputEnd" hidden>
                     </div>
                 </div>
 
                 <div class="btn-area search-btn">
-                    <button class="main-blue" type="submit">검색</button> <!-- 검색 버튼 -->
+                    <button class="main-blue" id="searchBtn">검색</button> <!-- 검색 버튼 -->
                 </div>
-            </div>
+            </form>
 
             <section class="max-container">
 
                 <div th:each="reserve : ${reserveList}" class="content div-shadow div-border" th:object="${reserve}">
                     <div class="roomImg">
-                        <img src="/images/객실.png">
+                        <img th:src="*{fileRename}">
                     </div>
 
                     <div class="roomList2" >
                         <h2 th:text="*{roomName}">객실 1</h2>
 
                         <p>객실 제공사항</p>
-                        <div th:each="code : *{codeName}" th:object="${code}" class="badge">
-                            <span th:text="*{codeName}">캣타워</span>
+                        <div class="badge">
+                            <th:block th:each="code : *{codeName}">
+                                <span th:text="${code}">캣타워</span>
+                            </th:block>
                         </div>
                                 
                         <p>평균 평점</p>
@@ -82,84 +86,6 @@
                     </div>
                 </div>
 
-
-
-                <!--<div class="content div-shadow div-border"> 
-                    <div class="roomImg">
-                        <img src="/images/객실.png">
-                    </div>
-        
-                    <div class="roomList2" >
-                        <h2>객실 1</h2>
-
-                        <p>객실 제공사항</p>
-                        <div class="badge">
-                            <span>캣타워</span>
-                            <span>에어컨</span>
-                            <span>장난감</span>
-                        </div>
-                                
-                        <p>평균 평점</p>
-
-                        <div class="grade-content">
-                            <div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
-                        
-                            <div class="btn-area">
-                                <button class="grey-btn">후기</button>
-                            </div>
-                        </div>
-                            
-                    </div>
-        
-                    <div class="roomList3"> style="width: 24%;"
-                        <div class="price-content">
-                            <h2>100,000원</h2>
-                            <label>(부가세 포함)</label>
-                        </div>
-
-                        <div class="btn-area">
-                            <button class="main-blue">예약</button>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="content div-shadow div-border">
-                    <div class="roomImg">
-                        <img src="/images/객실.png">
-                    </div>
-        
-                    <div class="roomList2">
-                        <h2>객실 2</h2>
-
-                        <p>객실 제공사항</p>
-                        <div class="badge">
-                            <span>캣타워</span>
-                            <span>에어컨</span>
-                            <span>장난감</span>
-                        </div>
-                                
-                        <p>평균 평점</p>
-                        <div class="grade-content">
-                            <div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
-                        
-                            <div class="btn-area">
-                                <button class="grey-btn">후기</button>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="roomList3">
-                        <div class="price-content">
-                            <h2>100,000원</h2>
-                            <label>(부가세 포함)</label>
-                        </div>
-                        
-                        <div class="btn-area">
-                            <button class="main-blue">예약</button>
-                        </div>
-                    </div>
-                </div> -->
-
             </section>
         </section>
 
@@ -182,7 +108,9 @@
           });
         
           $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-              $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+              $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+              document.querySelector('#inputStart').value = picker.startDate.format('YYYYMMDD');
+              document.querySelector('#inputEnd').value = picker.endDate.format('YYYYMMDD');
           });
         
           $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
@@ -193,5 +121,7 @@
     </script>
 
     <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
+
+    <script src="/js/reserve.js"></script>
 </body>
 </html>

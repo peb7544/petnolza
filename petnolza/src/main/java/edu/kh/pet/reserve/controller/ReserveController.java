@@ -1,6 +1,9 @@
 package edu.kh.pet.reserve.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,22 +32,34 @@ public class ReserveController {
 	@GetMapping("reserveList")
 	public String reserveList(
 				Model model,
-				@RequestParam(value="reserveStart", required=false) String reserveStart,
-				@RequestParam(value="reserveEnd", required=false) String reserveEnd,
+				@RequestParam(value="inputStart", required=false) String inputStart,
+				@RequestParam(value="inputEnd", required=false) String inputEnd,
 				@RequestParam(value="inputRoomNm", required=false) String inputRoomNm
 			) {
 		
-		List<Reserve> reserveList = null;
+		log.debug("inputStart : " + inputStart);
+		log.debug("inputEnd : " + inputEnd);
+		log.debug("inputRoomNm : " + inputRoomNm);
+		
+		if(inputStart == "") inputStart = null;
+		if(inputEnd == "") inputEnd = null;
+		if(inputRoomNm == "") inputRoomNm = null;
+		
+		log.debug("inputStart2 : " + inputStart);
+		log.debug("inputEnd2 : " + inputEnd);
+		log.debug("inputRoomNm2 : " + inputRoomNm);
+			
+		
+		Map<String, Object> paramList = new HashMap<>();
+		
+		paramList.put("inputStart", inputStart);
+		paramList.put("inputEnd", inputEnd);
+		paramList.put("inputRoomNm", inputRoomNm);
 		
 		// 객실 예약 목록 조회 서비스 호출 후 결과 반환
-		reserveList = service.selectReserveList();
-		
-		// 객실 예약 조회 서비스 호출 후 결과 반환
-		//List<Reserve> reserveList = service.searchReserveList(reserveStart, reserveEnd, inputRoomNm);
+		List<Reserve> reserveList = service.selectReserveList(paramList);
 		
 		model.addAttribute("reserveList", reserveList);
-		
-		
 		
 		return "reserve/reserveList";
 	}

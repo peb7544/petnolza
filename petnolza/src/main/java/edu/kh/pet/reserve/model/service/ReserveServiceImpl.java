@@ -2,6 +2,7 @@ package edu.kh.pet.reserve.model.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,34 +23,30 @@ public class ReserveServiceImpl implements ReserveService {
 	
 	// 객실 예약 목록 조회
 	@Override
-	public List<Reserve> selectReserveList() {
+	public List<Reserve> selectReserveList(Map<String, Object> paramList) {
 		
-		List<Reserve> reserveList = mapper.selectReserveList();
+		List<Reserve> reserveList = mapper.selectReserveList(paramList);
 		
+		// 편의시
 		for(Reserve reserve : reserveList) {
 			
-			/*String[] codeArr = reserve.getCodeNameList().split(",");
-			
-			List<String> codeList = new ArrayList<>();
-			
-			for(int i=0; i<codeArr.length; i++) {
+			if(reserve.getCodeNameList() != null) {
 				
-				codeList.add(codeArr[i]);
-			}
+				String[] codeArr = reserve.getCodeNameList().split(",");
+				
+				List<String> codeList = new ArrayList<>();
+				
+				for(int i=0; i<codeArr.length; i++) {
+					
+					codeList.add(codeArr[i]);
+				}
+				
+				reserve.setCodeName(codeList);
 			
-			reserve.setCodeName(codeList); ddd*/
+			}
 		}
 		
-		
-		
 		return reserveList;
-	}
-
-	// 객실 예약 검색 조회
-	@Override
-	public List<Reserve> searchReserveList(String reserveStart, String reserveEnd, String inputRoomNm) {
-		
-		return mapper.searchReserveList(reserveStart, reserveEnd, inputRoomNm);
 	}
 
 }
