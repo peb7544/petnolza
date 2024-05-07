@@ -25,8 +25,6 @@ function execDaumPostcode() {
     }).open();
   }
   
-  // 주소 검색 버튼 클릭 시 
-  document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode);
 
 // =============================================================================================
 
