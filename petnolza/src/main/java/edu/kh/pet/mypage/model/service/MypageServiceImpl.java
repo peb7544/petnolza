@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,8 @@ import lombok.RequiredArgsConstructor;
 public class MypageServiceImpl implements MypageService {
 	
 	private final MypageMapper mapper;
+	
+	private final BCryptPasswordEncoder bcrypt;
 
 	/******************************************  1:1문의  ****************************************/
 	
@@ -102,6 +105,39 @@ public class MypageServiceImpl implements MypageService {
 		}
 		
 		return mapper.memberUpdate(inputMember);
+	}
+
+	
+	// 비밀번호 변경
+	@Override
+	public int pwUpdate(Map<String, Object> paramMap, int memberNo) {
+		
+		String originPw = mapper.selectPw(memberNo);
+		
+		if( !bcrypt.matches( (String) paramMap.get("currPw") , originPw) ) {
+			return 0;
+		}
+		
+		String encPw = bcrypt.encode( (String) paramMap.get("newPw") );
+		
+		paramMap.put("encPw", encPw);
+		paramMap.put("memberNo", memberNo);
+		
+		return mapper.pwUpdate(paramMap);
+	}
+
+	
+	// 회원 탈퇴
+	@Override
+	public int withdrawal(String memberPassword, int memberNo) {
+		
+		String originPw = mapper.selectPw(memberNo);
+		
+		if(!bcrypt.matches(memberPassword, originPw)) {
+			return 0;
+		}
+		
+		return mapper.withdrawal(memberNo);
 	}
 
 }

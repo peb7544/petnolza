@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="/css/login.css"></link>
     <link rel="stylesheet" href="/css/join.css"></link>
 
+    <style>
+
+        .mypageContainer {
+            height: 650px;
+        }
+
+    </style>
+
 </head>
 <body>
 
@@ -25,22 +33,24 @@
 
             <section class="container">
 
-                <form class="input-area">
+                <form action="/mypage/pwUpdate" method="POST" class="input-area" name="pwUpdate" id="pwUpdate">
 
                     <div class="inputForm">
                         <label>현재 비밀번호</label>
-                        <input type="password" id="currPw" maxlength="20">
+                        <input type="password" name="currPw" id="currPw" maxlength="20">
                     </div>
     
                     <div class="inputForm">
                         <label>새 비밀번호</label>
-                        <input type="password" id="newPw" maxlength="20">
+                        <input type="password" name="newPw" id="newPw" maxlength="20">
                     </div>
         
                     <div class="inputForm">
                         <label>새 비밀번호 확인</label>
-                        <input type="password" id="newPwConfirm" maxlength="20">
+                        <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="20">
                     </div>
+
+                    <br><br>
 
                     <div class="login-btn-area">
                         <button class="login-btn">비밀번호 변경하기</button>
@@ -58,6 +68,8 @@
         <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
+
+    <script src="/js/pwUpdate.js"></script>
 
     
 </body>

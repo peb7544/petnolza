@@ -1,6 +1,7 @@
 package edu.kh.pet.mypage.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -51,4 +52,28 @@ public interface MypageMapper {
 	 * @return result
 	 */
 	int memberUpdate(Member inputMember);
+
+	
+	
+	/** 로그인한 회원 (암호화)비밀번호 조회
+	 * @param memberNo
+	 * @return
+	 */
+	String selectPw(int memberNo);
+
+	
+	
+	/** 비밀번호 변경
+	 * @param paramMap
+	 * @return result
+	 */
+	int pwUpdate(Map<String, Object> paramMap);
+
+	
+	
+	/** 회원 탈퇴
+	 * @param memberNo
+	 * @return result
+	 */
+	int withdrawal(int memberNo);
 }

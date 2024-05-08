@@ -46,5 +46,23 @@ public interface MypageService {
 	 */
 	int memberUpdate(Member inputMember, String[] memberAddr);
 
+	
+	
+	/**	비밀번호 변경
+	 * @param paramMap
+	 * @param memberNo
+	 * @return result
+	 */
+	int pwUpdate(Map<String, Object> paramMap, int memberNo);
+
+	
+	
+	/** 회원 탈퇴
+	 * @param memberPassword
+	 * @param memberNo
+	 * @return result
+	 */
+	int withdrawal(String memberPassword, int memberNo);
+
 
 }

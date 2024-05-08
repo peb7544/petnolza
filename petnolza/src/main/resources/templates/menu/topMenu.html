@@ -1,44 +1,142 @@
-<!-- 로그인 상태 탑메뉴 -->
-<th:block th:unless="${session.loginMember == null}">
+<!-- 로그인 상태 탑메뉴(회원) -->
+<th:block th:if="${session.loginMember != null}">
 
-  <section class="top-menu" id="top-menu">
+    <th:block th:if="${session.loginMember.codeNo.trim().equals('ADMIN')}">
 
+      <section class="top-menu">
+
+        <section class="homelogo">
+          <a href="/">
+            <img src="/images/petnolzaLogo.png" class="homelogo">
+          </a>
+        </section>
+    
+        <section class="navigator">
+          
+          <nav>
+            
+            <a href="room/roomList">객실관리</a>
+            
+            <a href="community/noticeList">커뮤니티</a>
+            
+            <a href="member/memberMana">회원관리</a>
+            
+            <a href="reservation/memberRe">회원예약정보</a>
+            
+            <a href="mtm/qna">1:1 문의</a>
+    
+            <a href="#">알리미</a>
+            
+          </nav>
+    
+        </section>
+    
+        <section class="login-area">
+          
+          <a href="/member/logout">로그아웃</a>
+    
+        </section>
+        
+    
+      </section>      
+
+    </th:block>
+
+    <th:block th:if="${session.loginMember.codeNo.trim().equals('NORMAL')}">
+
+
+      <section class="top-menu" id="top-menu">
+    
+        <section class="homelogo">
+          <a href="/">
+            <img src="/images/petnolzaLogo.png" class="homelogo">
+          </a>
+        </section>
+    
+        <section class="navigator">
+          
+          <nav>
+  
+            <!-- <a th:text="${session.loginMember.codeNo.trim().equals('ADMIN')}">aaa</a> -->
+            
+            <a href="/reserve/reserveList">객실예약</a>
+            
+            <a href="/announcement/announcementList">공지사항</a>
+            
+            <a href="/main/qna">자주묻는 질문</a>
+            
+            <a href="/main/service">서비스</a>
+            
+            <a href="/main/route">오시는 길</a>
+            
+          </nav>
+    
+        </section>
+    
+        <section class="login-area">
+          <a href="/member/logout">로그아웃</a>
+    
+          <span>|</span>
+    
+          <a href="/mypage/memberUpdate">마이페이지</a>
+        </section>
+        
+    
+      </section>
+
+    </th:block>
+
+
+
+</th:block>
+
+<!-- 
+
+  
+  <th:block th:if="${session.loginMember != null} and ${session.loginMember.codeNo.equals('ADMIN')}">
+  
+  <section class="top-menu">
+  
     <section class="homelogo">
       <a href="/">
         <img src="/images/petnolzaLogo.png" class="homelogo">
       </a>
     </section>
-
+  
     <section class="navigator">
       
       <nav>
         
-        <a href="/reserve/reserveList">객실예약</a>
+        <a href="room/roomList">객실관리</a>
         
-        <a href="/announcement/announcementList">공지사항</a>
+        <a href="community/noticeList">커뮤니티</a>
         
-        <a href="/main/qna">자주묻는 질문</a>
+        <a href="member/memberMana">회원관리</a>
         
-        <a href="/main/service">서비스</a>
+        <a href="reservation/memberRe">회원예약정보</a>
         
-        <a href="/main/route">오시는 길</a>
+        <a href="mtm/qna">1:1 문의</a>
+  
+        <a href="#">알리미</a>
         
       </nav>
-
+  
     </section>
-
+  
     <section class="login-area">
-      <a href="/member/logout">로그아웃</a>
-
-      <span>|</span>
-
-      <a href="/mypage/memberUpdate">마이페이지</a>
+      
+      <a href="#">로그아웃</a>
+  
     </section>
     
-
+  
   </section>
+  
+  </th:block>
+  
+ -->
 
-</th:block>
+
 
 <!-- 로그아웃 상태 탑메뉴 -->
 

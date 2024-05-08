@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.pet.community.model.dto.Board;
@@ -74,6 +75,13 @@ public class MypageController {
 	}
 	
 	
+	/** 회원 정보 수정
+	 * @param inputMember
+	 * @param loginMember
+	 * @param memberAddr
+	 * @param ra
+	 * @return
+	 */
 	@PostMapping("memberUpdate")
 	public String memberUpdate(	@ModelAttribute Member inputMember,
 								@SessionAttribute("loginMember") Member loginMember,
@@ -111,6 +119,43 @@ public class MypageController {
 	}
 	
 	
+	/**	비밀번호 변경
+	 * @param paramMap
+	 * @param loginMember
+	 * @param ra
+	 * @return
+	 */
+	@PostMapping("pwUpdate")
+	public String pwUpdate(@RequestParam Map<String, Object> paramMap,
+						   @SessionAttribute("loginMember") Member loginMember,
+						   RedirectAttributes ra) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		int result = service.pwUpdate(paramMap, memberNo);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			
+			path = "memberUpdate";
+			message = "비밀번호 변경이 완료되었습니다.";
+			
+		} else {
+			
+			path = "/mypage/pwUpdate";
+			message = "현재 비밀번호가 일치하지 않습니다";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+		
+	}
+	
+	
 	/** 탈퇴하기
 	 * @return
 	 */
@@ -118,6 +163,28 @@ public class MypageController {
 	public String withdrawal() {
 		
 		return "mypage/withdrawal";
+	}
+	
+	@PostMapping("withdrawal")
+	public String withdrawal(@RequestParam("memberPassword") String memberPassword,
+							 @SessionAttribute("loginMember") Member loginMember,
+							 SessionStatus status,
+							 RedirectAttributes ra) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		int result = service.withdrawal(memberPassword, memberNo);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			
+			path = "/";
+			
+		}
+		
+		return "";
 	}
 	
 	/******************************************  1:1문의  ****************************************/
