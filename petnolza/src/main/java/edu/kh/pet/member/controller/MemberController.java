@@ -38,6 +38,9 @@ public class MemberController {
 			
 		}
 		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("memberList", map.get("memberList"));
+		
 		return "member/memberMana";
 	}
 	

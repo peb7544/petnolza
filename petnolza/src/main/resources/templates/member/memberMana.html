@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,7 @@
         <th:block th:replace="~{menu/topMenu}"></th:block>
 
         <section class="container">
-            <h2>공지사항</h2>
+            <h2>회원 관리</h2>
 
             <div>
                 <table class="board-area">
@@ -54,12 +54,12 @@
 
                     <tbody>
 
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
+                        <tr th:each="member : ${memberList}" th:object="${member}">
+                            <td th:text="*{memberNo}">10</td>
+                            <td th:text="*{memberName}">홍길동</td>
+                            <td th:text="*{enrollDate}">2024-05-04</td>
+                            <td th:text="*{memberDelFl}">N</td>
+                            <td th:text="*{memberNickname}">별명별명</td>
                             <td><a href="#">자세히보기</a></td>
                         </tr>
                         

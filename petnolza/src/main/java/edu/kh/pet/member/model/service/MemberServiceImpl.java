@@ -1,10 +1,15 @@
 package edu.kh.pet.member.model.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.kh.pet.community.model.dto.Pagination;
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.member.model.mapper.MemberMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +26,20 @@ public class MemberServiceImpl implements MemberService {
 		
 		int listCount = mapper.getListCount();
 		
-		return null;
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		int limit = pagination.getLimit();
+		int offset = (cp - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> memberList = mapper.selectMemberList(rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList", memberList);
+		
+		return map;
 	}
 
 	

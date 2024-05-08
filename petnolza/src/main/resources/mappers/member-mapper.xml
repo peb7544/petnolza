@@ -7,6 +7,15 @@
 		SELECT COUNT(*) FROM "MEMBER"
 		WHERE MEMBER_DEL_FL = 'N'
 	</select>
+	
+	
+	<!-- 회원 목록 조회  -->
+	<select id="selectMemberList">
+		SELECT MEMBER_NO, MEMBER_NAME, 
+			   TO_CHAR (ENROLL_DATE, 'YYYY-MM-DD') AS ENROLL_DATE, MEMBER_DEL_FL, MEMBER_NICKNAME
+		FROM "MEMBER"
+		ORDER BY MEMBER_NO
+	</select>
 
 </mapper>
 
