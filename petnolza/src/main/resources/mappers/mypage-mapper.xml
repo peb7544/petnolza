@@ -99,4 +99,47 @@
  		MEMBER_ADDR = #{memberAddr}
  		WHERE MEMBER_NO = #{memberNo}
  	</update>
+ 	
+ 	<!-- 로그인한 회원 비밀번호 조회 -->
+ 	<select id="selectPw">
+ 		SELECT MEMBER_PASSWORD FROM "MEMBER"
+ 		WHERE MEMBER_NO = #{memberNo}
+ 	</select>
+ 	
+ 	
+ 	<!-- 비밀번호 변경 -->
+ 	<update id="pwUpdate">
+ 		UPDATE "MEMBER" SET
+ 		MEMBER_PASSWORD = #{encPw}
+ 		WHERE MEMBER_NO = #{memberNo}
+ 	</update>
+ 	
+ 	
+ 	<!-- 회원 탈퇴 -->
+ 	<update id="withdrawal">
+ 		UPDATE "MEMBER" SET
+ 		MEMBER_DEL_FL = 'Y'
+ 		WHERE MEMBER_NO = #{memberNo}
+ 	</update>
+ 	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
