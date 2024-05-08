@@ -25,13 +25,18 @@
     </style>
     
     <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
-    <section class="container">
+    
 
-        <section class="max-container">
+    <section class="topContainer">
+
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+
+        <section class="container">
             <h2>공지사항</h2>
 
             <div>
@@ -57,79 +62,7 @@
                             <td>별명별명</td>
                             <td><a href="#">자세히보기</a></td>
                         </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>체체체</td>
-                            <td>2024-05-04</td>
-                            <td>Y</td>
-                            <td>ㅁㄴㅇ123</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>홍길동</td>
-                            <td>2024-05-04</td>
-                            <td>N</td>
-                            <td>별명별명</td>
-                            <td><a href="#">자세히보기</a></td>
-                        </tr>
-
+                        
                     </tbody>
                 </table>
 
@@ -185,6 +118,8 @@
               
 
         </section>
+
+        <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
 

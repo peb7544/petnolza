@@ -24,7 +24,7 @@ import java.util.Map;
 public class CommunityController {
 
 	private final CommunityService service;
-	public static String NoticeBoardCodeNo = "NOTICE    ";
+	public static String NoticeBoardCodeNo = "NOTICE";
 
 	/** 공지사항 목록
 	 * @return

@@ -180,11 +180,20 @@ public class MypageController {
 		
 		if(result > 0) {
 			
+			message = "회원 탈퇴가 완료되었습니다.";
 			path = "/";
+			
+			status.setComplete();
+		} else {
+			
+			message = "비밀번호가 일치하지 않습니다.";
+			path = "withdrawal";
 			
 		}
 		
-		return "";
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
 	}
 	
 	/******************************************  1:1문의  ****************************************/
