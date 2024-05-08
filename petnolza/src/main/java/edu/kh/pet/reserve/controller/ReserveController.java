@@ -8,11 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.common.model.service.UploadFileService;
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.reserve.model.dto.Reserve;
 import edu.kh.pet.reserve.model.service.ReserveService;
 import edu.kh.pet.room.model.dto.ServiceInfo;
@@ -39,13 +43,21 @@ public class ReserveController {
 				Model model,
 				@RequestParam(value="inputStart", required=false) String inputStart,
 				@RequestParam(value="inputEnd", required=false) String inputEnd,
-				@RequestParam(value="inputRoomNm", required=false) String inputRoomNm
+				@RequestParam(value="inputRoomNm", required=false) String inputRoomNm,
+				@SessionAttribute(value="loginMember", required = false) Member loginMember,
+				RedirectAttributes ra
 			) {
+		
+		if(loginMember == null) {
+			
+			ra.addFlashAttribute("message", "로그인 후 이용해주세요.");
+			
+			return "redirect:/";
+		}
 		
 		if(inputStart == "") inputStart = null;
 		if(inputEnd == "") inputEnd = null;
 		if(inputRoomNm == "") inputRoomNm = null;
-			
 		
 		Map<String, Object> paramList = new HashMap<>();
 		
@@ -61,7 +73,7 @@ public class ReserveController {
 		return "reserve/reserveList";
 	}
 	
-	/** 예약(결제하기)
+	/** 객실 예약 상세
 	 * @param req
 	 * @return
 	 */
@@ -71,6 +83,7 @@ public class ReserveController {
 				@PathVariable("roomId") int roomId,
 				@RequestParam(value="reserveStart", required=false) String reserveStart,
 				@RequestParam(value="reserveEnd", required=false) String reserveEnd,
+				RedirectAttributes ra,
 				UploadFile uploadFile
 			) {
 		
@@ -86,6 +99,13 @@ public class ReserveController {
 		// 객실 서비스 조회
 		List<ServiceInfo> serviceInfoList = serviceInfoService.selectService();
 		
+		if(reserveStart == "" || reserveEnd == "") {
+			
+			ra.addFlashAttribute("message", "시작일자와 종료일자를 선택 후 검색 조회 결과에서 예약 버튼을 클릭해주세요.");
+			
+			return "redirect:/reserve/reserveList";
+		}
+		
 		// 예약날짜
 		reserve.setReserveStart(reserveStart);
 		reserve.setReserveEnd(reserveEnd);
@@ -96,4 +116,14 @@ public class ReserveController {
 		
 		return "reserve/reserveRegist";
 	}
+	
+	/*@PostMapping("reserveRegist/{roomId:[0-9]+}")
+	public String reserveRegist(
+				Reserve reserve
+			) {
+		
+		log.debug(reserve.toString());
+		
+		return "";
+	}*/
 }

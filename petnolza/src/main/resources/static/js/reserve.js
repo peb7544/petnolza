@@ -1,3 +1,36 @@
+/* 체크박스 */
+const serviceCnt = document.querySelector("#serviceDiv").childElementCount;
+
+let totalPrice = document.querySelector('#totalPrice') // 총가격
+
+for(let i=0; i<serviceCnt; i++) {
+
+    document.querySelector('#row'+i).addEventListener('click', () => {
+
+        const servicePrice = document.querySelector('#row'+i).parentNode.children[1];
+
+        if(document.querySelector('#row'+i).checked) {
+
+            totalV = Number(totalPrice.innerText);
+            totalV += Number(servicePrice.innerText);
+
+            totalPrice.innerText = totalV;
+
+        } else {
+            totalV = Number(totalPrice.innerText);
+            totalV -= Number(servicePrice.innerText);
+
+            totalPrice.innerText = totalV;;
+        }
+    });
+}
+
+/* 목록 */
+document.querySelector('#cancelBtn').addEventListener('click', () => {
+    location.href = '../reserveList';
+});
+
+
 /* 예약버튼 */
 /*const reserveCnt = document.querySelector(".max-container").childElementCount;
 
