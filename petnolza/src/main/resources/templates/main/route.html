@@ -1,33 +1,50 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>오시는 길</title>
+
+
     <style>
 
-        section.max-container {
+section.max-container {
             width: 100%;
             align-items: center;
             padding: 0 15px;
         }
 
         .routeDetail {
-            padding-left: 20%;
+            padding-left: 1%;
             padding-top: 8%;
+            font-size: 25px;
+            font-weight: bold;
         }
 
-        .detail-1 {padding-right: 20px;}
-        .detail-2 {padding-right: 48px;}
-        .detail-3 {padding-right: 48px;}
+        
 
-        span {color: #00abe8;}
+        .subway {
+          color: #00abe8;
+        }
 
-        div {font-size: 22px;}
+        .bus {
+          color: #00abe8;
+        }
+
+        .address {
+          color: #00abe8;
+        }
+
+        
+
+        #map {margin-left: 140px;}
+
 
     </style>
     
-    <link rel="stylesheet" href="../css/common.css"></link>
+    <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
+    
 
     <!-- 부트스트랩 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -37,128 +54,128 @@
 </head>
 <body>
     
-    <!-- 로그인 상태 탑메뉴 -->
-<th:block th:unless="${session.loginMember == null}">
+ <!-- 로그인 상태 탑메뉴 -->
+ <th:block th:unless="${session.loginMember == null}">
 
-<section class="top-menu" id="top-menu">
-
-  <section class="homelogo">
-    <a href="/">
-      <img src="/images/petnolzaLogo.png" class="homelogo">
-    </a>
-  </section>
-
-  <section class="navigator">
-    
-    <nav>
-      
-      <a href="/reserve/reserveList">객실예약</a>
-      
-      <a href="/announcement/announcementList">공지사항</a>
-      
-      <a href="/main/qna">자주묻는 질문</a>
-      
-      <a href="/main/service">서비스</a>
-      
-      <a href="/main/route">오시는 길</a>
-      
-    </nav>
-
-  </section>
-
-  <section class="login-area">
-    <a href="/member/logout">로그아웃</a>
-
-    <span>|</span>
-
-    <a href="/mypage/memberUpdate">마이페이지</a>
-  </section>
-  
-
-</section>
-
-</th:block>
-
-<!-- 로그아웃 상태 탑메뉴 -->
-
-<th:block th:if="${session.loginMember == null}">
-
-<section class="top-menu" id="top-menu">
-
-  <section class="homelogo">
-    <a href="/">
-      <img src="/images/petnolzaLogo.png" class="homelogo">
-    </a>
-  </section>
-
-  <section class="navigator">
-    
-    <nav>
-      
-      <a href="/reserve/reserveList">객실예약</a>
-      
-      <a href="/announcement/announcementList">공지사항</a>
-      
-      <a href="/main/qna">자주묻는 질문</a>
-      
-      <a href="/main/service">서비스</a>
-      
-      <a href="/main/route">오시는 길</a>
-      
-    </nav>
-
-  </section>
-
-  <section class="login-area">
-    <a href="/member/login">로그인</a>
-
-    <span>|</span>
-
-    <a href="/member/join">회원가입</a>
-  </section>
-  
-</section>
-</th:block>
-
-<!-- 로그인 상태 사이드바 -->
-<th:block th:unless="${session.loginMember == null}">
-  <section class="side-navigator">
-
-    <a href="#">맨위로</a>
-    <a href="#">인스타그램</a>
-    <a href="#">카카오톡 문의</a>
-    <a href="/main/route">찾아오시는길</a>
-    <a href="/mypage/memberUpdate">마이페이지</a>
-    <a href="/mypage/mtmList">1:1 문의</a>
-
-  </section>
-</th:block>
-
-<!-- 로그아웃 상태 사이드바 -->
-<th:block th:if="${session.loginMember == null}">
-
-  <section class="side-navigator">
-
-    <a href="#top-menu">맨위로</a>
-    <a href="#">인스타그램</a>
-    <a href="#">카카오톡 문의</a>
-    <a href="#">찾아오시는길</a>
-
-  </section>
-
-</th:block>
+ <section class="top-menu" id="top-menu">
+ 
+   <section class="homelogo">
+     <a href="/">
+       <img src="/images/petnolzaLogo.png" class="homelogo">
+     </a>
+   </section>
+ 
+   <section class="navigator">
+     
+     <nav>
+       
+       <a href="/reserve/reserveList">객실예약</a>
+       
+       <a href="/announcement/announcementList">공지사항</a>
+       
+       <a href="/main/qna">자주묻는 질문</a>
+       
+       <a href="/main/service">서비스</a>
+       
+       <a href="/main/route">오시는 길</a>
+       
+     </nav>
+ 
+   </section>
+ 
+   <section class="login-area">
+     <a href="/member/logout">로그아웃</a>
+ 
+     <span>|</span>
+ 
+     <a href="/mypage/memberUpdate">마이페이지</a>
+   </section>
+   
+ 
+ </section>
+ 
+ </th:block>
+ 
+     <!-- 로그아웃 상태 탑메뉴 -->
+ 
+ <th:block th:if="${session.loginMember == null}">
+ 
+ <section class="top-menu" id="top-menu">
+ 
+   <section class="homelogo">
+     <a href="/">
+       <img src="/images/petnolzaLogo.png" class="homelogo">
+     </a>
+   </section>
+ 
+   <section class="navigator">
+     
+     <nav>
+       
+       <a href="/reserve/reserveList">객실예약</a>
+       
+       <a href="/announcement/announcementList">공지사항</a>
+       
+       <a href="/main/qna">자주묻는 질문</a>
+       
+       <a href="/main/service">서비스</a>
+       
+       <a href="/main/route">오시는 길</a>
+       
+     </nav>
+ 
+   </section>
+ 
+   <section class="login-area">
+     <a href="/member/login">로그인</a>
+ 
+     <span>|</span>
+ 
+     <a href="/member/join">회원가입</a>
+   </section>
+   
+ </section>
+ </th:block>
+     
+     <!-- 로그인 상태 사이드바 -->
+ <th:block th:unless="${session.loginMember == null}">
+   <section class="side-navigator">
+ 
+     <a href="#">맨위로</a>
+     <a href="#">인스타그램</a>
+     <a href="#">카카오톡 문의</a>
+     <a href="/main/route">찾아오시는길</a>
+     <a href="/mypage/memberUpdate">마이페이지</a>
+     <a href="/mypage/mtmList">1:1 문의</a>
+ 
+   </section>
+ </th:block>
+ 
+     <!-- 로그아웃 상태 사이드바 -->
+ <th:block th:if="${session.loginMember == null}">
+ 
+   <section class="side-navigator">
+ 
+     <a href="#top-menu">맨위로</a>
+     <a href="#">인스타그램</a>
+     <a href="#">카카오톡 문의</a>
+     <a href="#"></a>
+ 
+   </section>
+ 
+ </th:block>
 
 
     <section class="container">
 
         <section class="max-container">
-            <div id="map" style="width: 500px; height: 400px;"></div> 
+            <div id="map" style="width: 1000px; height: 600px;"></div> 
 
             <div class="routeDetail">
                <pre>
-                <span>지하철역</span> 을지로입구역 3번출구
-                <span>버스</span>     103, 9401, ...
-                <span>주소</span>     서울 중구 남대문로 120 대일빌딩 2층, 3층
+                <span class="subway">지하철역</span>&nbsp;&nbsp;<span>을지로입구역 3번출구</span> 
+                <span class="bus">버스</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>103, 9401, ...</span>     
+                <span class="address">주소</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>서울 중구 남대문로 120 대일빌딩 2층, 3층</span> 
                </pre>
             </div>
         </section>
@@ -171,8 +188,8 @@
 	
         var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
         var options = { //지도를 생성할 때 필요한 기본 옵션
-            center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-            level: 3 //지도의 레벨(확대, 축소 정도)
+            center: new kakao.maps.LatLng(37.5679378249514, 126.983042781673), //지도의 중심좌표.
+            level: 1 //지도의 레벨(확대, 축소 정도)
         };
 
         var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
