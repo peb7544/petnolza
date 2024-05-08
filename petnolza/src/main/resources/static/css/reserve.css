@@ -156,9 +156,18 @@ section.max-container {
     resize: none;
 }
 
+/*서비스*/
+div#serviceDiv div {
+    margin-right: 10px;
+}
+div#serviceDiv {
+    display: flex;
+}
 
-
-
+/*이름*/
+input#reserveRegist {
+    margin-left: 0;
+}
 
 
 

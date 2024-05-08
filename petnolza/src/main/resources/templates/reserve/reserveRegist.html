@@ -112,76 +112,80 @@
                   </div>
     
                 <!-- 객실 상세 -->
-                <div class="reserveRegistDiv">
-                    <h4 th:text="*{roomName}">객실1</h4>
-                    <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
-                    <textarea th:text="*{roomInfo}" readonly></textarea>
-                </div>
-    
-                <div class="reserveRegistDiv">
-                    <h4>객실 제공사항</h4>
-                    <div class="badge">
-                        <th:block th:each="code : *{codeName}">
-                            <span th:text="${code}">캣타워</span>
-                        </th:block>
+                <form th:action="@{/reserve/reserveRegist/{roomId} (roomId=*{roomId})}" method="post">
+                    <div class="reserveRegistDiv">
+                        <h4 th:text="*{roomName}">객실1</h4>
+                        <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
+                        <textarea th:text="*{roomInfo}" readonly></textarea>
                     </div>
-                    <!--<span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
-                    <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
-                    <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
-                    <span class="badge text-bg-light" style="border: solid 1px #666666;">먹이제공</span>
-                    <span class="badge text-bg-light" style="border: solid 1px #666666;">24시간돌봄</span>
-                    <span class="badge text-bg-light" style="border: solid 1px #666666;">홍캠</span>-->
-                </div>
-    
-                <div class="reserveRegistDiv">
-                    <h4>서비스</h4>
-                    <div>
-                        <th:block th:each="serviceInfo : ${serviceInfoList}" th:object="${serviceInfo}">
-                            <input type="checkbox" name="serviceNo" style="height: 15px;" th:value="*{serviceNo}"/>
-                            <label th:text="*{servicePrice}" id="servicePrice" hidden></label>
-                            <label th:text="|*{serviceName}(*{servicePrice}원)|">캣타워(10,000원)</label>
-                        </th:block>
-
-                        <!--<input type="checkbox" id="tower" name="tower" style="height: 15px;"/>
-                        <label for="tower">캣타워(10,000원)</label>
-    
-                        <input type="checkbox" id="aaa" name="aaa" style="height: 15px;"/>
-                        <label for="aaa">수영장(50,000원)</label>
-    
-                        <input type="checkbox" id="bbb" name="bbb" style="height: 15px;"/>
-                        <label for="bbb">알리미(5,000원)</label>
-    
-                        <input type="checkbox" id="ccc" name="ccc" style="height: 15px;"/>
-                        <label for="ccc">특제간식(30,000원)</label>-->
-                    </div>
-                </div>
-    
-                <div class="reserveRegistDiv">
-                    <h4>예약 정보</h4>
-                    <div class="inputForm">
-                        <label>예약자 이름</label>
-                        <input >
-                    </div>
-                    <div class="inputForm">
-                        <div>
-                            <label>예약날짜</label>
-                            <label class="notPay">(체크인 : 13:00 체크아웃 12:00)</label>
+        
+                    <div class="reserveRegistDiv">
+                        <h4>객실 제공사항</h4>
+                        <div class="badge">
+                            <th:block th:each="code : *{codeName}">
+                                <span th:text="${code}">캣타워</span>
+                            </th:block>
                         </div>
-                        <div>
-                            <label th:text="*{reserveStart}"></label> - <label th:text="*{reserveEnd}"></label>
+                        <!--<span class="badge text-bg-light" style="border: solid 1px #666666;">캣타워</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">에어컨</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">장난감</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">먹이제공</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">24시간돌봄</span>
+                        <span class="badge text-bg-light" style="border: solid 1px #666666;">홍캠</span>-->
+                    </div>
+        
+                    <div class="reserveRegistDiv">
+                        <h4>서비스</h4>
+                        <div id="serviceDiv">
+                            <div th:each="serviceInfo : ${serviceInfoList}" th:object="${serviceInfo}">
+                                <input type="checkbox" name="serviceNo" style="height: 15px;" 
+                                    th:value="*{serviceNo}" th:id="|row${serviceInfoStat.index}|"/>
+                                <label th:text="*{servicePrice}" id="servicePrice" hidden></label>
+                                <label th:text="|*{serviceName}(*{servicePrice}원)|">캣타워(10,000원)</label>
+                            </div>
+    
+                            <!--<input type="checkbox" id="tower" name="tower" style="height: 15px;"/>
+                            <label for="tower">캣타워(10,000원)</label>
+        
+                            <input type="checkbox" id="aaa" name="aaa" style="height: 15px;"/>
+                            <label for="aaa">수영장(50,000원)</label>
+        
+                            <input type="checkbox" id="bbb" name="bbb" style="height: 15px;"/>
+                            <label for="bbb">알리미(5,000원)</label>
+        
+                            <input type="checkbox" id="ccc" name="ccc" style="height: 15px;"/>
+                            <label for="ccc">특제간식(30,000원)</label>-->
                         </div>
                     </div>
-    
-                </div>
-    
-                <div style="font-size: x-large; font-weight: bold;">
-                    <span class="notPay">총 가격</span>&nbsp;&nbsp; <span id="totalPrice">100,000원</span>
-                </div>
-    
-                    <div class="btn-area">
+        
+                    <div class="reserveRegistDiv">
+                        <h4>예약 정보</h4>
+                        <div class="inputForm">
+                            <label>예약자 이름</label>
+                            <input class="div-border" id="reserveRegist" name="reserveUser" th:value="${session.loginMember.memberName}">
+                        </div>
+                        <div class="inputForm">
+                            <div>
+                                <label>예약날짜</label>
+                                <label class="notPay">(체크인 : 13:00 체크아웃 12:00)</label>
+                            </div>
+                            <div>
+                                <label th:text="*{reserveStart}" name="reserveStart"></label> - <label th:text="*{reserveEnd}" name="reserveEnd"></label>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <div style="font-size: x-large; font-weight: bold;">
+                        <span class="notPay">총 가격</span>&nbsp;&nbsp; <label th:text="*{roomPrice}" id="totalPrice" name="reservePrice">100,000</label>원
+                    </div>
+        
+                    <div class="btn-area btnres">
                         <button class="main-blue">예약</button>
-                        <button style="background-color: #666666; margin-left: 5px;">취소</button>
+                        <button id="cancelBtn" style="background-color: #666666; margin-left: 5px;" type="button">취소</button>
                     </div>
+                </form>
+                
             </section>
     
             </section>
@@ -190,11 +194,8 @@
 
         <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>
-
-    <script th:inline="javascript">
-        let notPay = '';
-    </script>
-
     
+    <script src="/js/reserve.js"></script>
+
 </body>
 </html>
