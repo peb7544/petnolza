@@ -14,4 +14,10 @@ public interface ReserveMapper {
 	 * @return reserveList
 	 */
 	List<Reserve> selectReserveList(Map<String, Object> paramList);
+
+	/** 객실 예약 상세 조회
+	 * @param roomId
+	 * @return
+	 */
+	Reserve selectReserveDetail(int roomId);
 }

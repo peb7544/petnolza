@@ -19,6 +19,25 @@
             text-decoration: none !important;
         }
 
+        @media (min-width: 768px) {
+            .container, .container-md, .container-sm {
+                max-width: 60% !important;
+            }
+        }
+
+        @media (min-width: 576px) {
+            .container, .container-sm {
+                max-width: 60% !important;
+            }
+        }
+
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+            width: 60% !important;
+        }
+
+        /***********************************************************************************************/
+
+
         section.max-container {
             width: 100%;
             align-items: center;
@@ -63,8 +82,8 @@
 
         <section class="container">
 
-            <section class="max-container">
-                <h2>객실 예약</h2>
+            <!--<section class="max-container">
+                <h2>객실 예약</h2>-->
                 <br>
     
                 <div id="carouselExampleIndicators" class="carousel slide">
@@ -74,6 +93,12 @@
                       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
+                        <div th:each="uploadFile : ${uploadFileList}" th:object="${uploadFile}"
+                            th:classappend="${uploadFile.thumbnail eq 'Y'} ? 'active' : ''" class="carousel-item active" >
+                            <img th:src="|*{filePath}*{fileRename}|" class="d-block w-100" alt="..." style="height: 500px;">
+                        </div>
+
+                        
                       <div class="carousel-item active">
                         <img src="https://media-cdn.tripadvisor.com/media/photo-s/10/38/a3/93/dogs-come-to-greet-you.jpg" class="d-block w-100" alt="..." style="height: 500px;">
                       </div>
@@ -97,7 +122,7 @@
     
                 <div class="reserveRegistDiv">
                     <h4>객실1</h4>
-                    <div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
+                    <!--<div th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>-->
                     <p>
                     복층형 객실입니다. <br>
                     위층에는 창문이 설치되어있어서 풍경도 볼 수 있습니다.
@@ -156,7 +181,7 @@
     
             </section>
     
-        </section>
+        <!--</section>-->
 
         <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>

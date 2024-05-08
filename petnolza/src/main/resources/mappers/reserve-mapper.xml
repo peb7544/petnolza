@@ -57,4 +57,29 @@
 				,FILE_RENAME
 		ORDER BY ROOM_ID
  	</select>
+ 	
+ 	<!-- 객실 예약 상세 조회 -->
+ 	<select id="selectReserveDetail">
+ 		SELECT
+			 ROOM_ID
+			,ROOM_NAME
+			,ROOM_INFO 
+			,ROOM_PRICE 
+			,(SELECT 
+					SUBSTR(
+				        XMLAGG(
+				            XMLELEMENT(COL ,',', CODE_NAME) ORDER BY ORDERBY).EXTRACT('//text()'
+				        ).GETSTRINGVAL()
+				  , 2) CODE_NAME
+				FROM ROOM_INFO RINFO
+				JOIN CODE_MT USING(CODE_NO)
+				WHERE RINFO.ROOM_ID = R.ROOM_ID
+				AND RINFO.GROUP_CODE = 'CONV' ) CODE_NAME
+			,(SELECT 
+					ROUND(AVG(REVIEW_GRADE))  
+			  FROM REVIEW RE
+		    WHERE RE.ROOM_ID = R.ROOM_ID) REVIEW_GRADE
+		FROM ROOM R
+		WHERE ROOM_ID = #{roomId}
+ 	</select>
 </mapper>

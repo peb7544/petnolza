@@ -80,9 +80,9 @@
                             <label>(부가세 포함)</label>
                         </div>
 
-                        <div class="btn-area">
+                        <form th:action="@{/reserve/reserveRegist/{roomId} (roomId=*{roomId})}" class="btn-area">
                             <button class="main-blue">예약</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
 

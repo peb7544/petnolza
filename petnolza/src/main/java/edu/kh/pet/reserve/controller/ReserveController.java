@@ -1,6 +1,5 @@
 package edu.kh.pet.reserve.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,12 +7,16 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.kh.pet.common.model.dto.UploadFile;
+import edu.kh.pet.common.model.service.UploadFileService;
 import edu.kh.pet.reserve.model.dto.Reserve;
 import edu.kh.pet.reserve.model.service.ReserveService;
-import jakarta.servlet.http.HttpServletRequest;
+import edu.kh.pet.room.model.dto.ServiceInfo;
+import edu.kh.pet.room.model.service.ServiceInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ReserveController {
 	
 	private final ReserveService service;
+	private final ServiceInfoService serviceInfoService; // 서비스
+	private final UploadFileService uploadFileService; // 파일업로드
 
 	/** 객실 예약 목록
 	 * @param req
@@ -37,17 +42,9 @@ public class ReserveController {
 				@RequestParam(value="inputRoomNm", required=false) String inputRoomNm
 			) {
 		
-		log.debug("inputStart : " + inputStart);
-		log.debug("inputEnd : " + inputEnd);
-		log.debug("inputRoomNm : " + inputRoomNm);
-		
 		if(inputStart == "") inputStart = null;
 		if(inputEnd == "") inputEnd = null;
 		if(inputRoomNm == "") inputRoomNm = null;
-		
-		log.debug("inputStart2 : " + inputStart);
-		log.debug("inputEnd2 : " + inputEnd);
-		log.debug("inputRoomNm2 : " + inputRoomNm);
 			
 		
 		Map<String, Object> paramList = new HashMap<>();
@@ -68,10 +65,28 @@ public class ReserveController {
 	 * @param req
 	 * @return
 	 */
-	@GetMapping("reserveRegist")
-	public String reserveRegist(HttpServletRequest req) {
+	@GetMapping("reserveRegist/{roomId:[0-9]+}")
+	public String reserveRegist(
+				Model model,
+				@PathVariable("roomId") int roomId,
+				UploadFile uploadFile
+			) {
 		
-		req.setAttribute("reviewGrade", 4);
+		// 객실 예약 상세
+		Reserve reserve = service.selectReserveDetail(roomId);
+		
+		// 객실 이미지 조회
+		uploadFile.setTableNo(roomId);
+		uploadFile.setTableName("ROOM");
+		
+		List<UploadFile> uploadFileList = uploadFileService.selectUploadFile(uploadFile);
+		
+		// 객실 서비스 조회
+		List<ServiceInfo> serviceInfoList = serviceInfoService.selectService();
+		
+		model.addAttribute("reserve", reserve);
+		model.addAttribute("uploadFileList", uploadFileList);
+		model.addAttribute("serviceInfoList", serviceInfoList);
 		
 		return "reserve/reserveRegist";
 	}
