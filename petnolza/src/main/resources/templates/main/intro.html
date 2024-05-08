@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/menu.css"></link>
 
     <style>
-        .intro {color: #00abe8;}
+        .title {color: #00abe8;}
 
         .detail {font-size: 22px;}
     </style>
@@ -17,61 +17,14 @@
 </head>
 <body>
 
-    <!-- 로그인 상태 탑메뉴 -->
-    <th:block th:unless="${session.loginMember == null}">
-        <section class="top-menu" id="top-menu">
-            <section class="homelogo">
-                <a th:href="@{/}">
-                    <img th:src="@{/images/petnolzaLogo.png}" alt="홈 로고" class="homelogo">
-                </a>
-            </section>
-            <section class="navigator">
-                <nav>
-                    <a th:href="@{/reserve/reserveList}">객실예약</a>
-                    <a th:href="@{/announcement/announcementList}">공지사항</a>
-                    <a th:href="@{/main/qna}">자주묻는 질문</a>
-                    <a th:href="@{/main/service}">서비스</a>
-                    <a th:href="@{/main/route}">오시는 길</a>
-                </nav>
-            </section>
-            <section class="login-area">
-                <a th:href="@{/member/logout}">로그아웃</a>
-                <span>|</span>
-                <a th:href="@{/mypage/memberUpdate}">마이페이지</a>
-            </section>
-        </section>
-    </th:block>
-
-    <!-- 로그아웃 상태 탑메뉴 -->
-    <th:block th:if="${session.loginMember == null}">
-        <section class="top-menu" id="top-menu">
-            <section class="homelogo">
-                <a th:href="@{/}">
-                    <img th:src="@{/images/petnolzaLogo.png}" alt="홈 로고" class="homelogo">
-                </a>
-            </section>
-            <section class="navigator">
-                <nav>
-                    <a th:href="@{/reserve/reserveList}">객실예약</a>
-                    <a th:href="@{/announcement/announcementList}">공지사항</a>
-                    <a th:href="@{/main/qna}">자주묻는 질문</a>
-                    <a th:href="@{/main/service}">서비스</a>
-                    <a th:href="@{/main/route}">오시는 길</a>
-                </nav>
-            </section>
-            <section class="login-area">
-                <a th:href="@{/member/login}">로그인</a>
-                <span>|</span>
-                <a th:href="@{/member/join}">회원가입</a>
-            </section>
-        </section>
-    </th:block>
+    <th:block th:replace="~{menu/topMenu}"></th:block>
+    <th:block th:replace="~{menu/sideMenu}"></th:block>
    
     <section class="container">
             
              <div>
                 <pre class="detail">
-                    <span class="intro">다년간의 경험과 전문관리사</span>    
+                    <span class="title">다년간의 경험과 전문관리사</span>    
                     가정집펫시터를 시작으로 오래된 경험과 전문적인 시스템으로 위탁, 호텔 업무에 집중케어 하기위해
                     다른업종을 겸하지 않고 가족처럼 보살피며 위생적이고 쾌적한 휴식공간 속에서 트러블없이 안정적으로
                     위탁생활을 마치고 무사귀환 할 때까지 견주분의 일정을 편안하게 보낼 수 있도록 최선을 다하는 전문
