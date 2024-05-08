@@ -29,7 +29,7 @@ public class Reserve {
 	 
 	 private String codeNameList;
 	 
-	 /*private String reserveStart;   // 시작날짜
-	 private String reserveEnd;     // 종료날짜*/
+	 private String reserveStart;   // 시작날짜
+	 private String reserveEnd;     // 종료날짜
 	
 }

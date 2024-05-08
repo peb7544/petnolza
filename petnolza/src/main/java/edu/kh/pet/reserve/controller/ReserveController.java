@@ -69,6 +69,8 @@ public class ReserveController {
 	public String reserveRegist(
 				Model model,
 				@PathVariable("roomId") int roomId,
+				@RequestParam(value="reserveStart", required=false) String reserveStart,
+				@RequestParam(value="reserveEnd", required=false) String reserveEnd,
 				UploadFile uploadFile
 			) {
 		
@@ -84,9 +86,13 @@ public class ReserveController {
 		// 객실 서비스 조회
 		List<ServiceInfo> serviceInfoList = serviceInfoService.selectService();
 		
+		// 예약날짜
+		reserve.setReserveStart(reserveStart);
+		reserve.setReserveEnd(reserveEnd);
+		
 		model.addAttribute("reserve", reserve);
 		model.addAttribute("uploadFileList", uploadFileList);
-		model.addAttribute("serviceInfoList", serviceInfoList);
+		model.addAttribute("serviceInfoList", serviceInfoList);		
 		
 		return "reserve/reserveRegist";
 	}
