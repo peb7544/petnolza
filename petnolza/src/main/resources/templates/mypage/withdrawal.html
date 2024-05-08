@@ -99,7 +99,7 @@
                 
                 
                     <div class="btn-area" style="text-align: center;">
-                        <button class="main-blue">탈퇴하기</button>
+                        <button class="main-blue" style="cursor: pointer;">탈퇴하기</button>
                     </div>
 
                 </form>
@@ -111,6 +111,10 @@
         <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
+
+    <script th:inline="javascript">
+        const memberName = /*[[${session.loginMember.memberName}]]*/ "회원 이름";
+    </script>
 
     <script src="/js/withdrawal.js"></script>
     
