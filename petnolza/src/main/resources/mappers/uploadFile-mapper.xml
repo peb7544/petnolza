@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.pet.common.model.mapper.UploadFileMapper">
+ 	
+ 	<select id="selectUploadFile">
+ 		SELECT 
+			 FILE_NO 
+			,FILE_PATH 
+			,FILE_RENAME 
+			,THUMBNAIL
+		FROM UPLOAD_FILE
+		WHERE TRIM(TABLE_NAME) = #{tableName}
+		AND TABLE_NO = #{tableNo}
+		ORDER BY CASE THUMBNAIL WHEN 'Y' THEN 0 ELSE 1 END, FILE_NO
+ 	</select>
+</mapper>
