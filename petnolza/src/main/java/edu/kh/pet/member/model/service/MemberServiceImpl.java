@@ -11,11 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.kh.pet.community.model.dto.Pagination;
 import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.member.model.mapper.MemberMapper;
+import edu.kh.pet.reserve.model.dto.Reserve;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class MemberServiceImpl implements MemberService {
 	
 	private final MemberMapper mapper;
@@ -24,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Map<String, Object> selectMemberList(int cp) {
 		
-		int listCount = mapper.getListCount();
+		int listCount = mapper.getMemberListCount();
 		
 		Pagination pagination = new Pagination(cp, listCount);
 		
@@ -67,9 +70,47 @@ public class MemberServiceImpl implements MemberService {
 
 	// 회원 상세 조회
 	@Override
-	public Member selectMember(int memberNo) {
+	public Map<String, Object> memberReserveList(int memberNo, int cp) {
 		
-		return mapper.selectMember(memberNo);
+		Member member = mapper.selectMember(memberNo);
+		
+		String memberAddr = member.getMemberAddr();
+		
+		int listCount = mapper.getReserveListCount(memberNo);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		int limit = pagination.getLimit();
+		int offset = (cp - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		Map<String, Object> map = new HashMap<>();
+		
+		if(memberAddr != null) {
+			
+			String[] arr = memberAddr.split("\\^\\^\\^");
+			
+			map.put("postcode", arr[0]);
+			map.put("address", arr[1]);
+			map.put("detailAddress", arr[2]);
+		}
+		
+		
+		List<Reserve> reserveList = mapper.selectReserveList(memberNo, rowBounds);
+		
+		map.put("pagination", pagination);
+		map.put("member", member);
+		map.put("reserveList", reserveList);
+		
+		return map;
+	}
+
+
+	// 회원 탈퇴(관리자)
+	@Override
+	public int withdrawal(int memberNo) {
+		
+		return mapper.withdrawal(memberNo);
 	}
 
 }

@@ -29,10 +29,13 @@ public class Reserve {
 	 
 	 private String reserveStart;     // 시작날짜
 	 private String reserveEnd;       // 종료날짜
+	 private String reserveDate;	  // 예약 신청일
 	 private int    reservePrice;     // 예약가격
 	 private String reserveUser;      // 예약자
 	 private int memberNo;            // 회원번호
 	 private int reserveNo;           // 예약번호
+	 
+	 private String reviewCheck;	  // 리뷰 여부 
 	 
 	 private String codeNameList;     // 편의시설목록
 	 private List<Integer> serviceNo; // 서비스목록

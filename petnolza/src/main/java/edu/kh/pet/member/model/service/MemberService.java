@@ -28,7 +28,15 @@ public interface MemberService {
 	 * @param memberNo
 	 * @return member
 	 */
-	Member selectMember(int memberNo);
+	Map<String, Object> memberReserveList(int memberNo, int cp);
+
+
+
+	/** 회원 탈퇴 (관리자)
+	 * @param memberNo
+	 * @return result
+	 */
+	int withdrawal(int memberNo);
 	
 
 }

@@ -3,7 +3,7 @@
 <mapper namespace="edu.kh.pet.member.model.mapper.MemberMapper">
 	
 	<!-- 멤버 수 조회 -->
-	<select id="getListCount">
+	<select id="getMemberListCount">
 		SELECT COUNT(*) FROM "MEMBER"
 		WHERE MEMBER_DEL_FL = 'N'
 	</select>
@@ -75,13 +75,38 @@
 	
 	<!-- 회원 상세 조회 -->
 	<select id="selectMember">
-		SELECT MEMBER_EMAIL, MEMBER_NAME, MEMBER_NICKNAME, MEMBER_TEL, ENROLL_DATE, MEMBER_DEL_FL
-				MEMBER_ADDR, RESERVE_NO, RESERVE_DATE
-		FROM "MEMBER" 
-		JOIN RESERVE USING (MEMBER_NO)
-		JOIN REVIEW  USING (MEMBER_NO)
+		SELECT MEMBER_EMAIL, MEMBER_NAME, MEMBER_NICKNAME, 
+			   MEMBER_TEL, ENROLL_DATE, MEMBER_DEL_FL, MEMBER_ADDR
+		FROM "MEMBER"
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
+	
+	
+	<!-- 해당 회원 예약 내역 개수 조회 -->
+	<select id="getReserveListCount">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	<!-- 예약 정보 조회 -->
+	<select id="selectReserveList">
+		SELECT RESERVE_NO, ROOM_NAME, RESERVE_DATE, 
+			DECODE ((SELECT COUNT(*) FROM REVIEW WHERE MEMBER_NO = #{memberNo}), 0, 'X', 'O') AS REVIEW_CHECK
+		FROM RESERVE
+		JOIN ROOM USING (ROOM_ID)
+		WHERE MEMBER_NO = #{memberNo}
+		ORDER BY RESERVE_NO DESC
+	</select>
+	
+	
+	<!-- 회원 탈퇴(관리자) -->
+	<update id="withdrawal">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
 </mapper>
 
 
