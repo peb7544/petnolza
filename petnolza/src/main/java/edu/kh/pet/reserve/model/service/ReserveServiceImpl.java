@@ -9,12 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.kh.pet.reserve.model.dto.Reserve;
 import edu.kh.pet.reserve.model.mapper.ReserveMapper;
+import edu.kh.pet.room.model.dto.ServiceInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
-@Transactional
 @Slf4j
 public class ReserveServiceImpl implements ReserveService {
 	
@@ -71,6 +72,46 @@ public class ReserveServiceImpl implements ReserveService {
 		}
 		
 		return reserve;
+	}
+
+	// 객실 예약 등록
+	@Override
+	public int insertRegist(Reserve reserve) {
+		
+		// 객실 예약 등록
+		int result = mapper.insertRegist(reserve);
+		
+		if(result == 0) return 0;
+		
+		// 서비스가 신청된 경우
+		List<ServiceInfo> serviceInfoList = null;
+			
+		if(reserve.getServiceNo() != null) {
+			
+			// 신청된 예약 번호 (mapper.xml에서 <selectKey> 태그를 이용해서 생성됨)
+			int reserveNo = reserve.getReserveNo(); 
+			
+			serviceInfoList = new ArrayList<>();
+			
+			for(Integer i : reserve.getServiceNo()) {
+				
+				ServiceInfo serviceInfo = new ServiceInfo();
+				
+				serviceInfo.setServiceNo(i);
+				serviceInfo.setReserveNo(reserveNo); 
+				
+				serviceInfoList.add(serviceInfo);
+				
+				result = mapper.insertService(serviceInfo);
+			}
+			
+			log.debug("ddddd222 : " + serviceInfoList.toString());
+			
+		}
+			
+		
+		
+		return result;
 	}
 
 }

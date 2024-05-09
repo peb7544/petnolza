@@ -19,18 +19,21 @@ import lombok.ToString;
 @Builder
 public class Reserve {
 	
-	 private int roomId;            // 객실번호
-	 private String roomName;       // 객실명
-	 private int roomPrice;         // 객실가격
-	 private List<String> codeName; // 편의시설
-	 private int reviewGrade;       // 평점
-	 private String fileRename;     // 파일명
-	 private String roomInfo;       // 객실상세
-	 private String roomUser;       // 예약자
+	 private int roomId;              // 객실번호
+	 private String roomName;         // 객실명
+	 private int roomPrice;           // 객실가격
+	 private List<String> codeName;   // 편의시설
+	 private int reviewGrade;         // 평점
+	 private String fileRename;       // 파일명
+	 private String roomInfo;         // 객실상세
 	 
-	 private String codeNameList;
+	 private String reserveStart;     // 시작날짜
+	 private String reserveEnd;       // 종료날짜
+	 private int    reservePrice;     // 예약가격
+	 private String reserveUser;      // 예약자
+	 private int memberNo;            // 회원번호
+	 private int reserveNo;           // 예약번호
 	 
-	 private String reserveStart;   // 시작날짜
-	 private String reserveEnd;     // 종료날짜
-	
+	 private String codeNameList;     // 편의시설목록
+	 private List<Integer> serviceNo; // 서비스목록
 }

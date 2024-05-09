@@ -20,4 +20,7 @@ public class ServiceInfo {
 	private String serviceName;   // 서비스명
 	private String servicePrice;  // 서비스가격
 	private String serviceDetail; // 서비스상세
+	
+	private int srvRsrNo;         // 서비스예약번호
+	private int reserveNo;        // 예약번호
 }

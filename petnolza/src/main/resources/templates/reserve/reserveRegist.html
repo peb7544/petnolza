@@ -115,6 +115,7 @@
                 <form th:action="@{/reserve/reserveRegist/{roomId} (roomId=*{roomId})}" method="post">
                     <div class="reserveRegistDiv">
                         <h4 th:text="*{roomName}">객실1</h4>
+                        <input th:value="*{roomName}" hidden>
                         <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
                         <textarea th:text="*{roomInfo}" readonly></textarea>
                     </div>
@@ -136,7 +137,7 @@
         
                     <div class="reserveRegistDiv">
                         <h4>서비스</h4>
-                        <div id="serviceDiv">
+                        <div id="serviceDiv" class="serviceDiv">
                             <div th:each="serviceInfo : ${serviceInfoList}" th:object="${serviceInfo}">
                                 <input type="checkbox" name="serviceNo" style="height: 15px;" 
                                     th:value="*{serviceNo}" th:id="|row${serviceInfoStat.index}|"/>
@@ -164,20 +165,20 @@
                             <label>예약자 이름</label>
                             <input class="div-border" id="reserveRegist" name="reserveUser" th:value="${session.loginMember.memberName}">
                         </div>
-                        <div class="inputForm">
+                        <div class="">
                             <div>
                                 <label>예약날짜</label>
                                 <label class="notPay">(체크인 : 13:00 체크아웃 12:00)</label>
                             </div>
-                            <div>
-                                <label th:text="*{reserveStart}" name="reserveStart"></label> - <label th:text="*{reserveEnd}" name="reserveEnd"></label>
+                            <div class="serviceDiv">
+                                <input th:value="*{reserveStart}" name="reserveStart" class="div-borderN inputLabel"> - <input th:value="*{reserveEnd}" name="reserveEnd" class="div-borderN inputLabel"></label>
                             </div>
                         </div>
         
                     </div>
         
-                    <div style="font-size: x-large; font-weight: bold;">
-                        <span class="notPay">총 가격</span>&nbsp;&nbsp; <label th:text="*{roomPrice}" id="totalPrice" name="reservePrice">100,000</label>원
+                    <div style="font-size: x-large; font-weight: bold;" >
+                        <span class="notPay">총 가격</span>&nbsp;&nbsp; <input th:value="*{roomPrice}" id="totalPrice" name="reservePrice" class="div-borderN inputLabel" readonly>원
                     </div>
         
                     <div class="btn-area btnres">

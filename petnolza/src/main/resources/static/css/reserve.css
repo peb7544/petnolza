@@ -10,6 +10,10 @@
     border: 1px solid rgba(102, 102, 102, 0.4);
 }
 
+.div-borderN {
+    border: none;
+}
+
 /* 검색 */
 .search-container {
     position: relative;
@@ -160,7 +164,7 @@ section.max-container {
 div#serviceDiv div {
     margin-right: 10px;
 }
-div#serviceDiv {
+.serviceDiv {
     display: flex;
 }
 
@@ -169,8 +173,14 @@ input#reserveRegist {
     margin-left: 0;
 }
 
+/*가격*/
+.inputLabel {
+    width: 100px;
+}
 
-
+.serviceDiv .inputLabel {
+    width: 80px;
+}
 
 
 
