@@ -1,4 +1,4 @@
-/* **************************** 1:1문의 ****************************  */
+/* 1:1문의 */
 
 // 팝업 경로
 let path;
@@ -32,7 +32,7 @@ for(let i=0; i<mtmListCnt-1; i++) {
         const rowChild = rowId.children;
         
         path = location.pathname.replace('mtmList', 'mtmDetail') + '/' + rowChild[0].innerText + "?cp=" + cp;
-
+        
         window.open(path,'','width='+popupW+',height='+popupH+',left='+tempLeft+',top='+tempTop+',popup=true');
 
         // 팝업창 닫을 때 딤프레이어 block

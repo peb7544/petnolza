@@ -15,7 +15,7 @@ public interface MypageMapper {
 	
 	/******************************************  1:1문의  ****************************************/
 
-	/** 1:1문의
+	/** 1:1문의 등록
 	 * @param inputMtm
 	 * @return result
 	 */
@@ -43,6 +43,19 @@ public interface MypageMapper {
 	 * @return
 	 */
 	Mtm selectMtmDetail(int mtmNo);
+	
+	
+	/** 1:1문의 수정
+	 * @param inputMtm
+	 * @return
+	 */
+	int mtmUpdate(Mtm inputMtm);
+	
+	/** 1:1삭제
+	 * @param mtmNo
+	 * @return
+	 */
+	int mtmDelete(int mtmNo);
 
 	
 	/*********************************************************************************************/
@@ -76,4 +89,5 @@ public interface MypageMapper {
 	 * @return result
 	 */
 	int withdrawal(int memberNo);
+	
 }

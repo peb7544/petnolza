@@ -5,13 +5,15 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -213,35 +215,11 @@ public class MypageController {
 	 * @param ra
 	 * @return 
 	 */
+	@ResponseBody
 	@PostMapping("mtmInsert")
-	public String mtmInsert(
-				Mtm inputMtm,
-				RedirectAttributes ra,
-				@SessionAttribute("loginMember") Member loginMember
-			) {
+	public int mtmInsert(@RequestBody Mtm mtm) {
 		
-		// 로그인한 회원번호 세팅
-		inputMtm.setMemberNo(loginMember.getMemberNo());
-		
-		// 서비스 메서드 호출 후 문의번호 받기
-		int mtmNo = service.mtmInsert(inputMtm);
-		
-		String path = null;
-		String message = null;
-		
-		if(mtmNo > 0) {
-			
-			path = "/mypage/mtmDetail/" + mtmNo;
-			message = "문의가 정상적으로 접수되었습니다.";
-		} else {
-			
-			path = "mtmInsert";
-			message = "문의 접수 실패!";
-		}
-		
-		ra.addFlashAttribute("message", message);
-		
-		return "redirect:" + path;
+		return service.mtmInsert(mtm);
 	}
 	
 	/** 1:1문의
@@ -250,13 +228,14 @@ public class MypageController {
 	@GetMapping("mtmList")
 	public String mtmList(
 				@RequestParam(value="cp", required=false, defaultValue="1") int cp,
-				Model model
+				Model model,
+				@SessionAttribute("loginMember") Member loginMember
 			) {
 		
-		int memberNo = 2; // 로그인 처리후 변경
+		int memberNo = loginMember.getMemberNo();
 		
 		// 1:1 문의 조회 서비스 호출 후 결과 반환
-		Map<String, Object> map = service.selectMtmList(memberNo, cp); // 로그인ID 변경
+		Map<String, Object> map = service.selectMtmList(memberNo, cp);
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("mtmList", map.get("mtmList"));
@@ -269,7 +248,7 @@ public class MypageController {
 		return "mypage/mtmList";
 	}
 	
-	/** 1:1문의 답변
+	/** 1:1문의 상세
 	 * @return
 	 */
 	@GetMapping("mtmDetail/{mtmNo:[0-9]+}")
@@ -285,6 +264,51 @@ public class MypageController {
 		model.addAttribute("mtm", mtm);
 		
 		return "mypage/mtmDetail";
+	}
+	
+	/** 1:1 문의 수정 화면
+	 * @param mtmNo
+	 * @param model
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("mtmUpdate/{mtmNo:[0-9]+}")
+	public String mtmUpdate(
+				@PathVariable("mtmNo") int mtmNo,
+				Model model,
+				RedirectAttributes ra
+			) {
+		
+		// 1:1 문의 상세 서비스 호출 후 결과 반환
+		Mtm mtm = service.selectMtmDetail(mtmNo);
+		
+		model.addAttribute("mtm", mtm);
+		
+		return "mypage/mtmUpdate";
+	}
+	
+	/** 1:1문의 수정
+	 * @param inputMtm
+	 * @param ra
+	 * @return 
+	 */
+	@ResponseBody
+	@PostMapping("mtmUpdate")
+	public int mtmUpdate(@RequestBody Mtm mtm) {
+		
+		return service.mtmUpdate(mtm);
+	}
+	
+	/** 1:1문의 삭제
+	 * @param inputMtm
+	 * @param ra
+	 * @return 
+	 */
+	@ResponseBody
+	@DeleteMapping("mtmDelete")
+	public int mtmDelete(@RequestBody int mtmNo) {
+		
+		return service.mtmDelete(mtmNo);
 	}
 	
 	/*********************************************************************************************/

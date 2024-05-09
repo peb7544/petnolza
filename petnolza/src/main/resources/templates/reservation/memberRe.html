@@ -21,27 +21,21 @@
             justify-content: space-evenly;
             
         }
-        
-        .payComplete {
-            color: green;
-        }
-        .useComplete {
-            color: skyblue;
-        }
-        .notPay {
-            color: red;
-        }
 
     </style>
     
     <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
-    <section class="container">
+    <section class="topContainer">
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+        <th:block th:replace="~{menu/sideMenu}"></th:block>
 
-        <section class="max-container">
+        <section class="container">
+
             <h2>회원 예약 정보</h2>
 
             <div>
@@ -76,7 +70,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td><button>등록</button></td>
                         </tr>
@@ -95,7 +89,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td></td>
                         </tr>
@@ -127,7 +121,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td></td>
                         </tr>
@@ -157,7 +151,7 @@
                                 <option>캣타워</option>
                                 <option>에어컨</option>
                                 <option>장난감</option>
-                              </select>
+                                </select>
                             </td>
                             <td></td>
                         </tr>
@@ -176,7 +170,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td><button>등록</button></td>
                         </tr>
@@ -195,7 +189,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td><button>등록</button></td>
                         </tr>
@@ -214,7 +208,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td><button>등록</button></td>
                         </tr>
@@ -233,7 +227,7 @@
                                 <option>장난감</option>
                                 <option>먹이제공</option>
                                 <option>24시간돌봄</option>
-                              </select>
+                                </select>
                             </td>
                             <td><button>등록</button></td>
                         </tr>
@@ -289,12 +283,11 @@
                     <button class="grey-btn">검색</button>
                 </div>
             </div>
-              
-
+    
         </section>
 
+        <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>
-
     
 </body>
 </html>

@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1:1문의 등록</title>
+    <title>1:1문의 수정</title>
 
     <link rel="stylesheet" href="/css/common.css"> <!-- 공통 CSS -->
     <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
 </head>
 <body>
-    <section class="container">
+    <section class="container" th:object="${mtm}">
         <h2>1:1문의</h2>
 
         <!--<form action="mtmInsert" method="POST" id="mtmInsert">-->
             <div class="inputForm">
                 <label>제목</label>
-                <input type="text" id="mtmTitle" name="mtmTitle">
+                <input type="text" id="mtmTitle" name="mtmTitle" th:value="*{mtmTitle}">
             </div>
 
             <div class="inputForm">
                 <label>내용</label>
-                <textarea class="content-area" id="mtmContent" name="mtmContent"></textarea>
+                <textarea class="content-area" id="mtmContent" name="mtmContent" th:text="*{mtmContent}"></textarea>
             </div>
 
             <div class="btn-area">
@@ -30,16 +30,13 @@
     </section>
 
     <script>
-        // 팝업창 닫을 때 딤프레이어 none
-        window.addEventListener('beforeunload', function(event) {
-            opener.document.getElementById("popOpen").style.display = "none";
-        });
+        
     </script>
 
     <script th:inline="javascript">
-        const memberNo = /*[[${session.loginMember.memberNo}]]*/ "로그인아이디";
+        const mtmNo = /*[[${mtm.mtmNo}]]*/ "1:1문의 번호";
     </script>
 
-    <script src="/js/mypage/mtmWrite.js"></script>
+    <script src="/js/mypage/mtmUpdate.js"></script>
 </body>
 </html>

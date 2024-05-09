@@ -84,6 +84,27 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectMtmDetail(mtmNo);
 	}
+	
+	// 1:1문의 수정
+	@Override
+	public int mtmUpdate(Mtm inputMtm) {
+		
+		int result = mapper.mtmUpdate(inputMtm);
+		
+		// 삽입 실패 시
+		if(result == 0) return 0;
+		
+		int mtmNo = inputMtm.getMtmNo();
+		
+		return mtmNo;
+	}
+	
+	// 1:1문의 삭제
+	@Override
+	public int mtmDelete(int mtmNo) {
+		// TODO Auto-generated method stub
+		return mapper.mtmDelete(mtmNo);
+	}
 
 	
 	/*********************************************************************************************/

@@ -88,6 +88,21 @@
 		WHERE MTM_NO = ${mtmNo}
  	</select>
  	
+ 	<!-- 1:1문의 수정 -->
+ 	<update id="mtmUpdate">
+ 		UPDATE MTM SET
+			 MTM_TITLE = #{mtmTitle}
+			,MTM_CONTENT = #{mtmContent}
+			,UPDATE_DATE = SYSDATE
+ 		WHERE MTM_NO = #{mtmNo}
+ 	</update>
+ 	
+ 	<!-- 1:1문의 삭제 -->
+ 	<delete id="mtmDelete">
+ 		DELETE FROM MTM
+ 		WHERE MTM_NO = #{mtmNo}
+ 	</delete>
+ 	
  	<!-- ******************************************************************************************** -->
  	
  	<!-- 회원 정보 수정 -->
