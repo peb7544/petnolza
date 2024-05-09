@@ -2,6 +2,8 @@ package edu.kh.pet.member.model.service;
 
 import java.util.Map;
 
+import edu.kh.pet.member.model.dto.Member;
+
 public interface MemberService {
 
 	
@@ -19,6 +21,14 @@ public interface MemberService {
 	 * @return
 	 */
 	Map<String, Object> searchList(Map<String, Object> paramMap, int cp);
+
+
+
+	/** 회원 상세 조회
+	 * @param memberNo
+	 * @return member
+	 */
+	Member selectMember(int memberNo);
 	
 
 }
