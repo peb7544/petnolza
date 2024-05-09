@@ -67,8 +67,13 @@ public class ReserveController {
 		
 		// 객실 예약 목록 조회 서비스 호출 후 결과 반환
 		List<Reserve> reserveList = service.selectReserveList(paramList);
+		Map<String, String> inputDate = new HashMap<>();
+		
+		inputDate.put("inputStart", inputStart);
+		inputDate.put("inputEnd", inputEnd);
 		
 		model.addAttribute("reserveList", reserveList);
+		model.addAttribute("inputDate", inputDate);
 		
 		return "reserve/reserveList";
 	}
@@ -117,13 +122,33 @@ public class ReserveController {
 		return "reserve/reserveRegist";
 	}
 	
-	/*@PostMapping("reserveRegist/{roomId:[0-9]+}")
+	@PostMapping("reserveRegist/{roomId:[0-9]+}")
 	public String reserveRegist(
-				Reserve reserve
+				Reserve reserve,
+				@RequestParam(value="serviceNo", required = false) List<Integer> serviceNo,
+				@SessionAttribute(value="loginMember", required = false) Member loginMember,
+				RedirectAttributes ra
 			) {
 		
-		log.debug(reserve.toString());
+		reserve.setMemberNo(loginMember.getMemberNo());
+		reserve.setServiceNo(serviceNo);
 		
-		return "";
-	}*/
+		// 등록 서비스 호출
+		int result = service.insertRegist(reserve);
+		
+		String msg = null;
+		String path = null;
+		
+		if(result > 0) {
+			msg = "객실이 예약되었습니다";
+			path = "/reserve/reserveList";
+		} else {
+			msg = "객실 예약이 실패되었습니다";
+			path = "/reserve/reserveRegist/" + reserve.getRoomId();
+		}
+		
+		ra.addFlashAttribute("message", msg);
+		
+		return "redirect:" + path;
+	}
 }

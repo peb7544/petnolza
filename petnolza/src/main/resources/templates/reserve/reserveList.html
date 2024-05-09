@@ -46,6 +46,11 @@
 
             <section class="max-container">
 
+                <th:block th:if="${inputDate.inputStart != null}">
+                    <h2 th:text="|예약날짜 : ${inputDate.inputStart}-${inputDate.inputEnd}|"></h2>
+                </th:block>
+                
+
                 <div th:each="reserve : ${reserveList}" class="content div-shadow div-border" th:object="${reserve}">
                     <div class="roomImg">
                         <img th:src="*{fileRename}">

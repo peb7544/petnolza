@@ -18,4 +18,11 @@ public interface ReserveService {
 	 */
 	Reserve selectReserveDetail(int roomId);
 
+	/** 객실 예약 등록
+	 * @param reserve
+	 * @param serviceInfo
+	 * @return
+	 */
+	int insertRegist(Reserve reserve);
+
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import edu.kh.pet.reserve.model.dto.Reserve;
+import edu.kh.pet.room.model.dto.ServiceInfo;
 
 @Mapper
 public interface ReserveMapper {
@@ -20,4 +21,16 @@ public interface ReserveMapper {
 	 * @return
 	 */
 	Reserve selectReserveDetail(int roomId);
+
+	/** 객실 예약 등록
+	 * @param reserve
+	 * @return
+	 */
+	int insertRegist(Reserve reserve);
+
+	/** 객실 서비스 예약 등록
+	 * @param serviceInfoList
+	 * @return
+	 */
+	int insertService(ServiceInfo serviceInfo);
 }

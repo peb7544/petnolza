@@ -9,19 +9,16 @@ for(let i=0; i<serviceCnt; i++) {
 
         const servicePrice = document.querySelector('#row'+i).parentNode.children[1];
 
-        if(document.querySelector('#row'+i).checked) {
+        totalV = Number(totalPrice.value);
 
-            totalV = Number(totalPrice.innerText);
+        console.log(totalV);
+        console.log(totalV);
+
+        if(document.querySelector('#row'+i).checked) 
             totalV += Number(servicePrice.innerText);
+        else  totalV -= Number(servicePrice.innerText);
 
-            totalPrice.innerText = totalV;
-
-        } else {
-            totalV = Number(totalPrice.innerText);
-            totalV -= Number(servicePrice.innerText);
-
-            totalPrice.innerText = totalV;;
-        }
+        totalPrice.value = totalV;
     });
 }
 
