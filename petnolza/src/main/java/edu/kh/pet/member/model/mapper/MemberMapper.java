@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.pet.member.model.dto.Member;
+import edu.kh.pet.reserve.model.dto.Reserve;
 
 @Mapper
 public interface MemberMapper {
@@ -16,7 +17,7 @@ public interface MemberMapper {
 	/** 회원 수 조회
 	 * @return
 	 */
-	int getListCount();
+	int getMemberListCount();
 
 	
 	
@@ -50,5 +51,29 @@ public interface MemberMapper {
 	 * @return member
 	 */
 	Member selectMember(int memberNo);
+
+
+	/** 예약내역 개수 조회
+	 * @return
+	 */
+	int getReserveListCount(int memberNo);
+
+	
+	/** 예약 정보 조회
+	 * @param memberNo
+	 * @return reserveList
+	 */
+	List<Reserve> selectReserveList(int memberNo, RowBounds rowBounds);
+
+
+
+	/** 회원 탈퇴(관리자)
+	 * @param memberNo
+	 * @return result
+	 */
+	int withdrawal(int memberNo);
+
+
+
 
 }
