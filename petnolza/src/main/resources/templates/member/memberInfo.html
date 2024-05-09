@@ -12,7 +12,7 @@
         section.small-container {
             width: 50%;
             align-items: center;
-            padding: 0 15px;
+            padding: 0 30px;
         }
 
         section.small-container > .btn-area {
@@ -37,37 +37,42 @@
 </head>
 <body>
 
-    <th:block th:replace="~{menu/topMenu-Login}"></th:block>
-    <th:block th:replace="~{menu/sideMenu-Login}"></th:block>
+    <th:block th:replace="~{menu/topMenu}"></th:block>
+    <th:block th:replace="~{menu/sideMenu}"></th:block>
 
     <section class="container2">
 
-        <section class="small-container">
+        <section class="small-container" style="border-right: 1px dotted black;">
             <h2>회원 상세 정보</h2>
 
             <div class="inputForm">
                 <label>이메일</label>
-                <input type="text">
-             </div>
-
-            <div class="inputForm">
-                <label>비밀번호</label>
-                <input type="text">
-             </div>
-
-            <div class="inputForm">
-                <label>비밀번호 재확인</label>
-                <input type="text">
+                <div style="border: 1px solid black;">이메일</div>
              </div>
 
             <div class="inputForm">
                 <label>이름</label>
-                <input type="text">
+                <div style="border: 1px solid black;">이메일</div>
              </div>
 
             <div class="inputForm">
                 <label>닉네임</label>
-                <input type="text">
+                <div style="border: 1px solid black;">이메일</div>
+             </div>
+            
+             <div class="inputForm">
+                <label>전화번호</label>
+                <div style="border: 1px solid black;">이메일</div>
+             </div>
+             
+             <div class="inputForm">
+                <label>가입일</label>
+                <div style="border: 1px solid black;">이메일</div>
+             </div>
+             
+             <div class="inputForm">
+                <label>탈퇴여부</label>
+                <div style="border: 1px solid black;">이메일</div>
              </div>
 
              <div class="inputForm">
@@ -83,7 +88,6 @@
              </div>
 
              <div class="btn-area">
-                <button class="main-blue">수정</button>
                 <button class="grey-btn">탈퇴시키기</button>
                 <button class="grey-btn">관리자로 변경</button>
              </div>

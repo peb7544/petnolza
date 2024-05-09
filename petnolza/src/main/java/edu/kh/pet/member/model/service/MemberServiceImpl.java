@@ -46,8 +46,52 @@ public class MemberServiceImpl implements MemberService {
 	// 회원 리스트 조회(검색)
 	@Override
 	public Map<String, Object> searchList(Map<String, Object> paramMap, int cp) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		int listCount = mapper.getSearchCount(paramMap);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		int limit = pagination.getLimit();
+		int offset = (cp -1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Member> memberList = mapper.selectSearchList(paramMap, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList", memberList);
+		
+		return map;
+	}
+
+	// 회원 상세 조회
+	@Override
+	public Member selectMember(int memberNo) {
+		
+		return mapper.selectMember(memberNo);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

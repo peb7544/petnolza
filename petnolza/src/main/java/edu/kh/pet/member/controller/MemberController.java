@@ -5,9 +5,11 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.member.model.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
@@ -47,8 +49,11 @@ public class MemberController {
 	/** 회원상세정보
 	 * @return
 	 */
-	@GetMapping("memberInfo")
-	public String memberInfo() {
+	@GetMapping("memberInfo/{memberNo:[0-9]+}")
+	public String memberInfo(@PathVariable("memberNo") int memberNo,
+							 Model model) {
+		
+		Member member = service.selectMember(memberNo);
 		
 		return "member/memberInfo";
 	}
