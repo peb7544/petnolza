@@ -6,8 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.pet.community.model.service.MtmService;
@@ -41,7 +44,7 @@ public class MtmController {
 		return "mtm/qna";
 	}
 	
-	/** 관리자 1:1문의 답변 등록
+	/** 관리자 1:1문의 상세
 	 * @return
 	 */
 	@GetMapping("qnaRegi/{mtmNo:[0-9]+}")
@@ -57,5 +60,17 @@ public class MtmController {
 		model.addAttribute("mtm", mtm);
 		
 		return "mtm/qnaRegi";
+	}
+	
+	/** 1:1문의 수정
+	 * @param inputMtm
+	 * @param ra
+	 * @return 
+	 */
+	@ResponseBody
+	@PostMapping("mtmAnswer")
+	public int mtmAnswer(@RequestBody Mtm mtm) {
+		
+		return service.mtmAnswer(mtm);
 	}
 }

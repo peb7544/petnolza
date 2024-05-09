@@ -89,12 +89,12 @@
                                         <td th:text="*{mtmTitle}">문의 제목</td>
                                         <td th:text="*{mtmDate}">작성일</td>
                                         <td th:class="*{mtmAnswer eq '답변예정'} ? notPay : ''" th:text="*{mtmAnswer}">상태</td>
-                                        <td>
+                                        <!--<td>
                                             <div th:if="*{mtmAnswer eq '답변예정'}" class="wbtn-area">
                                                 <button>수정</button>
                                                 <button>취소</button>
                                             </div>
-                                        </td>
+                                        </td>-->
                                     </tr>
                                 </th:block>
 
@@ -153,10 +153,10 @@
     <div id="popOpen"></div>
 
     <script th:inline="javascript">
-        const cp = /*[[${pagination.prevPage}]]*/ "현재페이지";
+        const cp = /*[[${pagination.currentPage}]]*/ "현재페이지";
     </script>
 
     <script src="/js/main.js"></script>
-    <script src="/js/mypage.js"></script>
+    <script src="/js/mypage/mtmList.js"></script>
 </body>
 </html>

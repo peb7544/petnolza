@@ -34,8 +34,17 @@ public interface MypageService {
 	 */
 	Mtm selectMtmDetail(int mtmNo);
 
+	/** 1:1 수정
+	 * @param inputMtm
+	 * @return
+	 */
+	int mtmUpdate(Mtm inputMtm);
 	
-	
+	/** 1:1 삭제
+	 * @param mtmNo
+	 * @return
+	 */
+	int mtmDelete(int mtmNo);
 	
 	/*********************************************************************************************/
 
@@ -63,6 +72,5 @@ public interface MypageService {
 	 * @return result
 	 */
 	int withdrawal(String memberPassword, int memberNo);
-
 
 }

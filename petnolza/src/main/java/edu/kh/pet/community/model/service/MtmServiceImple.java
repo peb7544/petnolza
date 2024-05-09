@@ -45,4 +45,13 @@ public class MtmServiceImple implements MtmService {
 		
 		return map;
 	}
+
+	// 답변 등록
+	@Override
+	public int mtmAnswer(Mtm mtm) {
+		// TODO Auto-generated method stub
+		int result = mapper.mtmAnswer(mtm);
+		
+		return result;
+	}
 }

@@ -14,6 +14,7 @@
             display: flex;
             justify-content: space-between;
         }
+        
     </style>
 </head>
 <body>
@@ -40,20 +41,32 @@
             <textarea class="content-area" th:text="*{mtmContent}" readonly></textarea>
         </div>
 
+        <!--<form action="mtmAnswer" method="POST">-->
         <div class="inputForm">
             <label>답변</label>
-            <textarea class="content-area" th:text="*{mtmAnswer}"></textarea>
+            <textarea class="content-area" th:text="*{mtmAnswer}" name="mtmAnswer" id="mtmAnswer"></textarea>
         </div>
         <div class="btn-area">
-            <button class="main-blue">등록</button>
+            <button class="main-blue" id="mtmSave">등록</button>
         </div>
+        <!--</form>-->
     </section>
 
     <script>
+        if(typeof(opener) != "undefined") { /* 수정해야함 ㅜㅜ */
+            opener.document.getElementById("popOpen").style.display = "block";
+        }
+
         // 팝업창 닫을 때 딤프레이어 none
         window.addEventListener('beforeunload', function(event) {
             opener.document.getElementById("popOpen").style.display = "none";
         });
     </script>
+
+    <script th:inline="javascript">
+        const mtmNo = /*[[${mtm.mtmNo}]]*/ "1:1문의 번호";
+    </script>
+
+<script src="/js/mtm/qnaRegi.js"></script>
 </body>
 </html>

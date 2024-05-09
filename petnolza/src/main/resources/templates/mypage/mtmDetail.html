@@ -21,6 +21,11 @@
     <section class="container" th:object="${mtm}">
         <h2>1:1문의</h2>
 
+        <div th:if="*{mtmAnswer eq null}" class="btn-area" style="margin-bottom: 10px;">
+            <button id="mtmDetial" class="main-blue">수정</button>
+            <button id="mtmDel" class="grey-btn">삭제</button>
+        </div>
+
         <div class="inputForm">
             <div class="qnaTitle">
                 <label>제목</label>
@@ -45,10 +50,20 @@
     </section>
 
     <script>
+        if(typeof(opener) != "undefined") { /* 수정해야함 ㅜㅜ */
+            opener.document.getElementById("popOpen").style.display = "block";
+        }
+
         // 팝업창 닫을 때 딤프레이어 none
         window.addEventListener('beforeunload', function(event) {
             opener.document.getElementById("popOpen").style.display = "none";
         });
     </script>
+
+    <script th:inline="javascript">
+        const mtmNo = /*[[${mtmNo}]]*/ "1:1번호";
+    </script>
+
+    <script src="/js/mypage/mtmDetail.js"></script>
 </body>
 </html>

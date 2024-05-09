@@ -21,4 +21,10 @@ public interface MtmMapper {
 	 */
 	List<Mtm> selectMtmList(RowBounds rowBounds);
 
+	/** 1:1문의 답변 등록
+	 * @param mtm
+	 * @return
+	 */
+	int mtmAnswer(Mtm mtm);
+
 }
