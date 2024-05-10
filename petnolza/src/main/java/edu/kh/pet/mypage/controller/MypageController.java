@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +25,7 @@ import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import edu.kh.pet.mypage.model.service.MypageService;
+import edu.kh.pet.reserve.model.dto.Reserve;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,10 +57,29 @@ public class MypageController {
 		return "mypage/reserveList";
 	}
 	
+	/** 예약 내역 취소 및 결제
+	 * @return
+	 */
+	@ResponseBody
+	@PutMapping("reserveUpdate")
+	public int reserveUpdate(
+				@RequestBody Reserve reserve
+			) {
+		
+		String status = reserve.getStatus(); // 버튼 종류
+		int reserveNo = reserve.getReserveNo();
+		int result = 0;
+		
+		if(status.equals("취소")) result = service.reserveCancel(reserveNo); // 예약 취소
+		else result = service.reservePayment(reserveNo); // 예약 결제
+		
+		return result;
+	}
+	
 	/** 후기 등록
 	 * @return
 	 */
-	@GetMapping("reviewWrite")
+	@GetMapping("reviewWrite/{roomNo:[0-9]+}")
 	public String reviewWrite() {
 		
 		return "mypage/reviewWrite";

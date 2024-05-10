@@ -103,5 +103,17 @@ public interface MypageMapper {
 	 * @return
 	 */
 	List<Reserve> selectReserveList(int memberNo, RowBounds rowBounds);
+
+	/** 예약 취소
+	 * @param reserveNo
+	 * @return
+	 */
+	int reserveCancel(int reserveNo);
+
+	/** 예약 결제
+	 * @param reserveNo
+	 * @return
+	 */
+	int reservePayment(int reserveNo);
 	
 }
