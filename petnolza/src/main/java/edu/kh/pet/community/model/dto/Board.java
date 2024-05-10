@@ -33,8 +33,6 @@ public class Board {
 	// 게시글 작성자 프로필 이미지
 	private String profileImg;
 	
-	// 게시글 목록 썸네일 이미지
-	private String thumbnail; //   /images/board/test1.jpg
 	
 	// 특정 게시글 이미지 목록
 	private List<BoardImg> imageList;

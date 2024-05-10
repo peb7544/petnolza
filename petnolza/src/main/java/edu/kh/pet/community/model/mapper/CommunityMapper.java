@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Mapper
 public interface CommunityMapper {
-    int getListCount(String groupCode);
+    int getListCount(String codeNo);
 
     List<Board> selectBoardList(String groupCode, RowBounds rowBounds);
 
