@@ -6,9 +6,13 @@
     <title>자주묻는질문</title>
 
     <link rel="stylesheet" href="/css/common.css"></link>
-    <link rel="stylesheet" href="/css/main.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 </head>
 <body>
+
+    <th:block th:replace="~{menu/topMenu}"></th:block>
+    <th:block th:replace="~{menu/sideMenu}"></th:block>
+
     <section class="container">
         <h2>자주묻는질문</h2>
         
@@ -81,5 +85,6 @@
             }
         }
     </script>
+    <th:block th:replace="~{menu/footer}"></th:block>
 </body>
 </html>
