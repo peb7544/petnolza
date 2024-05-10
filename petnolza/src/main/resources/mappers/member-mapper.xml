@@ -76,7 +76,7 @@
 	<!-- 회원 상세 조회 -->
 	<select id="selectMember">
 		SELECT MEMBER_EMAIL, MEMBER_NAME, MEMBER_NICKNAME, 
-			   MEMBER_TEL, ENROLL_DATE, MEMBER_DEL_FL, MEMBER_ADDR
+			   MEMBER_TEL, ENROLL_DATE, MEMBER_DEL_FL, MEMBER_ADDR, CODE_NO
 		FROM "MEMBER"
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
@@ -91,10 +91,10 @@
 	
 	<!-- 예약 정보 조회 -->
 	<select id="selectReserveList">
-		SELECT RESERVE_NO, ROOM_NAME, RESERVE_DATE, 
-			DECODE ((SELECT COUNT(*) FROM REVIEW WHERE MEMBER_NO = #{memberNo}), 0, 'X', 'O') AS REVIEW_CHECK
-		FROM RESERVE
-		JOIN ROOM USING (ROOM_ID)
+		SELECT RESERVE_NO, ROOM_NAME, RESERVE_DATE,
+			DECODE ((SELECT COUNT(*) FROM REVIEW R WHERE MEMBER_NO = #{memberNo} AND R.ROOM_ID = RE.ROOM_ID), 0, 'X', 'O') AS REVIEW_CHECK
+		FROM RESERVE 	RE
+		JOIN ROOM M ON M.ROOM_ID = RE.ROOM_ID
 		WHERE MEMBER_NO = #{memberNo}
 		ORDER BY RESERVE_NO DESC
 	</select>
@@ -107,6 +107,30 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
+	
+	<!-- 회원 재가입(탈퇴 복구) -->
+	<update id="rejoin">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'N'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	<!-- 일반회원 -> 관리자 -->
+	<update id="alterAdmin">
+		UPDATE "MEMBER" SET
+		CODE_NO = 'ADMIN'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	<!-- 관리자 -> 일반회원 -->
+	<update id="alterNormal">
+		UPDATE "MEMBER" SET
+		CODE_NO = 'NORMAL'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+		
 </mapper>
 
 

@@ -37,6 +37,30 @@ public interface MemberService {
 	 * @return result
 	 */
 	int withdrawal(int memberNo);
+
+
+
+	/** 회원 재가입(탈퇴 복구)
+	 * @param memberNo
+	 * @return result
+	 */
+	int rejoin(int memberNo);
+
+
+
+	/** 일반회원 -> 관리자
+	 * @param memberNo
+	 * @return result
+	 */
+	int alterAdmin(int memberNo);
+
+
+
+	/** 관리자 -> 일반회원
+	 * @param memberNo
+	 * @return result
+	 */
+	int alterNormal(int memberNo);
 	
 
 }
