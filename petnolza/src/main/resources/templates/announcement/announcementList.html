@@ -25,13 +25,17 @@
     </style>
     
     <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
-    <section class="container">
+    <section class="topContainer">
 
-        <section class="max-container">
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+        <th:block th:replace="~{menu/sideMenu}"></th:block>
+
+        <section class="container">
             <h2>공지사항</h2>
 
             <div>
@@ -162,6 +166,8 @@
               
 
         </section>
+
+        <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
 
