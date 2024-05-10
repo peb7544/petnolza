@@ -9,8 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.kh.pet.common.model.dto.Pagination;
 import edu.kh.pet.community.model.dto.Board;
-import edu.kh.pet.community.model.dto.Pagination;
 import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
 import edu.kh.pet.mypage.model.mapper.MypageMapper;
@@ -50,7 +50,7 @@ public class MypageServiceImpl implements MypageService {
 		// 1:1문의 Count 조회
 		int listCount = mapper.getListCount(memberNo);
 		
-		Pagination pagination = new Pagination(cp, listCount);  // 혹시 모르니 나중에 import 확인
+		Pagination pagination = new Pagination(cp, listCount); 
 		
 		/* 특정 게시판의 지정된 페이지 목록 조회
 		 * 
@@ -105,7 +105,6 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mapper.mtmDelete(mtmNo);
 	}
-
 	
 	/*********************************************************************************************/
 	
@@ -159,6 +158,16 @@ public class MypageServiceImpl implements MypageService {
 		}
 		
 		return mapper.withdrawal(memberNo);
+	}
+
+	// 회원예약확인
+	@Override
+	public Map<String, Object> selectReserveList(int memberNo) {
+	
+		// 게시글 수 조회
+		int listCount = mapper.getReserveListCount(memberNo);
+		
+		return null;
 	}
 
 }

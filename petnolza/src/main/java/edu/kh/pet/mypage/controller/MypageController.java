@@ -40,7 +40,14 @@ public class MypageController {
 	 * @return
 	 */
 	@GetMapping("reserveList")
-	public String reserveList() {
+	public String reserveList(
+				@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+				Model model,
+				@SessionAttribute("loginMember") Member loginMember
+			) {
+		
+		// 서비스 호출
+		Map<String, Object> map = service.selectReserveList(loginMember.getMemberNo());
 		
 		return "mypage/reserveList";
 	}
@@ -242,7 +249,7 @@ public class MypageController {
 		
 		// 자주 묻는 질문 서비스 호출 후 결과 반환
 		List<Board> qnaList = service.selectQnaList();
-		
+				
 		model.addAttribute("qnaList", qnaList);
 		
 		return "mypage/mtmList";

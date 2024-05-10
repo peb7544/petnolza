@@ -1,7 +1,7 @@
 package edu.kh.pet.community.model.service;
 
+import edu.kh.pet.common.model.dto.Pagination;
 import edu.kh.pet.community.model.dto.Board;
-import edu.kh.pet.community.model.dto.Pagination;
 import edu.kh.pet.community.model.mapper.CommunityMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;

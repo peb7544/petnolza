@@ -44,7 +44,7 @@
                             </th:block>
 
                             <!-- 게시글이 존재할 때 -->
-                            <th:block th:unless="${#lists.isEmpty(mtmList)}" th:each="qna : ${qnaList}" th:object="${qna}">
+                            <th:block th:unless="${#lists.isEmpty(qnaList)}" th:each="qna : ${qnaList}" th:object="${qna}">
                                 <tr onclick="listClickFn(this)">
                                     <td class="qa">Q</td>
                                     <td th:text="*{boardTitle}">질문</td>

@@ -1,4 +1,4 @@
-package edu.kh.pet.community.model.dto;
+package edu.kh.pet.common.model.dto;
 
 /* Pagination 뜻 : 목록을 일정 페이지로 분할해서
  * 					원하는 페이지를 볼 수 있게 하는 것
