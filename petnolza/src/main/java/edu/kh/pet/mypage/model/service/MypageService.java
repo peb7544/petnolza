@@ -77,6 +77,6 @@ public interface MypageService {
 	 * @param codeNo
 	 * @return
 	 */
-	Map<String, Object> selectReserveList(int memberNo);
+	Map<String, Object> selectReserveList(int memberNo, int cp);
 
 }

@@ -47,7 +47,10 @@ public class MypageController {
 			) {
 		
 		// 서비스 호출
-		Map<String, Object> map = service.selectReserveList(loginMember.getMemberNo());
+		Map<String, Object> map = service.selectReserveList(loginMember.getMemberNo(), cp);
+		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("reserveList", map.get("reserveList"));
 		
 		return "mypage/reserveList";
 	}
