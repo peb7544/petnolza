@@ -79,4 +79,16 @@ public interface MypageService {
 	 */
 	Map<String, Object> selectReserveList(int memberNo, int cp);
 
+	/** 예약 취소
+	 * @param reserveNo
+	 * @return
+	 */
+	int reserveCancel(int reserveNo);
+
+	/** 예약 결제
+	 * @param reserveNo
+	 * @return
+	 */
+	int reservePayment(int reserveNo);
+
 }

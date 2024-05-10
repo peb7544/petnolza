@@ -182,6 +182,20 @@
 		ORDER BY RESERVE_NO DESC
  	</select>
  	
+ 	<!-- 예약 취소 -->
+ 	<update id="reserveCancel">
+ 		UPDATE "RESERVE" SET
+ 		RESERVE_DEL_FL = 'Y'
+ 		WHERE RESERVE_NO = #{reserveNo}
+ 	</update>
+ 	
+ 	<!-- 예약 결제 -->
+ 	<update id="reservePayment">
+ 		UPDATE "RESERVE" SET
+ 		RESERVE_PAYMENT = 'Y'
+ 		WHERE RESERVE_NO = #{reserveNo}
+ 	</update>
+ 	
 </mapper>
 
 

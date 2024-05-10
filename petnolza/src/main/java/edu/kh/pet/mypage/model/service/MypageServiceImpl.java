@@ -210,6 +210,20 @@ public class MypageServiceImpl implements MypageService {
 		return map;
 	}
 
+	// 예약 취소
+	@Override
+	public int reserveCancel(int reserveNo) {
+		
+		return mapper.reserveCancel(reserveNo);
+	}
+
+	// 예약 결제
+	@Override
+	public int reservePayment(int reserveNo) {
+		// TODO Auto-generated method stub
+		return mapper.reservePayment(reserveNo);
+	}
+
 }
 
 
