@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.mypage.model.dto.Mtm;
+import edu.kh.pet.reserve.model.dto.Reserve;
 
 @Mapper
 public interface MypageMapper {
@@ -95,5 +96,12 @@ public interface MypageMapper {
 	 * @return
 	 */
 	int getReserveListCount(int memberNo);
+
+	/** 예약내역 조회
+	 * @param memberNo
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Reserve> selectReserveList(int memberNo, RowBounds rowBounds);
 	
 }
