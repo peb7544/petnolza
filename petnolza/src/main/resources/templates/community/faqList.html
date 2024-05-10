@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr"  xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,18 +37,21 @@
     
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/board.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
+<th:block th:replace="~{menu/topMenu}"></th:block>
+<th:block th:replace="~{menu/sideMenu}"></th:block>
     <section class="container">
 
         <section class="max-container">
             <h2>커뮤니티</h2>
 
             <div class="middle-menu">
-                <div>공지사항</div>
-                <div class="middle-menu-current">자주 묻는 질문</div>
+                <a th:href="@{/community/noticeList}"></a><div>공지사항</div>
+                <a th:href="@{/community/faqList}"></a><div class="middle-menu-current">자주 묻는 질문</div>
             </div>
 
 <br>
@@ -146,59 +149,16 @@
                     </tbody>
                 </table>
 
-                <th:block th:unless="${#lists.isEmpty(faqList)}">
-                    <div class="pagination-area">
-
-                            <ul class="pagination" th:object="${pagination}">
-        
-                                <!-- 첫 페이지로 이동 -->
-                                <li><a th:href="@{/cummunity/faqList(cp=1)}">&lt;&lt;</a></li>
-        
-                                <!-- 이전 목록 마지막 번호로 이동 -->
-                                <li><a th:href="@{/cummunity/faqList(cp=*{prevPage})}">&lt;</a></li>
-        
-                                <!-- 특정 페이지로 이동 -->
-                                <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
-                                    
-                                <!-- 현재 보고있는 페이지 -->
-                                    <li th:if="${i} == *{currentPage}">
-                                        <a class="current" th:text="${i}">현재 페이지</a>
-                                    </li>
-                                    
-                                    <!-- 보고있지 않은 페이지 -->
-                                    <li th:unless="${i} == *{currentPage}">
-                                        <a th:text="${i}"
-                                           th:href="@{/cummunity/faqList(cp=${i})}">이동할 페이지</a>
-                                    </li>
-        
-                                </th:block>
-                                
-                                <!-- 다음 목록 시작 번호로 이동 -->
-                                <li><a th:href="@{/cummunity/faqList(cp=*{nextPage})}">&gt;</a></li>
-        
-                                <!-- 끝 페이지로 이동 -->
-                                <li><a th:href="@{/cummunity/faqList(cp=*{maxPage})}">&gt;&gt;</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </th:block>
-            </div>
-
-            <!-- 새 글 등록 버튼 -->
-            <div class="btn-area last-btn-area">
-                <button class="main-blue" onclick="goToFaqRegistPage()">새 글 등록</button>
-            </div>
+                
 
         </section>
 
     </section>
 
-    <script>
-        // 새 글 등록 페이지로 이동하는 함수
-        function goToFaqRegistPage() {
-            window.location.href = "faqRegist.html";
-        }
-    </script>
+    
+    <th:block th:replace="~{menu/footer}"></th:block>
+    
+    
     
 </body>
 </html>
