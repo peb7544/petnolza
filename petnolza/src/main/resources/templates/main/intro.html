@@ -16,30 +16,31 @@
 
         .detail {font-size: 22px;}
 
-        .parent {
-            display: flex;
-            width: 1250px;
-            margin-right: 40px;
-        }
-
-        .child1 {
-            flex: 1;
-        }
-        .child2 {
-            flex: 2;
-        }
-
-        .child3 {
-            flex: 2;
+        .container {
+            max-width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
         }
 
         .my-div {
-        height : 300px;
-        text-align : center;
+            height: auto;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .room2 {
-            margin-left: 120px;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .service {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
         }
 
         .title2 {
@@ -54,116 +55,125 @@
             color: #00abe8;
         }
 
+        .parent {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .child {
+            flex-basis: auto;
+            margin-bottom: 20px;
+            padding: 50px;
+        }
+
     </style>
 
 </head>
 <body>
 
-    <th:block th:replace="~{menu/topMenu}"></th:block>
-    <th:block th:replace="~{menu/sideMenu}"></th:block>
-   
-    <section class="container">
-            
-            <div>
-                <pre class="detail">
-                    <span class="title">다년간의 경험과 전문관리사</span><br>    
-                    가정집펫시터를 시작으로 오래된 경험과 전문적인 시스템으로 위탁, 호텔 업무에 집중케어 하기위해
-                    다른업종을 겸하지 않고 가족처럼 보살피며 위생적이고 쾌적한 휴식공간 속에서 트러블없이 안정적으로
-                    위탁생활을 마치고 무사귀환 할 때까지 견주분의 일정을 편안하게 보낼 수 있도록 최선을 다하는 전문
-                    반려동물 호텔입니다.<br>
-                   <img src="/images/service.png"> 
-                </pre>
-            </div><br><br><br>
+<th:block th:replace="~{menu/topMenu}"></th:block>
 
-            <div>
-                <div class="my-div">
-                    <span class="title2">365일 연중무휴 펫놀자 호텔룸 안내</span><br><br>    
-                    <span><h1>"반려동물 사랑에서 시작된 작지만 큰 배려"</h1></span><br>
-                    럭셔리한 힐링룸과 넓은 운동장에서의 즐거운 휴가!<br>
-                    건강하고 안전한 환경에서 여러 강아지들과의 소셜라이징!<br><br>
+<section class="container">
 
-                    신선한 순환기시스템과 쾌적한 공기청정 제습은 기본!<br>
-                    여름시원 겨울따뜻, 전객실 항온 바닥난방&냉방순환 시스템<br>
-                    철저한 위생소독 관리와 1:1 맞춤 데이케어<br><br><br>
+    <div class="my-div">
+        <span class="title2">다년간의 경험과 전문관리사</span><br><br>   
+        가정집펫시터를 시작으로 오래된 경험과 전문적인 시스템으로 위탁, 호텔 업무에 집중케어 하기위해<br>
+        다른업종을 겸하지 않고 가족처럼 보살피며 위생적이고 쾌적한 휴식공간 속에서 트러블없이<br><br> 
+        안정적으로 위탁생활을 마치고 무사귀환 할 때까지 견주분의 일정을 편안하게 보낼 수 있도록<br> 
+        최선을 다하는 전문 반려동물 호텔입니다.      
+    </div><br>
 
-                    <b>펫놀자 호텔링은 내집같은 포근함과 아늑함으로 아이들의 활력과 심리적인 안정감을 향상시킵니다.</b>
-                </div><br><br><br>
+    <div>
+        <img class="service" src="/images/service.png"> 
+    </div><br><br><br><br><br>
 
-                <div>
-                    <img class="room2" src="/images/room2.png">
-                </div>
-            </div><br><br><br>
-            
-            <div class="parent">
-                <div class="child1">
+    <div class="my-div">
+        <span class="title2">365일 연중무휴 펫놀자 호텔룸 안내</span><br><br>    
+        <span><h1>"반려동물 사랑에서 시작된 작지만 큰 배려"</h1></span><br>
+        럭셔리한 힐링룸과 넓은 운동장에서의 즐거운 휴가!<br>
+        건강하고 안전한 환경에서 여러 강아지들과의 소셜라이징!<br><br>
+
+        신선한 순환기시스템과 쾌적한 공기청정 제습은 기본!<br>
+        여름시원 겨울따뜻, 전객실 항온 바닥난방&냉방순환 시스템<br>
+        철저한 위생소독 관리와 1:1 맞춤 데이케어<br><br><br>
+
+        <b>펫놀자 호텔링은 내집같은 포근함과 아늑함으로 아이들의 활력과 심리적인 안정감을 향상시킵니다.</b>
+    </div><br><br><br>
+
+    <div>
+        <img class="room2" src="/images/room2.png">
+    </div><br><br><br>
+
+    <div class="my-div">
+        <span class="title2">반려동물 공통사항</span><br><br>        
+    </div><br><br>
+
+
+    <div class="parent">
+        <div class="child">
+            <ul style="list-style-type: disc;">
+                <h3><li>예약과 입퇴실</h3>
+                    <ul style="list-style-type: circle;">
+                        <li>24시간 초과시 2시간당 1일 호텔비의 10% 추가</li>
+                        <li>생리, 임신, 마킹, 미중성화 아이는 각 1박당 5천원 추가</li>
+                        <li>예약된 퇴실 가능시간에 입퇴실이 가능합니다</li>
+                        <li>입실 후 스케줄에 따라 다른 예약을 받지 못하므로 중도<br> 퇴실시 환불되지 않습니다</li>
+                    </ul>
+                </li><br>
+
+                <h3><li>입실 불가능 아이</h3>
+                    <ul style="list-style-type: circle;">
+                        <li>최근 1년 이내 종합접종이 완료 안된 아이</li>
+                        <li>전염성 질병이 있는 아이</li>
+                        <li>공격성&입질이 있는 아이</li>
+                        <li>8개월 이상의 미중성화 남아는 지점에 따라 입실불가 또는<br> 비용추가</li>
+                    </ul>
+                </li><br>
+
+                <h3><li>환불규정</h3>
+                    <ul style="list-style-type: circle;">
+                        <li>성수기 [6월~10월/12월]및 명절 등 극성수기</li>
+                        <li>사용예정일 7일전 취소시 : 전액환불</li>
+                        <li>사용예정일 5일전 취소시 : 70%환불</li>
+                        <li>사용예정일 3일전 취소시 : 50%환불</li>
+                        <li>사용예정일 하루전 취소시 : 20%환불</li>
+                        <li>당일 취소시 : 환불불가</li>
+                        *비수기사용예정일 당일 취소시 50% 환불 그외 전액<br> 환불 가능합니다
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="child">
+            <ul style="list-style-type: disc;">
+                <h3><li>장기투숙할인</h3>
+                    <ul style="list-style-type: circle;">
+                        <li>15박이상 10%</li>
+                        <li>30박이상 15%</li>
+                        <li>10일 이상 장기투숙시 목욕&스파 서비스 제공</li>
+                    </ul>
+                </li><br>
+
+                <h3><li>부가서비스</h3>
+                    <ul style="list-style-type: circle;">
+                        <li>그루밍케어(목욕, 발톱, 빗질)서비스</li>
+                        <li>1~4kg 3만원/4~8kg 4만원/8~12kg 5만원/12~15kg 6만원</li>
+                        <li>약 먹이기 서비스, 1일 2회 기준 3천원(몸무게에 따라 차등)</li>
+                    </ul>
+                </li><br>
+
+                <h3><li>픽업 & 드롭 서비스</h3>
                     <ul style="list-style-type: none;">
-                        <li class="title3">반려동물 공통사항</li>
+                        <li>기본요금 5천원 + 네이버 지도 기준 km당 1천원 추가</li>
+                        <li>예) 약 2.6km =5,000원 +2,000원 = 총 7,000원</li>
                     </ul>
-                </div>
-                
-                <div class="child2">
-                    <ul style="list-style-type: disc;">
-                        <h3><li>예약과 입퇴실</h3>
-                            <ul style="list-style-type: circle;">
-                                <li>24시간 초과시 2시간당 1일 호텔비의 10% 추가</li>
-                                <li>생리, 임신, 마킹, 미중성화 아이는 각 1박당 5천원 추가</li>
-                                <li>예약된 퇴실 가능시간에 입퇴실이 가능합니다</li>
-                                <li>입실 후 스케줄에 따라 다른 예약을 받지 못하므로 중도 퇴실시 환불되지 않습니다</li>
-                            </ul>
-                        </li><br>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-                        <h3><li>입실 불가능 아이</h3>
-                            <ul style="list-style-type: circle;">
-                                <li>최근 1년 이내 종합접종이 완료 안된 아이</li>
-                                <li>전염성 질병이 있는 아이</li>
-                                <li>공격성&입질이 있는 아이</li>
-                                <li>8개월 이상의 미중성화 남아는 지점에 따라 입실불가 또는 비용추가</li>
-                            </ul>
-                        </li><br>
-
-                        <h3><li>환불규정</h3>
-                            <ul style="list-style-type: circle;">
-                                <li>성수기 [6월~10월/12월]및 명절 등 극성수기</li>
-                                <li>사용예정일 7일전 취소시 : 전액환불</li>
-                                <li>사용예정일 5일전 취소시 : 70%환불</li>
-                                <li>사용예정일 3일전 취소시 : 50%환불</li>
-                                <li>사용예정일 하루전 취소시 : 20%환불</li>
-                                <li>당일 취소시 : 환불불가</li>
-                                *비수기사용예정일 당일 취소시 50% 환불 그외 전액 환불 가능합니다
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="child3">
-                    <ul style="list-style-type: disc;">
-                        <h3><li>장기투숙할인</h3>
-                            <ul style="list-style-type: circle;">
-                                <li>15박이상 10%</li>
-                                <li>30박이상 15%</li>
-                                <li>10일 이상 장기투숙시 목욕&스파 서비스 제공</li>
-                            </ul>
-                        </li><br>
-
-                        <h3><li>부가서비스</h3>
-                            <ul style="list-style-type: circle;">
-                                <li>그루밍케어(목욕, 발톱, 빗질)서비스</li>
-                                <li>1~4kg 3만원/4~8kg 4만원/8~12kg 5만원/12~15kg 6만원</li>
-                                <li>약 먹이기 서비스, 1일 2회 기준 3천원(몸무게에 따라 차등)</li>
-                            </ul>
-                        </li><br>
-
-                        <h3><li>픽업 & 드롭 서비스</h3>
-                            <ul style="list-style-type: none;">
-                                <li>기본요금 5천원 + 네이버 지도 기준 km당 1천원 추가</li>
-                                <li>예) 약 2.6km =5,000원 +2,000원 = 총 7,000원</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-    </section>
-    <th:block th:replace="~{menu/footer}"></th:block>
+</section>
+<th:block th:replace="~{menu/footer}"></th:block>
 </body>
 </html>
