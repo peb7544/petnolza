@@ -63,7 +63,7 @@ public class CommunityController {
 
 		// 1) Map으로 전달할 파라미터 묶기
 		Map<String, Object> map = new HashMap<>();
-		map.put("groupCode", NoticeBoardCodeNo);
+		map.put("codeNo", NoticeBoardCodeNo);
 		map.put("boardNo", boardNo);
 
 		// 로그인 상태인 경우에만 memberNo 추가
