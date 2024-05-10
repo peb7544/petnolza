@@ -35,6 +35,9 @@ public class Reserve {
 	 private int memberNo;            // 회원번호
 	 private int reserveNo;           // 예약번호
 	 
+	 private String serviceName;      // 서비스명
+	 private String status;           // 예약상태
+	 
 	 private String reviewCheck;	  // 리뷰 여부 
 	 
 	 private String codeNameList;     // 편의시설목록

@@ -73,4 +73,10 @@ public interface MypageService {
 	 */
 	int withdrawal(String memberPassword, int memberNo);
 
+	/** 예약내역확인
+	 * @param codeNo
+	 * @return
+	 */
+	Map<String, Object> selectReserveList(int memberNo);
+
 }

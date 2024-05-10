@@ -89,5 +89,11 @@ public interface MypageMapper {
 	 * @return result
 	 */
 	int withdrawal(int memberNo);
+
+	/** 예약내역 게시글 수
+	 * @param memberNo
+	 * @return
+	 */
+	int getReserveListCount(int memberNo);
 	
 }

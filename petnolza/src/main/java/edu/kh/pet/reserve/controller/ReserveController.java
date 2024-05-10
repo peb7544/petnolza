@@ -48,12 +48,12 @@ public class ReserveController {
 				RedirectAttributes ra
 			) {
 		
-		if(loginMember == null) {
+		/*if(loginMember == null) {
 			
 			ra.addFlashAttribute("message", "로그인 후 이용해주세요.");
 			
 			return "redirect:/";
-		}
+		}*/
 		
 		if(inputStart == "") inputStart = null;
 		if(inputEnd == "") inputEnd = null;
@@ -88,6 +88,7 @@ public class ReserveController {
 				@PathVariable("roomId") int roomId,
 				@RequestParam(value="reserveStart", required=false) String reserveStart,
 				@RequestParam(value="reserveEnd", required=false) String reserveEnd,
+				@SessionAttribute(value="loginMember", required = false) Member loginMember,
 				RedirectAttributes ra,
 				UploadFile uploadFile
 			) {
@@ -103,6 +104,13 @@ public class ReserveController {
 		
 		// 객실 서비스 조회
 		List<ServiceInfo> serviceInfoList = serviceInfoService.selectService();
+		
+		if(loginMember == null) {
+			
+			ra.addFlashAttribute("message", "로그인 후 이용해주세요.");
+			
+			return "redirect:/reserve/reserveList";
+		}
 		
 		if(reserveStart == "" || reserveEnd == "") {
 			

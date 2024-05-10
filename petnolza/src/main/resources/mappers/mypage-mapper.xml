@@ -137,6 +137,13 @@
  		WHERE MEMBER_NO = #{memberNo}
  	</update>
  	
+ 	<select id="getReserveListCount">
+ 		SELECT 
+			COUNT(*)
+		FROM SERVICE_RESERVE 
+		WHERE MEMBER_NO = ${memberNo}
+ 	</select>
+ 	
 </mapper>
 
 

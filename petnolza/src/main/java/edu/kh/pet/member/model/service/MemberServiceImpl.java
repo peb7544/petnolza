@@ -8,7 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.kh.pet.community.model.dto.Pagination;
+import edu.kh.pet.common.model.dto.Pagination;
 import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.member.model.mapper.MemberMapper;
 import edu.kh.pet.reserve.model.dto.Reserve;
