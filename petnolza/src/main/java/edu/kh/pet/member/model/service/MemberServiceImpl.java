@@ -113,6 +113,30 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.withdrawal(memberNo);
 	}
 
+
+	// 회원 재가입(탈퇴 복구)
+	@Override
+	public int rejoin(int memberNo) {
+		
+		return mapper.rejoin(memberNo);
+	}
+
+
+	// 일반회원 -> 관리자
+	@Override
+	public int alterAdmin(int memberNo) {
+		
+		return mapper.alterAdmin(memberNo);
+	}
+
+
+	// 관리자 -> 일반회원
+	@Override
+	public int alterNormal(int memberNo) {
+		
+		return mapper.alterNormal(memberNo);
+	}
+
 }
 
 

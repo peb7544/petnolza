@@ -28,11 +28,7 @@
             display: flex;
         }
 
-        .inputForm {
-            border: 1px solid black;
-        }
-
-        .inputForm div{
+        .inputForm input{
 
             background-color: #DFDFDF;
             font-size: 20px;
@@ -58,56 +54,57 @@
 
             <div class="inputForm">
                 <label>회원번호</label>
-                <div th:text="${memberNo}"></div>
-             </div>
+                <input th:value="${memberNo}" readonly>
+            </div>
 
             <div class="inputForm">
                 <label>이메일</label>
-                <div th:text="${member.memberEmail}"></div>
+                <input th:value="${member.memberEmail}" readonly>
              </div>
 
             <div class="inputForm">
                 <label>이름</label>
-                <div th:text="${member.memberName}"></div>
-             </div>
+                <input th:value="${member.memberName}" readonly>
+            </div>
 
             <div class="inputForm">
                 <label>닉네임</label>
-                <div th:text="${member.memberNickname}"></div>
+                <input th:value="${member.memberNickname}" readonly>
              </div>
             
              <div class="inputForm">
                 <label>전화번호</label>
-                <div th:text="${member.memberTel}"></div>
+                <input th:value="${member.memberTel}" readonly>
              </div>
              
              <div class="inputForm">
                 <label>가입일</label>
-                <div th:text="${member.enrollDate}"></div>
+                <input th:value="${member.enrollDate}" readonly>
              </div>
              
              <div class="inputForm">
                 <label>탈퇴여부</label>
-                <div th:text="${member.memberDelFl}"></div>
+                <input th:value="${member.memberDelFl}" readonly>
              </div>
 
              <div class="inputForm">
                 <label>주소</label>
                 <th:block th:unless="${member.memberAddr==null}">
-                    <div th:text="${postcode}"></div>
-                    <div th:text="${address}"></div>
-                    <div th:text="${detailAddress}"></div>
+                    <input th:value="${postcode}" readonly>
+                    <input th:value="${address}" readonly>
+                    <input th:value="${detailAddress}" readonly>
                 </th:block>
 
-                <th:block th:if="${member.memberAddr==null}">
-                    <div>등록된 주소가 없습니다.</div>
-                </th:block>
+                <div class="inputForm" th:if="${member.memberAddr==null}">
+                    <input type="text" th:value="|등록된 주소가 없습니다.|" readonly>
+                </div>
              </div>
 
              <div class="btn-area">
-                <button th:if="${member.memberDelFl.equals('N')}" class="grey-btn" id="withdrawal">회원 탈퇴</button>
-                <button th:if="${member.memberDelFl.equals('Y')}" class="grey-btn" id="rejoin">회원 탈퇴 복구</button>
-                <button class="grey-btn">관리자로 변경</button>
+                <button type="button" th:if="${member.memberDelFl.equals('N')}" class="grey-btn" id="withdrawal">회원 탈퇴</button>
+                <button type="button" th:if="${member.memberDelFl.equals('Y')}" class="grey-btn" id="rejoin">회원 탈퇴 복구</button>
+                <button type="button" th:if="${member.codeNo.equals('NORMAL')}" class="grey-btn" id="alterAdmin">관리자로 변경</button>
+                <button type="button" th:if="${member.codeNo.equals('ADMIN')}" class="grey-btn" id="alterNormal">일반 회원으로 변경</button>
              </div>
 
         </section>
@@ -123,7 +120,7 @@
                         <th>번호</th>
                         <th>객실</th>
                         <th>예약일</th>
-                        <th>리뷰여부</th>
+                        <th>후기여부</th>
                     
                     </thead>
 
@@ -211,7 +208,8 @@
     <script th:inline="javascript">
 
         const memberNo = /*[[${memberNo}]]*/ "회원번호";
-        const member = /*[[${member}]]*/ "회원";
+        const memberNickname = /*[[${member.memberNickname}]]*/ "회원 닉네임";
+
     </script>
     
     <script src="/js/memberInfo.js"></script>

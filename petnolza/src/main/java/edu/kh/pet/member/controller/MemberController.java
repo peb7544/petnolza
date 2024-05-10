@@ -75,7 +75,6 @@ public class MemberController {
 	
 	@GetMapping("withdrawal")
 	public String withdrawal(@RequestParam("memberNo") int memberNo,
-							@RequestParam("member") Member member,
 							RedirectAttributes ra) {
 		
 		int result = service.withdrawal(memberNo);
@@ -84,19 +83,76 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			message = member.getMemberNickname() + " 님 탈퇴가 완료되었습니다.";
+			message ="회원 탈퇴가 완료되었습니다.";
 			
 		} else {
 			
-			message = member.getMemberNickname() + " 님 탈퇴가 실패하였습니다.";
+			message = "회원 탈퇴에 실패하였습니다.";
 			
 		}
 		
 		ra.addFlashAttribute("message", message);
 		
-		log.debug("memberNo : " + member.getMemberNo());
+		return "redirect:/member/memberInfo/" + memberNo;
 		
-		return "redirect:member/memberInfo/" + member.getMemberNo();
+	}
+	
+	
+	@GetMapping("rejoin")
+	public String rejoin(@RequestParam("memberNo") int memberNo,
+						RedirectAttributes ra) {
+		
+		int result = service.rejoin(memberNo);
+		
+		String message = null;
+		
+		if(result > 0) {
+			
+			message ="회원 재가입이 완료되었습니다.";
+			
+		} else {
+			
+			message = "회원 재가입에 실패하였습니다.";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/member/memberInfo/" + memberNo;
+		
+	}
+	
+	@GetMapping("alterAdmin")
+	public String alterAdmin(@RequestParam("memberNo") int memberNo,
+							RedirectAttributes ra) {
+		
+		int result = service.alterAdmin(memberNo);
+		
+		String message = null;
+		
+		if(result > 0) message = "관리자로 변경되었습니다.";
+		else message = "관리자 변경에 실패하였습니다.";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/member/memberInfo/" + memberNo;
+		
+	}
+	
+	@GetMapping("alterNormal")
+	public String alterNormal(@RequestParam("memberNo") int memberNo,
+			RedirectAttributes ra) {
+		
+		int result = service.alterNormal(memberNo);
+		
+		String message = null;
+		
+		if(result > 0) message = "일반회원으로 변경되었습니다.";
+		else message = "일반회원으로 변경에 실패하였습니다.";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/member/memberInfo/" + memberNo;
 		
 	}
 	
