@@ -1,3 +1,17 @@
+/* 한솔 */
+section.max-container {
+    width: 100%;
+    align-items: center;
+    padding: 0 15px;
+}
+
+section.max-container > .btn-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
 /* 객실 예약 목록 */
 
 /* 그림자 */
@@ -50,7 +64,7 @@
 }
 
 /* 검색 입력 */
-.inputForm input {
+.searchInput input {
     width: 80%;
     margin-left: 10%;
     border-radius: 5px;

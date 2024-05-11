@@ -1,6 +1,5 @@
 package edu.kh.pet.room.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.kh.pet.reserve.model.dto.Reserve;
 import edu.kh.pet.room.model.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 
@@ -28,10 +26,14 @@ public class ReservationController {
 	@GetMapping("memberRe")
 	public String memberRe(
 				@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+				@RequestParam Map<String, Object> paramMap,
 				Model model
 			) {
 		
-		Map<String, Object> map = service.selectReserveList(cp);
+		Map<String, Object> map = service.selectReserveList(paramMap, cp);
+		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("reserveList", map.get("reserveList"));
 		
 		return "reservation/memberRe";
 	}
