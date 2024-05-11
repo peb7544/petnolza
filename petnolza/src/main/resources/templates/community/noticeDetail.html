@@ -39,11 +39,12 @@
 
 </head>
 <body>
-<th:block th:replace="~{menu/topMenu}"></th:block>
+    
+    <section class="topContainer">
 
-    <section class="container">
+        <th:block th:replace="~{menu/topMenu}"></th:block>
 
-        <section class="max-container">
+        <section class="container">
             <h2>공지사항</h2>
 
             <div th:object="${board}">
@@ -58,9 +59,11 @@
                     </thead>
                     <tbody>
 
-                        <tr style="pointer-events : none;">
+                        <tr>
                             <td th:text="*{boardNo}">10</td>
-                            <td th:text="*{boardTitle}">제목</td>
+                            <td>
+                                <input type="text" th:value="*{boardTitle}">
+                            </td>
                             <td th:text="*{boardWriteDate}">2024-05-04</td>
                             <td th:text="*{readCount}">300</td>
                         </tr>
@@ -69,41 +72,42 @@
 
                 </table>
 
-                <div>
+                <form>
 
-                    <div class="board-content-div" th:text="*{boardContent}">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
+                    <div>
 
-                    <div class="attachmentFileDiv">
-                        <div>
-                            첨부파일
-                        </div>
-                        <div>
-                            파일명
-                            <div class="btn-area" style="display: inline; border: 0;">
-                                <button class="grey-btn">첨부파일</button>
+                        <textarea class="content-area" 
+                                  th:text="*{boardContent}"
+                                  name="boardContent">
+                        </textarea>
+
+                        <div class="attachmentFileDiv">
+                            <div>
+                                첨부파일
                             </div>
+                            <input type="file">
                         </div>
+
                     </div>
 
+                    <div class="btn-area last-btn-area">
+                        <button type="button" class="main-blue" id="backToList">목록</button>
+                        <button type="button" class="grey-btn" id="updateNotice">수정</button>
+                        <button type="button" class="grey-btn" id="deleteNotice">삭제</button>
+                    </div>
 
-                </div>
+                </form>
 
-                <div class="btn-area last-btn-area">
-                    <button class="main-blue">목록</button>
-                    <button class="grey-btn">수정</button>
-                    <button class="grey-btn">삭제</button>
-                </div>
             </div>
               
 
         </section>
 
+        <th:block th:replace="~{menu/footer}"></th:block>
+
     </section>
 
-    <th:block th:replace="~{menu/sideMenu}"></th:block>
-    <th:block th:replace="~{menu/footer}"></th:block>
+    <script src="/js/noticeDetail.js"></script>
 
 </body>
 </html>

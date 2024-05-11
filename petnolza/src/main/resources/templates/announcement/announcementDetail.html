@@ -4,34 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-
-    <style>
-        
-        section.max-container {
-            width: 100%;
-            align-items: center;
-            padding: 0 15px;
-        }
-
-        section.max-container > .btn-area {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            
-        }
-        
-        .last-btn-area {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        .last-btn-area button{
-            margin: 0 5px;
-        }
-
-    </style>
     
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/board.css"></link>
@@ -61,10 +33,10 @@
                     <tbody>
 
                         <tr>
-                            <td>10</td>
-                            <td>제목제목제목제목</td>
-                            <td>2024-05-04</td>
-                            <td>300</td>
+                            <td th:text="${board.boardNo}">10</td>
+                            <td th:text="${board.boardTitle}">제목제목제목제목</td>
+                            <td th:text="${board.boardWriteDate}">2024-05-04</td>
+                            <td th:text="${board.readCount}">300</td>
                         </tr>
 
                     </tbody>
@@ -73,9 +45,7 @@
 
                 <div>
 
-                    <div class="board-content-div">
-                        <p>공지사항</p>
-                    </div>
+                    <div class="content-area" th:text="${board.boardContent}"></div>
 
                     <div class="attachmentFileDiv">
                         <div>
@@ -90,7 +60,8 @@
                 </div>
 
                 <div class="btn-area last-btn-area">
-                    <button class="main-blue">목록</button>
+                    
+                    <button class="main-blue" id="backToList">목록</button>
                     
                 </div>
             </div>
@@ -100,6 +71,16 @@
         <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
+
+    <script>
+
+        const backToList = document.querySelector("#backToList");
+
+        backToList.addEventListener("click", () => {
+            window.location.href = "http://localhost/announcement/announcementList"
+        })
+
+    </script>
 
     
 </body>
