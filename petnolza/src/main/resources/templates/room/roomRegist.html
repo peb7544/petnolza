@@ -3,114 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-
-    <style>
-        
-        section.max-container {
-            width: 100%;
-            align-items: center;
-            padding: 0 15px;
-        }
-
-        section.max-container > .btn-area {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            
-        }
-
-    </style>
+    <title>객실등록</title>
     
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/roomRegist.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
+    <link rel="stylesheet" href="/css/reserve.css">
 
 </head>
 <body>
 
-    <section class="container">
+    <section class="topContainer">
 
-        <section class="max-container">
-            <h2>객실 등록</h2>
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+        
+        <section class="container">
 
-            <div class="inputForm">
-                <label>객실명</label>
-                <input type="text">
-            </div>
-
-            <div class="inputForm">
-                <label>객실 상세정보</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-
-            <div class="inputForm">
-                <label>객실 이미지</label>
-
-                <label for="file">
-                    <div class="btn-upload">첨부파일</div>
-                  </label>
-                  <input type="file" name="file" id="file" multiple>
-                
-                <div>
-                    <div class="box thumbChecked">
-                        <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
-                        <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
-                    </div>
-                    <div class="box">
-                        <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
-                        <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
-                    </div>
-                    <div class="box">
-                        <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
-                        <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
-                    </div>
-                    <div class="box">
-                        <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
-                        <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
-                    </div>
-                    <div class="box">
-                        <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
-                        <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
-                    </div>
-
+            <section class="max-container">
+                <h2>객실 등록</h2>
+    
+                <div class="inputForm">
+                    <label>객실명</label>
+                    <input type="text">
                 </div>
-                
-
-            </div>
-
-            <div class="inputForm">
-                <label>객실 제공사항</label>
-                <div>
-                    <input type="checkbox" id="tower" name="tower" style="height: 15px;"/>
-                    <label for="tower">캣타워</label>
-
-                    <input type="checkbox" id="aaa" name="aaa" style="height: 15px;"/>
-                    <label for="aaa">aaa</label>
-
-                    <input type="checkbox" id="bbb" name="bbb" style="height: 15px;"/>
-                    <label for="bbb">bbb</label>
-
-                    <input type="checkbox" id="ccc" name="ccc" style="height: 15px;"/>
-                    <label for="ccc">ccc</label>
+    
+                <div class="inputForm">
+                    <label>객실 상세정보</label>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
                 </div>
-            </div>
-
-            <div class="inputForm">
-                <label>가격</label>
-                <input type="number">
-            </div>
- 
-
-             <div>
-                <div class="btn-area" style="display: flex; justify-content: center;">
-                    <button class="main-blue">등록</button>
-                    <button style="background-color: #666666; margin-left: 5px;">취소</button>
+    
+                <div class="inputForm">
+                    <label>객실 이미지</label>
+    
+                    <label for="file">
+                        <div class="btn-upload">첨부파일</div>
+                      </label>
+                      <input type="file" name="file" id="file" multiple>
+                    
+                    <div>
+                        <div class="box thumbChecked">
+                            <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
+                            <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
+                        </div>
+                        <div class="box">
+                            <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
+                            <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
+                        </div>
+                        <div class="box">
+                            <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
+                            <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
+                        </div>
+                        <div class="box">
+                            <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
+                            <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
+                        </div>
+                        <div class="box">
+                            <img class="content" src="https://blog.kakaocdn.net/dn/bthiGT/btqGCozmGwh/xi6gcKB005xGZSODov4Pd1/img.png" alt="images"/>                        
+                            <a style="position: absolute; right: 0%; font-size: 25px; font-weight: bold;">&times;</a>
+                        </div>
+    
+                    </div>
+                    
+    
                 </div>
-            </div>
+    
+                <div class="inputForm reserveRegistDiv">
+                    <label>객실 제공사항</label>
+                    <div id="serviceDiv" class="serviceDiv">
+                        <div th:each="code : ${codeList}" th:object="${code}">
+                            <input type="checkbox" name="codeNo" style="height: 15px;" 
+                                th:value="*{codeNo}"/>
+                            <label th:text="*{codeName}">캣타워</label>
+                        </div>
+
+                        <!--<input type="checkbox" id="tower" name="tower" style="height: 15px;"/>
+                        <label for="tower">캣타워</label>
+    
+                        <input type="checkbox" id="aaa" name="aaa" style="height: 15px;"/>
+                        <label for="aaa">aaa</label>
+    
+                        <input type="checkbox" id="bbb" name="bbb" style="height: 15px;"/>
+                        <label for="bbb">bbb</label>
+    
+                        <input type="checkbox" id="ccc" name="ccc" style="height: 15px;"/>
+                        <label for="ccc">ccc</label>-->
+                    </div>
+                </div>
+    
+                <div class="inputForm">
+                    <label>가격</label>
+                    <input type="number">
+                </div>
+     
+    
+                 <div>
+                    <div class="btn-area" style="display: flex; justify-content: center;">
+                        <button class="main-blue">등록</button>
+                        <button style="background-color: #666666; margin-left: 5px;">취소</button>
+                    </div>
+                </div>
+            </section>
+    
         </section>
 
+        <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>
+
+    
 
     
 </body>

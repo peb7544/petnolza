@@ -5,7 +5,52 @@
  	<!-- 1:1문의 게시글 Count -->
  	<select id="getListCount">
  		SELECT 
-				COUNT(*)
+			COUNT(*)
 		FROM RESERVE
+ 	</select>
+ 	
+ 	<!-- 회원 예약 정보 -->
+ 	<select id="selectReserveList">
+ 		SELECT 
+			 RESERVE_NO 
+			,ROOM_ID 
+			,ROOM_NAME
+			,TO_CHAR( RESERVE_START, 'YYYY-MM-DD' ) RESERVE_START 
+			,TO_CHAR( RESERVE_END, 'YYYY-MM-DD' ) RESERVE_END 
+			,RESERVE_PRICE 
+			,<![CDATA[
+			(CASE
+					WHEN RESERVE_DEL_FL = 'Y' THEN '취소'
+					WHEN SYSDATE < RESERVE_END AND RESERVE_PAYMENT = 'Y' THEN '결제완료'
+					WHEN SYSDATE >= RESERVE_END AND RESERVE_PAYMENT = 'N' THEN '취소(미결제)'
+					WHEN RESERVE_PAYMENT = 'N' THEN '미결제'
+					WHEN SYSDATE >= RESERVE_END THEN '이용완료'
+			END
+			) STATUS
+			,DECODE( (SELECT COUNT(*) FROM SERVICE_RESERVE SR WHERE SR.RESERVE_NO = R.RESERVE_NO), 0,
+				'미신청',
+				(SELECT 
+					SUBSTR (
+						XMLAGG(
+							XMLELEMENT(COL, ',', SERVICE_NAME) ORDER BY SERVICE_NO).EXTRACT('//text()'
+						).GETSTRINGVAL()
+					, 2) AS SERVICE_NAME
+				FROM SERVICE_RESERVE SR
+				JOIN SERVICE USING(SERVICE_NO)
+				WHERE SR.RESERVE_NO = R.RESERVE_NO)
+			 ) SERVICE_NAME_LIST
+			 ]]>
+			 ,MEMBER_NO
+			 ,RESERVE_USER
+		FROM RESERVE R
+		JOIN ROOM USING(ROOM_ID)
+		WHERE 1=1
+		<if test='key == "user" and keyword != null'>
+		AND RESERVE_USER LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='key == "room" and keyword != null'>
+		AND ROOM_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		ORDER BY RESERVE_NO DESC
  	</select>
 </mapper>

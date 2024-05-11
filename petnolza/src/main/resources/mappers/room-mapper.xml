@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.pet.room.model.mapper.RoomMapper">
+ 	
+ 	<select id="selectCodeList">
+ 		SELECT 
+			 CODE_NO 
+			,CODE_NAME
+		FROM CODE_MT
+		WHERE GROUP_CODE = #{groupCode}
+ 	</select>
+</mapper>
