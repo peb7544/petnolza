@@ -30,11 +30,11 @@
 
 </head>
 <body>
-<th:block th:replace="~{menu/topMenu}"></th:block>
-<th:block th:replace="~{menu/sideMenu}"></th:block>
-    <section class="container">
+    <section class="topContainer">
+        
+        <th:block th:replace="~{menu/topMenu}"></th:block>
 
-        <section class="max-container">
+        <section class="container">
             <h2>공지사항</h2>
 
             <div class="middle-menu">
@@ -119,26 +119,32 @@
             </div>
 
             <div class="inputForm searchForm">
-                <form th:action="@{/community/noticeList}" method="get" id="boardSearch">
+
+                <form th:action="@{/announcement/announcementList}" method="get" id="memberSearch" class="inputForm searchForm">
+
                     <select name="key" id="searchKey">
                         <option value="t">제목</option>
                     </select>
+    
                     <input type="text" name="query" id="searchQuery" placeholder="검색어를 입력해주세요.">
-                    <div class="btn-area" style="display: inline-block;">
-                        <button class="grey-btn">검색</button>
+    
+                    <div class="btn-area">
+                        <button class="grey-btn" id="searchBtn">검색</button>
                     </div>
+
                 </form>
             </div>
 
         </section>
 
+        <th:block th:replace="~{menu/footer}"></th:block>
+
     </section>
 
-    <th:block th:replace="~{menu/sideMenu}"></th:block>
-    <th:block th:replace="~{menu/footer}"></th:block>
+    
 
     <script th:inline="javascript">
-        const groupCode = /*[[${groupCode}]]*/ "게시판 코드 번호";
+        const codeNo = /*[[${codeNo}]]*/ "게시판 코드 번호";
     </script>
 
     <script src="/js/board/boardList.js"></script>

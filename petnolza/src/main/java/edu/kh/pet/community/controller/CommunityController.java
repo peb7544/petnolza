@@ -3,6 +3,7 @@ package edu.kh.pet.community.controller;
 import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.community.model.dto.BoardImg;
 import edu.kh.pet.community.model.service.CommunityService;
+import edu.kh.pet.community.model.service.CommunityServiceImpl;
 import edu.kh.pet.member.model.dto.Member;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -160,24 +161,6 @@ public class CommunityController {
 			model.addAttribute("board", board);
 
 
-			// 조회된 이미지 목록(imageList)가 있을 경우
-			if( !board.getImageList().isEmpty() ) {
-
-				BoardImg thumbnail = null;
-
-				// imageList의 0번 인덱스 == 가장 빠른 순서(imgOrder)
-
-				// 이미지 목록의 첫번째 행이 순서 0 == 썸네일 인 경우
-				if(board.getImageList().get(0).getImgOrder() == 0) {
-
-					thumbnail = board.getImageList().get(0);
-				}
-
-
-				model.addAttribute("thumbnail", thumbnail);
-				model.addAttribute("start", thumbnail != null ? 1 : 0);
-
-			}
 
 		}
 
