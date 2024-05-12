@@ -227,7 +227,8 @@ public class CommunityController {
 	@PostMapping("insertNotice")
 	public String insertNotice(@ModelAttribute Board board,
 							@SessionAttribute(value="loginMember", required=false) Member loginMember,
-							RedirectAttributes ra) {
+							RedirectAttributes ra,
+							@RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
 		
 		int memberNo = loginMember.getMemberNo();
 		

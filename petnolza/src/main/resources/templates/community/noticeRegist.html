@@ -21,7 +21,7 @@
         <section class="container">
             <h2>공지사항 등록</h2>
 
-            <form action="/community/insertNotice" method="POST" name="insertNotice" id="insertNotice">
+            <form action="/community/insertNotice" method="POST" name="insertNotice" id="insertNotice" enctype="multipart/form-data">
 
                 <div class="inputForm">
                     <label>제목</label>
@@ -38,7 +38,7 @@
                     <div>
                         첨부파일
                     </div>
-                    <input type="file">
+                    <input type="file" name="uploadFile">
                 </div>
 
                 <br><br>

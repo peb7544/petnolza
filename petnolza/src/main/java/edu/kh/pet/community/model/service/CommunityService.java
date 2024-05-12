@@ -2,6 +2,8 @@ package edu.kh.pet.community.model.service;
 
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.kh.pet.community.model.dto.Board;
 
 public interface CommunityService {
@@ -36,6 +38,6 @@ public interface CommunityService {
 	 * @param board
 	 * @return result
 	 */
-	int insertNotice(Board board);
+	int insertNotice(Board boards);
 
 }
