@@ -5,76 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <style>
-        
-        section.max-container {
-            width: 100%;
-            align-items: center;
-            padding: 0 15px;
-        }
-
-        section.max-container > .btn-area {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            
-        }
-
-        .last-btn-area {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-    </style>
+    
     
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/board.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
-    <section class="container">
+    <section class="topContainer">
 
-        <section class="max-container">
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+
+        <section class="container">
             <h2>공지사항 등록</h2>
 
-            <div class="inputForm">
-                <label>제목</label>
-                <input type="text">
-            </div>
+            <form action="/community/insertNotice" method="POST" name="insertNotice" id="insertNotice" enctype="multipart/form-data">
 
-            <div class="inputForm">
-                <label>내용</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-
-
-            <div class="attachmentFileDiv">
-                <div>
-                    첨부파일
+                <div class="inputForm">
+                    <label>제목</label>
+                    <input type="text" name="boardTitle" id="boardTitle">
                 </div>
+
+                <div class="inputForm">
+                    <label>내용</label>
+                    <textarea class="content-area" name="boardContent" id="boardContent"></textarea>
+                </div>
+
+
+                <div class="attachmentFileDiv">
+                    <div>
+                        첨부파일
+                    </div>
+                    <input type="file" name="uploadFile" id="uploadFile">
+                </div>
+
+                <br><br>
+                
                 <div>
-                    파일명
-                    <div class="btn-area" style="display: inline; border: 0;">
-                        <button class="grey-btn">첨부파일</button>
+                    <div class="btn-area last-btn-area">
+                        <button class="main-blue">등록</button>
+                        <button type="button" class="grey-btn">취소</button>
                     </div>
                 </div>
-            </div>
-
-            <br><br>
-            
-             <div>
-                <div class="btn-area last-btn-area">
-                    <button class="main-blue">등록</button>
-                    <button style="background-color: #666666; margin-left: 5px;">취소</button>
-                </div>
-            </div>
+                
+            </form>
         </section>
 
-        </section>
+        <thblock th:replace="~{menu/footer}"></thblock>
 
     </section>
+
+    <script th:inline="javascript">
+        const codeNo = /*[[${codeNo}]]*/ "코드 번호";
+        const memberNo = /*[[${memberNo}]]*/ "회원 번호";
+    </script>
+
+    <script src="/js/noticeRegist.js"></script>
 
     
 </body>

@@ -22,6 +22,7 @@ public class Board {
 	private String boardDelFl;
 	private int memberNo;
 	private int groupCode;
+	private String CodeNo;
 	
 	// MEMBER 테이블 조인
 	private String memberNickname;

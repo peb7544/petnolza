@@ -44,6 +44,13 @@ public class FileConfig implements WebMvcConfigurer {
 	@Value("${my.room.resource-location}")
 	private String roomResourceLocation;
 	
+	// 공지사항 파일
+	@Value("${my.notice.resource-handler}")
+	private String boardResourceHandler;
+	
+	@Value("${my.notice.resource-location}")
+	private String boardResourceLocation;
+	
 	
 	// 요청 주소에 따라
 	// 서버 컴퓨터의 어떤 경로에 접근할지 설정
@@ -65,6 +72,11 @@ public class FileConfig implements WebMvcConfigurer {
 		// file:// 은 URL 스킴(Scheme), 파일 시스템의 리소스
 		// /C: 는 Windows 시스템에서 C 드라이브를 가리킴.
 		// file:///C: 는 "C 드라이브의 루트 디렉토리"를 의미함.
+		
+		
+		// 공지사항 첨부파일
+		registry.addResourceHandler(boardResourceHandler)
+		.addResourceLocations(boardResourceLocation);
 	}
 
 	/* MultipartResolver 설정 */

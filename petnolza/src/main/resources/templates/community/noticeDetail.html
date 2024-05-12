@@ -48,37 +48,38 @@
             <h2>공지사항</h2>
 
             <div th:object="${board}">
-                <table class="board-area">
-                    <thead>
-                    
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성일</th>
-                        <th>조회수</th>
-                    
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td th:text="*{boardNo}">10</td>
-                            <td>
-                                <input type="text" th:value="*{boardTitle}">
-                            </td>
-                            <td th:text="*{boardWriteDate}">2024-05-04</td>
-                            <td th:text="*{readCount}">300</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
                 <form>
+                    <table class="board-area">
+                        <thead>
+                        
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>작성일</th>
+                            <th>조회수</th>
+                        
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td th:text="*{boardNo}">10</td>
+                                <td>
+                                    <input type="text" th:value="*{boardTitle}" name="boardTitle" id="boardTitle">
+                                </td>
+                                <td th:text="*{boardWriteDate}">2024-05-04</td>
+                                <td th:text="*{readCount}">300</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
 
                     <div>
 
                         <textarea class="content-area" 
-                                  th:text="*{boardContent}"
-                                  name="boardContent">
+                                th:text="*{boardContent}"
+                                name="boardContent"
+                                id="boardContent">
                         </textarea>
 
                         <div class="attachmentFileDiv">
@@ -106,6 +107,12 @@
         <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
+
+    <script th:inline="javascript">
+
+        const boardNo = /*[[${boardNo}]]*/ "게시물 번호";
+
+    </script>
 
     <script src="/js/noticeDetail.js"></script>
 

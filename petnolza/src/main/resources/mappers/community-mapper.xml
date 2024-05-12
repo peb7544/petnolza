@@ -149,5 +149,23 @@
 
 		ORDER BY BOARD_NO DESC
 	</select>
+	
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice">
+		UPDATE "BOARD" SET
+		BOARD_TITLE = #{boardTitle},
+		BOARD_CONTENT = #{boardContent}
+		WHERE BOARD_NO = #{boardNo}
+		AND BOARD_DEL_FL = 'N'
+	</update>
+	
+	
+	<!-- 공지사항 삭제 -->
+	<update id="deleteNotice">
+		UPDATE "BOARD" SET
+		BOARD_DEL_FL = 'Y'
+		WHERE BOARD_NO = #{boardNo}
+	</update>
 
 </mapper>

@@ -9,9 +9,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.Duration;
@@ -22,10 +25,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("community")
 @RequiredArgsConstructor
+@Slf4j
 public class CommunityController {
 
 	private final CommunityService service;
 	public static String NoticeBoardCodeNo = "NOTICE";
+	public static String NoticeGroupCode = "BOARD";
 
 	/** 공지사항 목록
 	 * @return
@@ -39,15 +44,17 @@ public class CommunityController {
 		if(paramMap.get("key") == null || paramMap.get("query") == "") { // 검색이 아닌 경우
 			map = service.selectBoardList(NoticeBoardCodeNo, cp);
 		} else {
-			paramMap.put("groupCode", NoticeBoardCodeNo);
+			paramMap.put("codeNo", NoticeBoardCodeNo);
 			map = service.selectSearchList(paramMap, cp);
 		}
 
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
+		model.addAttribute("codeNo", NoticeBoardCodeNo);
 
 		return "community/noticeList";
 	}
+	
 	
 	/** 공지사항 상세
 	 * @return
@@ -168,14 +175,64 @@ public class CommunityController {
 		return path;
 	}
 	
+	@ResponseBody
+	@PostMapping("updateNotice")
+	public int updateNotice(@RequestBody Board board) {
+		
+
+		return service.updateNotice(board);
+	}
+	
+	@GetMapping("deleteNotice")
+	public String deleteNotice(@RequestParam("boardNo") int boardNo,
+								RedirectAttributes ra) {
+		
+		int result = service.deleteNotice(boardNo);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			path = "community/noticeList";
+			message = "게시물 삭제가 완료되었습니다.";
+		} else {
+			path = "community/noticeList/" + boardNo;
+			message = "게시물 삭제 실패하였습니다";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/" + path;
+		
+	}
+	
+	
 	/** 공지사항 등록
 	 * @return
 	 */
 	@GetMapping("noticeRegist")
-	public String noticeRegist() {
+	public String noticeRegist(@RequestParam("codeNo") String codeNo,
+							   @SessionAttribute("loginMember") Member loginMember,
+							   Model model) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		model.addAttribute("memberNo", memberNo);
+		model.addAttribute("codeNo", codeNo);
 		
 		return "community/noticeRegist";
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("insertNotice")
+	public int insertNotice(@ModelAttribute Board board,
+							@RequestParam("uploadFile") MultipartFile uploadFile) {
+		log.debug("uploadFile : " + uploadFile);
+		
+		return 0;
+	}
+	
 	
 	/** 자주묻는질문 목록
 	 * @return

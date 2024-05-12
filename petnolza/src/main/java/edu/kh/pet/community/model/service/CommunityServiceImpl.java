@@ -69,5 +69,20 @@ public class CommunityServiceImpl implements CommunityService{
         return -1; // 실패한 경우 -1 반환
     }
 
+    
+    // 공지사항 수정
+	@Override
+	public int updateNotice(Board board) {
+		
+		return mapper.updateNotice(board);
+	}
+
+	// 공지사항 삭제
+	@Override
+	public int deleteNotice(int boardNo) {
+		
+		return mapper.deleteNotice(boardNo);
+	}
+
 
 }
