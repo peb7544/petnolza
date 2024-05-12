@@ -84,5 +84,12 @@ public class CommunityServiceImpl implements CommunityService{
 		return mapper.deleteNotice(boardNo);
 	}
 
+	// 공지사항 등록
+	@Override
+	public int insertNotice(Board board) {
+		
+		return mapper.insertNotice(board);
+	}
+
 
 }

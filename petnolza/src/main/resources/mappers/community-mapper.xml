@@ -167,5 +167,21 @@
 		BOARD_DEL_FL = 'Y'
 		WHERE BOARD_NO = #{boardNo}
 	</update>
+	
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice">
+		INSERT INTO "BOARD" 
+		VALUES (SEQ_BOARD_NO.NEXTVAL, 
+				#{boardTitle},
+				#{boardContent},
+				DEFAULT,
+				DEFAULT,
+				DEFAULT,
+				DEFAULT,
+				#{memberNo},
+				#{groupCode},
+				#{codeNo})
+	</insert>
 
 </mapper>

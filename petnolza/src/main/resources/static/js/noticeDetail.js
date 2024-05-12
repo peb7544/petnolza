@@ -43,6 +43,7 @@ updateNotice.addEventListener("click", e => {
     }
 
     alert("공지사항 변경이 완료되었습니다");
+    location.href = "/community/noticeList";
 
   })
   .catch(err => console.log(err));

@@ -224,13 +224,36 @@ public class CommunityController {
 	}
 	
 	
-	@ResponseBody
 	@PostMapping("insertNotice")
-	public int insertNotice(@ModelAttribute Board board,
-							@RequestParam("uploadFile") MultipartFile uploadFile) {
-		log.debug("uploadFile : " + uploadFile);
+	public String insertNotice(@ModelAttribute Board board,
+							@SessionAttribute(value="loginMember", required=false) Member loginMember,
+							RedirectAttributes ra) {
 		
-		return 0;
+		int memberNo = loginMember.getMemberNo();
+		
+		board.setMemberNo(memberNo);
+		board.setGroupCode(NoticeGroupCode);
+		board.setCodeNo(NoticeBoardCodeNo);
+		
+		log.debug("board: " + board);
+
+		int result = service.insertNotice(board);
+		
+		String message = null;
+		
+		if(result > 0) {
+			
+			message = "공지사항 등록이 완료되었습니다.";
+			
+		} else {
+			
+			message = "공지사항 등록에 실패하였습니다.";
+			
+		}
+		
+		ra.addFlashAttribute(message);
+		
+		return "redirect:/community/noticeList";
 	}
 	
 	

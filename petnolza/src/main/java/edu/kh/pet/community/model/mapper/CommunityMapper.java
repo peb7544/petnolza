@@ -57,5 +57,13 @@ public interface CommunityMapper {
 	 */
 	int deleteNotice(int boardNo);
 
+	
+	
+	/** 공지사항 등록
+	 * @param board
+	 * @return result
+	 */
+	int insertNotice(Board board);
+
 
 }
