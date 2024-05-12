@@ -41,5 +41,21 @@ public interface CommunityMapper {
      */
     int selectReadCount(int boardNo);
 
+    
+    
+	/** 공지사항 수정
+	 * @param board
+	 * @return result
+	 */
+	int updateNotice(Board board);
+
+	
+	
+	/** 공지사항 삭제
+	 * @param boardNo
+	 * @return result
+	 */
+	int deleteNotice(int boardNo);
+
 
 }

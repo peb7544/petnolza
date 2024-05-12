@@ -22,6 +22,21 @@
             
         }
 
+        .insertNotice {
+
+            border: 1px solid black;
+            background-color:#00abe8;
+            color: white;
+            /* font-weight: bold; */
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            height: 31px;
+            padding: 0px 15px;
+            font-size: 15px;
+            margin-top: 3px;
+
+        }
+
     </style>
     
     <link rel="stylesheet" href="/css/common.css"></link>
@@ -133,6 +148,11 @@
                     </div>
 
                 </form>
+
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <button class="insertNotice" id="noticeRegist">등록</button>
             </div>
 
         </section>
@@ -145,9 +165,17 @@
 
     <script th:inline="javascript">
         const codeNo = /*[[${codeNo}]]*/ "게시판 코드 번호";
+
+        const noticeRegist = document.querySelector("#noticeRegist");
+        
+        noticeRegist.addEventListener("click", () => {
+
+            location.href = "/community/noticeRegist?codeNo=" + codeNo;
+
+        })
     </script>
 
-    <script src="/js/board/boardList.js"></script>
+    
 
 
 </body>
