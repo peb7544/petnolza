@@ -72,7 +72,7 @@
                             <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
                         
                             <div class="btn-area">
-                                <button class="grey-btn">후기</button>
+                                <button class="grey-btn" th:onclick="reviewBtn([[*{roomId}]],[[*{roomName}]])">후기</button>
                             </div>
                         </div>
                             
@@ -97,6 +97,9 @@
 
         <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>
+
+    <!-- 딤프레이어 (부모창 비활성화) -->
+    <div id="popOpen"></div>
 
     <!-- 날짜 -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -128,6 +131,7 @@
 
     <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
 
-    <script src="/js/reserve.js"></script>
+    <!--<script src="/js/reserve.js"></script>-->
+    <script src="/js/reserver/reserveList.js"></script>
 </body>
 </html>

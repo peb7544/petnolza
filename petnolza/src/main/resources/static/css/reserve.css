@@ -64,7 +64,7 @@ section.max-container > .btn-area {
 }
 
 /* 검색 입력 */
-.searchInput input {
+.inputForm input {
     width: 80%;
     margin-left: 10%;
     border-radius: 5px;

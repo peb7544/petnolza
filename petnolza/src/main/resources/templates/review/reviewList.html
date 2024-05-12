@@ -27,12 +27,12 @@
 
                 <tbody>
 
-                    <tr>
-                        <td>5</td>
-                        <td>정말 좋아요!</td>
-                        <td th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
-                        <td>유저일</td>
-                        <td>2024-05-04</td>
+                    <tr th:each="review:${reviewList}" th:object="${review}">
+                        <td th:text="*{roomId}">5</td>
+                        <td th:text="*{reviewTitle}">정말 좋아요!</td>
+                        <td th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
+                        <td th:text="*{memberName}">유저일</td>
+                        <td th:text="*{writeDate}">2024-05-04</td>
                     </tr>
 
                 </tbody>
