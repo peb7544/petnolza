@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.kh.pet.room.model.mapper.RoomMapper">
  	
+ 	<!-- 편의시설 조회 -->
  	<select id="selectCodeList">
  		SELECT 
 			 CODE_NO 
@@ -9,4 +10,20 @@
 		FROM CODE_MT
 		WHERE GROUP_CODE = #{groupCode}
  	</select>
+ 	
+ 	<!-- 객실 등록 -->
+ 	<insert id="insertRoom" useGeneratedKeys="true" parameterType="Room">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="roomId">
+			SELECT SEQ_ROOM_ID.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO "ROOM"
+		VALUES(
+			 #{roomId}
+			,#{roomName}
+			,#{roomPrice}
+			,NULL, NULL
+			,#{roomInfo} 
+		)
+	</insert>
 </mapper>
