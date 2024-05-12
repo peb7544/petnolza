@@ -43,6 +43,7 @@ updateNotice.addEventListener("click", e => {
     }
 
     alert("공지사항 변경이 완료되었습니다");
+    location.href = "/community/noticeList";
 
   })
   .catch(err => console.log(err));
@@ -50,6 +51,11 @@ updateNotice.addEventListener("click", e => {
 });
 
 deleteNotice.addEventListener("click", () => {
+
+  if( !confirm("해당 공지사항 게시물을 삭제하시겠습니까?") ) {
+    alert("공지사항 삭제가 취소되었습니다.");
+    return;
+  }
 
   location.href = "/community/deleteNotice?boardNo=" + boardNo;
 

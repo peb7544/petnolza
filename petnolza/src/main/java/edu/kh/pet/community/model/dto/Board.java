@@ -21,8 +21,8 @@ public class Board {
 	private int readCount;
 	private String boardDelFl;
 	private int memberNo;
-	private int groupCode;
-	private String CodeNo;
+	private String groupCode;
+	private String codeNo;
 	
 	// MEMBER 테이블 조인
 	private String memberNickname;
@@ -31,14 +31,6 @@ public class Board {
 	private int commentCount;
 	private int likeCount;
 	
-	// 게시글 작성자 프로필 이미지
-	private String profileImg;
 	
-	
-	// 특정 게시글 이미지 목록
-	private List<BoardImg> imageList;
-	
-	// 좋아요 여부 확인
-	private int likeCheck;
 
 }

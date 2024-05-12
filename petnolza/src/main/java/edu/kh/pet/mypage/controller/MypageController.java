@@ -142,7 +142,7 @@ public class MypageController {
 		
 		ra.addFlashAttribute("message", message);
 		
-		return "redirect:/";
+		return "redirect:/mypage/memberUpdate";
 	}
 	
 	@GetMapping("pwUpdate")

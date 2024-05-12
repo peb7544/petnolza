@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -82,6 +83,13 @@ public class CommunityServiceImpl implements CommunityService{
 	public int deleteNotice(int boardNo) {
 		
 		return mapper.deleteNotice(boardNo);
+	}
+
+	// 공지사항 등록
+	@Override
+	public int insertNotice(Board board) {
+		
+		return mapper.insertNotice(board);
 	}
 
 

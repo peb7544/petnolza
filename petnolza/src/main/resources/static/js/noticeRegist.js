@@ -1,3 +1,4 @@
+/*
 const insertNotice = document.querySelector("#insertNotice");
 const boardTitle = document.querySelector("#boardTitle");
 const boardContent = document.querySelector("#boardContent");
@@ -16,7 +17,6 @@ insertNotice.addEventListener("submit", e => {
 
   console.log(inputTitle);
   console.log(inputContent);
-  console.log(codeNo);
   console.log(memberNo);
 
   fetch("/community/insertNotice", {
@@ -35,6 +35,7 @@ insertNotice.addEventListener("submit", e => {
     alert("공지사항 등록이 완료되었습니다.");
     location.href = "/community/noticeList";
 
-  })
+  }).catch(err => console.log(err));
 
-})
+});
+*/
