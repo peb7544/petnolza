@@ -201,3 +201,9 @@ a {
 .footer-nav a {
     padding: 0 5px;
 }
+
+
+/* 이미지 등록 */
+.imgAppend {
+    margin: 15px 0;
+}

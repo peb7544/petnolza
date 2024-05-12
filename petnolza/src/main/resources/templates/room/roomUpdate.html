@@ -18,7 +18,7 @@
         
         <section class="container">
 
-            <form  action="insertRoomRegist" method="post" class="max-container" enctype="multipart/form-data">
+            <form  action="#" method="post" class="max-container" enctype="multipart/form-data">
                 <h2>객실 등록</h2>
     
                 <div class="inputForm">
@@ -28,7 +28,7 @@
     
                 <div class="inputForm">
                     <label>객실 상세정보</label>
-                    <textarea name="roomInfo" class="content-area"></textarea>
+                    <textarea name="roomInfo" class="content-area" name="" id="" cols="30" rows="10"></textarea>
                 </div>
     
                 <div class="inputForm">
@@ -89,7 +89,7 @@
                     <label>객실 제공사항</label><br>
                     <div id="serviceDiv" class="serviceDiv">
                         <div th:each="code : ${codeList}" th:object="${code}">
-                            <input type="checkbox" name="roomInfoList" style="height: 15px;" 
+                            <input type="checkbox" name="codeList" style="height: 15px;" 
                                 th:value="*{codeNo}"/>
                             <label th:text="*{codeName}">캣타워</label>
                         </div>
