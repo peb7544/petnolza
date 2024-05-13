@@ -7,7 +7,7 @@
     <style>
 
         /* 부트스트랩으로 인해 처리*/
-        .navigator a, .login-area a
+        .navigator a, .login-area a, a
         , .side-navigator a:nth-child(2)
         , .side-navigator a:nth-child(3)
         , .side-navigator a:nth-child(4) {
@@ -90,9 +90,11 @@
                 <!-- 객실 이미지 -->
                 <div id="carouselExampleIndicators" class="carousel slide">
                     <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <th:block th:each="uploadFile, i : ${uploadFileList}">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" th:data-bs-slide-to="${i.count}" class="active" aria-current="true" th:aria-label="|Slide ${i.count}|"></button>
+                        </th:block>
+                      <!--<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
                     </div>
                     <div class="carousel-inner">
                         <th:block th:each="uploadFile : ${uploadFileList}" th:object="${uploadFile}">

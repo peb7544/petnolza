@@ -23,16 +23,12 @@ const handler = {
 
             if(Number(divCnt) < 10) {
 
-                
-                //let temp = [];
+                backupInputList1 = new Array(divCnt);
 
-                
-                    // for(let i=0; i<divCnt; i++) {
-                    //     backupInputList1 = new Array(inputImageList.length);
+                for(let i=0; i<divCnt; i++) {
 
-                    //     backupInputList1[i] = inputImageList[i].cloneNode(true);
-                    //     console.log(backupInputList1.length);
-                    // }
+                    backupInputList1[i] = inputImageList[i].cloneNode(true); // 노드 복사
+                }
                 
                 
                 document.querySelector('.img-box').innerHTML += `
@@ -50,10 +46,9 @@ const handler = {
                     `;
 
                 
-                // for(let i=0; i<divCnt; i++) {
-                    
-                //     inputImageList[i] = backupInputList1[i];
-                // }
+                for(let i=0; i<divCnt; i++) {
+                    inputImageList[i].replaceWith( backupInputList1[i]); // 값 덮어씌우기
+                }
                
 
         

@@ -87,12 +87,11 @@ public class RoomController {
 				RedirectAttributes ra
 			) throws IllegalStateException, IOException {
 		
-		int roomNo = 0;
-		//service.insertRoom(inputRoom, images);
+		int roomNo = service.insertRoom(inputRoom, images);
 		
-		for(MultipartFile img : images) {
+		/*for(MultipartFile img : images) {
 			log.debug("ddd : " + img.getOriginalFilename());
-		}
+		}*/
 		
 		String path = null;
 		String message = null;
@@ -116,7 +115,7 @@ public class RoomController {
 	/** 객실 관리 수정
 	 * @return
 	 */
-	@GetMapping("roomUpdate")
+	@GetMapping("roomUpdate/{roomId:[0-9]+}")
 	public String roomUpdate(Model model) {
 		
 		/* 편의시설 조회 */
