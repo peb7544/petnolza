@@ -78,7 +78,10 @@
                         </div>
 
                         <div class="btn-area">
-                            <button class="main-blue">수정</button>
+                            <form th:action="@{/room/roomUpdate/{roomId} (roomId=*{roomId})}">
+                                <button class="main-blue">수정</button>
+                            </form>
+                            
                             <button class="grey-btn">삭제</button>
                         </div>
                     </div>
