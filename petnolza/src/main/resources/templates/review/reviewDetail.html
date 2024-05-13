@@ -12,30 +12,30 @@
     <section class="container">
         <h2>[객실1] 후기 상세</h2>
         <div>
-            <table class="reviewTable">
+            <table class="reviewTable" th:object="${review}">
                 <tr>
                     <th>후기 제목 : </th>
-                    <td>정말 좋아요!</td>
+                    <td th:text="*{reviewTitle}">정말 좋아요!</td>
                     <th>작성자 : </th>
-                    <td>유저일</td>
+                    <td th:text="*{memberName}">유저일</td>
                 </tr>
                 <tr>
                     <th>별점 : </th>
-                    <td th:with="reviewGrade=${reviewGrade}"><th:block th:if="${reviewGrade} != 0"><th:block th:each="i : ${#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="${reviewGrade} != 5"><th:block th:each="i : ${#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
+                    <td th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
                     <th>작성일자 : </th>
-                    <td>2024-05-04</td>
+                    <td th:text="*{writeDate}">2024-05-04</td>
                 </tr>
             </table>
         </div>
         <div>
-            <textarea class="content-area" readonly>후기 상세내용</textarea>
+            <textarea class="content-area" th:text="${review.reviewContent}" readonly>후기 상세내용</textarea>
         </div>
         <div class="btn-area">
-            <button class="main-blue">목록</button>
-            <button class="grey-btn">수정</button>
+            <button class="main-blue" th:oneclick="">목록</button>
+            <button class="grey-btn" th:oneclick="updatebtn">수정</button>
             <button class="grey-btn">삭제</button>
          </div>
-        <div class="comment">
+        <!--<div class="comment">
             <table class="reviewTable">
                 <tr>
                     <th><label>유저삼</label></th>
@@ -73,7 +73,9 @@
                 <textarea class="content-area"></textarea>
                 <div class="btn-area"><button class="main-blue">등록</button></div>
             </div>
-        </div>
+        </div>-->
     </section>
+
+    <script src="/js/review/reviewDetail.js"></script>
 </body>
 </html>

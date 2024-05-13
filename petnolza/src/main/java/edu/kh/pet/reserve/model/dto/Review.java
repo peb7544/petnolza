@@ -22,6 +22,8 @@ public class Review {
 	private String writeDate;
 	private String memberName;
 	private int roomId;
+	private String reviewContent;
+	
 }
 
 

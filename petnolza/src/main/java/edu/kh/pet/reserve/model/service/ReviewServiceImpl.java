@@ -40,4 +40,12 @@ public class ReviewServiceImpl implements ReviewService {
 		return map;
 	}
 
+	@Override
+	public Review selectReviewDetail(int reviewNo) {
+		
+		Review review = mapper.selectReviewDetail(reviewNo); 
+		
+		return review;
+	}
+
 }
