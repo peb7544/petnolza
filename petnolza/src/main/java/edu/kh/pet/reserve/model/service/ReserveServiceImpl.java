@@ -105,8 +105,6 @@ public class ReserveServiceImpl implements ReserveService {
 				result = mapper.insertService(serviceInfo);
 			}
 			
-			log.debug("ddddd222 : " + serviceInfoList.toString());
-			
 		}
 			
 		

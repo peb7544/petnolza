@@ -6,22 +6,41 @@ let deleteImageList; // x버튼 5개
 // 이미지 선택 이후 취소를 누를 경우를 대비한 백업 이미지
 // (백업 원리 -> 복제품으로 기존 요소를 대체함)
 let backupInputList;
+let backupInputList1 = [];
 
 const handler = {
     init() {
         document.querySelector('.roomAppend').addEventListener('click', () => {
 
             let divCnt = document.querySelector('.img-box').childElementCount;
+            
+            inputImageList = document.getElementsByClassName("inputImage");
 
-            console.log(divCnt);  
+            //console.log("inputImageList : ",inputImageList.length);
+            
+
+            //console.log(divCnt);  
 
             if(Number(divCnt) < 10) {
+
+                
+                //let temp = [];
+
+                
+                    // for(let i=0; i<divCnt; i++) {
+                    //     backupInputList1 = new Array(inputImageList.length);
+
+                    //     backupInputList1[i] = inputImageList[i].cloneNode(true);
+                    //     console.log(backupInputList1.length);
+                    // }
+                
+                
                 document.querySelector('.img-box').innerHTML += `
                     <div class="boardImg" id="board` + divCnt + `">
                         <label class="imgLabel" id="label` + divCnt + `" for="img` + divCnt + `">
                             <img class="preview" src="">
                         </label>
-                        <input type="file" name="images" onch class="inputImage" id="img` + divCnt + `" accept="image/*">
+                        <input type="file" name="images" class="inputImage" id="img` + divCnt + `" accept="image/*">
                         <label id="radio` + divCnt + `" for="thumnail` + divCnt + `" >
                             <input type="radio" name="thumnailYn" id="thumnail` + divCnt + `" value="` + divCnt +`">
                             대표이미지
@@ -29,6 +48,17 @@ const handler = {
                         <span class="delete-image" id="del` + divCnt + `">&times;</span>
                     </div>
                     `;
+
+                
+                // for(let i=0; i<divCnt; i++) {
+                    
+                //     inputImageList[i] = backupInputList1[i];
+                // }
+               
+
+        
+
+                
             } else {
                 alert("객실 이미지는 10개 미만으로 등록이 가능합니다");
             }

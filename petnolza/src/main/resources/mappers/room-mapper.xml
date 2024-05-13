@@ -26,4 +26,36 @@
 			,#{roomInfo} 
 		)
 	</insert>
+	
+	<insert id="insertRoomInfo" parameterType="List">
+		INSERT INTO "ROOM_INFO"
+		
+		<foreach collection="list" item="info"
+			open="(" close=")" separator=" UNION ">
+			SELECT
+				 NEXT_INFO_NO()
+				,#{info.roomId}
+				,'CONV'
+				,#{info.codeNo}
+			FROM DUAL
+		</foreach>
+	</insert>
+	
+	<insert id="insertUploadList" parameterType="List">
+		INSERT INTO "UPLOAD_FILE"
+		
+		<foreach collection="list" item="img"
+			open="(" close=")" separator=" UNION ">
+			SELECT
+				 NEXT_FILE_NO()
+				,#{img.filePath}
+				,#{img.fileOrgName}
+				,#{img.fileRename}
+				,SYSDATE
+				,#{img.tableName}
+				,#{img.tableNo}
+				,#{img.thumbnail} 
+			FROM DUAL
+		</foreach>
+	</insert>
 </mapper>

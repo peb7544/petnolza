@@ -2,6 +2,8 @@ package edu.kh.pet.common.model.dto;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import edu.kh.pet.reserve.model.dto.Reserve;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +30,7 @@ public class UploadFile {
 	private String tableName;      // 테이블명
 	private int tableNo;        // 테이블번호
 	private String thumbnail;      // 썸네일여부
+	
+	// 게시글 이미지 삽입/수정 때 사용
+	private MultipartFile uploadFile;
 }

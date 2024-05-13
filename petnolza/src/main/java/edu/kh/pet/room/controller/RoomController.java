@@ -1,5 +1,6 @@
 package edu.kh.pet.room.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,7 @@ public class RoomController {
 		return "room/roomList";
 	}
 	
-	/** 객실 관리 등록
+	/** 객실 관리 등록 화면
 	 * @return
 	 */
 	@GetMapping("roomRegist")
@@ -71,16 +72,44 @@ public class RoomController {
 		return "room/roomRegist";
 	}
 	
+	/** 객실 등록
+	 * @param inputRoom
+	 * @param images
+	 * @param ra
+	 * @return
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	@PostMapping("insertRoomRegist")
 	public String insertRoomRegist(
 				Room inputRoom,
 				@RequestParam("images") List<MultipartFile> images,
 				RedirectAttributes ra
-			) {
+			) throws IllegalStateException, IOException {
 		
-		int roomNo = service.insertRoom(inputRoom, images);
+		int roomNo = 0;
+		//service.insertRoom(inputRoom, images);
 		
-		return "redirect:/room/roomUpdate";
+		for(MultipartFile img : images) {
+			log.debug("ddd : " + img.getOriginalFilename());
+		}
+		
+		String path = null;
+		String message = null;
+		
+		if(roomNo > 0)  {
+			
+			path = "/room/roomUpdate/" + roomNo;
+			message = "객실이 등록되었습니다";
+		} else {
+			
+			path = "/room/roomRegist/";
+			message = "객실이 등록 실패";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
 	}
 	
 	
