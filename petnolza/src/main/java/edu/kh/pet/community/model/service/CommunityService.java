@@ -1,9 +1,11 @@
 package edu.kh.pet.community.model.service;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.community.model.dto.Board;
 
 public interface CommunityService {
@@ -39,5 +41,24 @@ public interface CommunityService {
 	 * @return result
 	 */
 	int insertNotice(Board boards);
+
+	
+	
+	/** 파일 업로드
+	 * @param uploadFile
+	 * @param boardNo
+	 */
+	void fileUpload(MultipartFile uploadFile, int boardNo) throws IOException;
+
+	
+	
+	/** 파일 가져오기
+	 * @param boardNo
+	 * @return uploadFile
+	 */
+	UploadFile selectUploadFile(int tableNo);
+
+	
+
 
 }

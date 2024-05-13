@@ -82,7 +82,7 @@
                             <tr th:each="board : ${boardList}" th:object="${board}">
                                 <td th:text="*{boardNo}">게시글 번호</td>
                                 <td>
-                                    <a th:href="@{/community/noticeList/{boardNo} (boardNo=*{boardNo}, cp=${pagination.currentPage})}"
+                                    <a th:href="@{/community/noticeDetail/{boardNo} (boardNo=*{boardNo}, cp=${pagination.currentPage})}"
                                        th:text="*{boardTitle}">게시글 제목</a>
                                 </td>
                                 <!-- 작성일 -->

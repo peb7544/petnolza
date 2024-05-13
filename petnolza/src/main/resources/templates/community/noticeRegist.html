@@ -21,7 +21,7 @@
         <section class="container">
             <h2>공지사항 등록</h2>
 
-            <form action="/community/insertNotice" method="POST" name="insertNotice" id="insertNotice" enctype="multipart/form-data">
+            <form action="/community/insertNotice" method="POST" name="insertNotice" id="insertNotice">
 
                 <div class="inputForm">
                     <label>제목</label>
@@ -33,20 +33,21 @@
                     <textarea class="content-area" name="boardContent" id="boardContent"></textarea>
                 </div>
 
-
+            <!-- 
                 <div class="attachmentFileDiv">
                     <div>
                         첨부파일
                     </div>
                     <input type="file" name="uploadFile">
-                </div>
+                </div> 
+            -->
 
                 <br><br>
                 
                 <div>
                     <div class="btn-area last-btn-area">
                         <button class="main-blue">등록</button>
-                        <button type="button" class="grey-btn">취소</button>
+                        <button type="button" class="grey-btn" id="cancelRegist">취소</button>
                     </div>
                 </div>
                 
@@ -62,7 +63,7 @@
         const memberNo = /*[[${memberNo}]]*/ "회원 번호";
     </script> -->
 
-    <!-- <script src="/js/noticeRegist.js"></script> -->
+    <script src="/js/noticeRegist.js"></script>
 
     
 </body>

@@ -46,20 +46,22 @@
 
         <section class="container">
             <h2>공지사항</h2>
-
+            
             <div th:object="${board}">
-                <form>
+                
+                <form action="/community/updateNotice" method="POST" name="updateNotice" id="updateNotice" enctype="multipart/form-data">
+
                     <table class="board-area">
                         <thead>
-                        
+                            
                             <th>번호</th>
                             <th>제목</th>
                             <th>작성일</th>
                             <th>조회수</th>
-                        
+                            
                         </thead>
                         <tbody>
-
+                            
                             <tr>
                                 <td th:text="*{boardNo}">10</td>
                                 <td>
@@ -68,11 +70,11 @@
                                 <td th:text="*{boardWriteDate}">2024-05-04</td>
                                 <td th:text="*{readCount}">300</td>
                             </tr>
-
+                            
                         </tbody>
-
+                        
                     </table>
-
+                
 
                     <div>
 
@@ -86,16 +88,22 @@
                             <div>
                                 첨부파일
                             </div>
-                            <input type="file">
+                            <input th:if="${uploadFile} == null" type="file" name="uploadFile">
+                           
+                            <a th:unless="${uploadFile} == null" 
+                               th:text="${uploadFile.fileOrgName}"></a>
+                            
                         </div>
 
                     </div>
 
                     <div class="btn-area last-btn-area">
                         <button type="button" class="main-blue" id="backToList">목록</button>
-                        <button type="button" class="grey-btn" id="updateNotice">수정</button>
+                        <button class="grey-btn" id="updateNotice">수정</button>
                         <button type="button" class="grey-btn" id="deleteNotice">삭제</button>
                     </div>
+
+                    <input type="hidden" th:value="*{boardNo}" name="boardNo">
 
                 </form>
 

@@ -29,9 +29,7 @@
         .faqListTable {
             border-top: solid;
         }
-        .faqListTable tr{
-            height: 50px;
-        }
+        
 
     </style>
     
@@ -42,16 +40,17 @@
 </head>
 <body>
 
-<th:block th:replace="~{menu/topMenu}"></th:block>
-<th:block th:replace="~{menu/sideMenu}"></th:block>
-    <section class="container">
+    
+    <section class="topContainer">
 
-        <section class="max-container">
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+
+        <section class="container">
             <h2>커뮤니티</h2>
 
             <div class="middle-menu">
-                <a th:href="@{noticeList}"></a><div>공지사항</div>
-                <a th:href="@{faqList}"></a><div class="middle-menu-current">자주 묻는 질문</div>
+                <a th:href="@{/community/noticeList}"><div>공지사항</div></a>
+                <a th:href="@{/community/faqList}"><div class="middle-menu-current">자주 묻는 질문</div></a>
             </div>
 
 <br>
@@ -152,11 +151,12 @@
                 
 
         </section>
-
+        
+        <th:block th:replace="~{menu/footer}"></th:block>
+        
     </section>
 
     
-    <th:block th:replace="~{menu/footer}"></th:block>
     
     
     

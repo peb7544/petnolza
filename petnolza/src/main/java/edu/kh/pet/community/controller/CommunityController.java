@@ -1,5 +1,6 @@
 package edu.kh.pet.community.controller;
 
+import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.community.model.dto.BoardImg;
 import edu.kh.pet.community.model.service.CommunityService;
@@ -59,7 +60,7 @@ public class CommunityController {
 	/** 공지사항 상세
 	 * @return
 	 */
-	@GetMapping("noticeList/{boardNo:[0-9]+}")
+	@GetMapping("noticeDetail/{boardNo:[0-9]+}")
 	public String noticeDetail(
 			@PathVariable("boardNo")   int boardNo,
 			Model model,
@@ -81,6 +82,7 @@ public class CommunityController {
 
 		// 2) 서비스 호출
 		Board board = service.selectOne(map);
+		UploadFile uploadFile = service.selectUploadFile(boardNo);
 
 		String path = null;
 
@@ -166,6 +168,7 @@ public class CommunityController {
 
 			// board - 게시글 일반내용 + imageList + commentList
 			model.addAttribute("board", board);
+			model.addAttribute("uploadFile", uploadFile);
 
 
 
@@ -175,12 +178,31 @@ public class CommunityController {
 		return path;
 	}
 	
-	@ResponseBody
+	
 	@PostMapping("updateNotice")
-	public int updateNotice(@RequestBody Board board) {
+	public String updateNotice(@ModelAttribute Board board,
+							   @RequestParam("uploadFile") MultipartFile uploadFile,
+							   RedirectAttributes ra) throws Exception {
 		
+		
+		int result = service.updateNotice(board);
+		
+		String message = null;
+		
+		if(result > 0) {
+			
+			service.fileUpload(uploadFile, board.getBoardNo());
+			message = "공지사항 변경이 완료되었습니다.";
+			
+		} else {
+			
+			message = "공지사항 변경에 실패하였습니다.";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
 
-		return service.updateNotice(board);
+		return "redirect:/community/noticeList";
 	}
 	
 	@GetMapping("deleteNotice")
@@ -227,8 +249,7 @@ public class CommunityController {
 	@PostMapping("insertNotice")
 	public String insertNotice(@ModelAttribute Board board,
 							@SessionAttribute(value="loginMember", required=false) Member loginMember,
-							RedirectAttributes ra,
-							@RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+							RedirectAttributes ra) {
 		
 		int memberNo = loginMember.getMemberNo();
 		
@@ -236,9 +257,10 @@ public class CommunityController {
 		board.setGroupCode(NoticeGroupCode);
 		board.setCodeNo(NoticeBoardCodeNo);
 		
-		log.debug("board: " + board);
 
 		int result = service.insertNotice(board);
+		
+		log.debug("board : " + board);
 		
 		String message = null;
 		
