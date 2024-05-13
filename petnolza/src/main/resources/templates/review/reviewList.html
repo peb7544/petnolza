@@ -26,53 +26,61 @@
                 </thead>
 
                 <tbody>
+                    <th:block th:if="${#lists.isEmpty(reviewList)}">
+                            <tr>
+                                <td colspan="5">게시글이 존재하지 않습니다.</td>
+                            </tr>
+                        </th:block>
 
-                    <tr th:each="review:${reviewList}" th:object="${review}">
-                        <td th:text="*{roomId}">5</td>
-                        <td th:text="*{reviewTitle}">정말 좋아요!</td>
-                        <td th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
-                        <td th:text="*{memberName}">유저일</td>
-                        <td th:text="*{writeDate}">2024-05-04</td>
-                    </tr>
-
+                    <!-- 게시글이 존재할 때-->    
+                    <th:block th:unless="${#lists.isEmpty(reviewList)}">
+                        <tr th:each="review:${reviewList}" th:object="${review}">
+                            <td th:text="*{roomId}">5</td>
+                            <td th:text="*{reviewTitle}">정말 좋아요!</td>
+                            <td th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
+                            <td th:text="*{memberName}">유저일</td>
+                            <td th:text="*{writeDate}">2024-05-04</td>
+                        </tr>
+                    </th:block>
                 </tbody>
             </table>
 
-            <div class="pagination-area">
+            <th:block th:unless="${#lists.isEmpty(reviewList)}">
+                    <div class="pagination-area">
 
-                <ul class="pagination">
-
-                    <!-- 첫 페이지로 이동 -->
-                    <li><a>&lt;&lt;</a></li>
-
-                    <!-- 이전 목록 마지막 번호로 이동 -->
-                    <li><a>&lt;</a></li>
-
-                    <!-- 특정 페이지로 이동 -->
-                    <th:block>
-                        
-                    <!-- 현재 보고있는 페이지 -->
-                        <li>
-                            <a class="current">1</a>
-                        </li>
-                        
-                        <!-- 보고있지 않은 페이지 -->
-                        <li>
-                            <a>2</a>
-                        </li>
-
-                    </th:block>
-
-
-
-                    
-                    <!-- 다음 목록 시작 번호로 이동 -->
-                    <li><a>&gt;</a></li>
-
-                    <!-- 끝 페이지로 이동 -->
-                    <li><a>&gt;&gt;</a></li>
-                </ul>
-            </div>
+                            <ul class="pagination" th:object="${pagination}">
+        
+                                <!-- 첫 페이지로 이동 -->
+                                <li><a th:href="@{/review/reviewList(cp=1)}">&lt;&lt;</a></li>
+        
+                                <!-- 이전 목록 마지막 번호로 이동 -->
+                                <li><a th:href="@{/review/reviewList(cp=*{prevPage})}">&lt;</a></li>
+        
+                                <!-- 특정 페이지로 이동 -->
+                                <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
+                                    
+                                <!-- 현재 보고있는 페이지 -->
+                                    <li th:if="${i} == *{currentPage}">
+                                        <a class="current" th:text="${i}">현재 페이지</a>
+                                    </li>
+                                    
+                                    <!-- 보고있지 않은 페이지 -->
+                                    <li th:unless="${i} == *{currentPage}">
+                                        <a th:text="${i}"
+                                           th:href="@{/review/reviewList(cp=${i})}">이동할 페이지</a>
+                                    </li>
+        
+                                </th:block>
+                                
+                                <!-- 다음 목록 시작 번호로 이동 -->
+                                <li><a th:href="@{/review/reviewList(cp=*{nextPage})}">&gt;</a></li>
+        
+                                <!-- 끝 페이지로 이동 -->
+                                <li><a th:href="@{/review/reviewLIst(cp=*{maxPage})}">&gt;&gt;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </th:block>
             
         </div>
     </section>
