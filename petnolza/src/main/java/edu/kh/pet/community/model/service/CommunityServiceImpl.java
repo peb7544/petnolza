@@ -152,6 +152,24 @@ public class CommunityServiceImpl implements CommunityService{
 		return mapper.selectUploadFile(tableNo);
 	}
 
+	// 자주 묻는 질문 리스트 조회
+	@Override
+	public List<Board> selectFaqList(String codeNo) {
+		
+		
+		return mapper.selectFaqList(codeNo);
+	}
+
+	// 자주 묻는 질문 조회
+	@Override
+	public Board selectFaqOne(int boardNo) {
+		
+		return mapper.selectFaqOne(boardNo);
+	}
+
+	
+
+	
 	
 	// 파일 업로드
 	/*

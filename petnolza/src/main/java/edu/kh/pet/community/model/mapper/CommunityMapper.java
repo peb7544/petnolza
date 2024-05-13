@@ -82,5 +82,20 @@ public interface CommunityMapper {
 	 */
 	UploadFile selectUploadFile(int tableNo);
 
+	
+	
+	/** 자주 묻는 질문 리스트 조회
+	 * @param codeNo
+	 * @return faqList
+	 */
+	List<Board> selectFaqList(String codeNo);
+	
+
+	/** 자주 묻는 질문 조회
+	 * @param boardNo
+	 * @return board
+	 */
+	Board selectFaqOne(int boardNo);
+
 
 }

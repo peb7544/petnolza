@@ -37,67 +37,69 @@
     
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/board.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
-    <section class="container">
+    <section class="topContainer">
 
-        <section class="max-container">
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+
+        <section class="container">
             <h2>커뮤니티</h2>
 
             <div class="middle-menu">
-                <div>공지사항</div>
-                <div class="middle-menu-current">자주 묻는 질문</div>
+                <a th:href="@{/community/noticeList}"><div>공지사항</div></a>
+                <a th:href="@{/community/faqList}"><div class="middle-menu-current">자주 묻는 질문</div></a>
             </div>
 
-<br>
+            <br>
 
-            <div>
-                <table class="board-area faqListTable">
+            <form action="/community/updateFaq" method="POST" name="updateFaq">
 
-                    <tbody>
+                <div>
+                    <table class="board-area faqListTable">
 
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-                <div class="board-content-div">
-                    이메일과 비밀번호는 로그인 페이지에서 이메일/비밀번호를 잊어버리셨나요? 를 클릭한 후
-                    <br><br>
-                    가입 시 입력한 전화번호 인증을 통해 확인할 수 있습니다.    
+                        <tbody>
+
+                            <tr>
+                                <td th:text="${board.boardNo}">Q</td>
+                                <td th:text="${board.codeNo}">질문</td>
+                                <td><input type="text" th:value="${board.boardTitle}" name="boardTitle" id="boardTitle" style="font-size: 15px;"></td>
+                                <td th:text="${board.memberNickname}">관리자</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <textarea class="board-content-div content-area" th:text="${board.boardContent}" name="boardContent" id="boardContent" style="font-size: 15px;">
+                        질문 내용    
+                    </textarea>
+
                 </div>
 
-                <div class="attachmentFileDiv">
-                    <div>
-                        첨부파일
-                    </div>
-                    <div>
-                        파일명
-                        <div class="btn-area" style="display: inline; border: 0;">
-                            <button class="grey-btn">첨부파일</button>
-                        </div>
+                <div>
+                    <div class="btn-area last-btn-area">
+                        <button type="button" class="main-blue" id="backToList">목록</button>
+                        <button class="grey-btn">수정</button>
+                        <button type="button" class="grey-btn" id="deleteBtn">삭제</button>
                     </div>
                 </div>
 
-            </div>
+                <input type="hidden" th:value="${board.boardNo}" name="boardNo" id="boardNo">
 
-            <div>
-                <div class="btn-area last-btn-area">
-                    <button class="main-blue">목록</button>
-                    <button class="grey-btn">수정</button>
-                    <button class="grey-btn">삭제</button>
-                </div>
-            </div>
+            </form>
         </section>
+
+        <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
 
+    <script th:inline="javascript">
+        const boardNo = /*[[${board.boardNo}]]*/ "게시물 번호";
+    </script>
+
+    <script src="/js/faqDetail.js"></script>
     
 </body>
 </html>

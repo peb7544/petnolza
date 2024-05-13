@@ -6,60 +6,50 @@
     <title>Document</title>
 
 
-    <style>
-        
-
-        section.max-container {
-            width: 100%;
-            align-items: center;
-            padding: 0 15px;
-        }
-
-        section.max-container > .btn-area {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            
-        }
-
-    </style>
-    
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/board.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
 
 </head>
 <body>
 
-    <section class="container">
+    <section class="topContainer">
 
-        <section class="max-container">
-            <div class="closeBtn-area">
-                <a>&times;</a>
-            </div>
+        <th:block th:replace="~{menu/topMenu}"></th:block>
+
+        <section class="container">
+
+            <form action="/community/faqRegist" method="POST" name="faqRegist" id="faqRegist">
             
-            <h2>자주 묻는 질문 등록</h2>
+                <h2>자주 묻는 질문 등록</h2>
 
-            <div class="inputForm">
-                <label>질문</label>
-                <textarea name="" id="" cols="30" rows="5"></textarea>
-            </div>
-
-            <div class="inputForm">
-                <label>답변</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </div>
-
-            <div>
-                <div class="btn-area last-btn-area">
-                    <button class="main-blue">등록</button>
+                <div class="inputForm">
+                    <label>질문</label>
+                    <input type="text" name="boardTitle" id="boardTitle">
                 </div>
-            </div>
+
+                <div class="inputForm">
+                    <label>답변</label>
+                    <textarea class="content-area" name="boardContent" id="boardContent"></textarea>
+                </div>
+
+                <div>
+                    <div class="btn-area last-btn-area">
+                        <button class="main-blue">등록</button>
+                    </div>
+                </div>
+
+            </form>
+
         </section>
 
         </section>
+
+        <th:block th:replace="~{menu/footer}"></th:block>
 
     </section>
 
+    <script src="/js/faqRegist.js"></script>
     
 </body>
 </html>
