@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.community.model.service.CommunityServiceImpl;
 import edu.kh.pet.member.model.dto.Member;
@@ -78,6 +79,7 @@ public class AnnouncementController {
 		}
 		
 		Board board = service.selectOne(map);
+		UploadFile uploadFile = service.selectUploadFile(boardNo);
 		
 		String path = null;
 		
@@ -144,6 +146,7 @@ public class AnnouncementController {
 			path = "announcement/announcementDetail";
 			
 			model.addAttribute("board", board);
+			model.addAttribute("uploadFile", uploadFile);
 			
 			
 			

@@ -2,15 +2,14 @@
 /* 첨부파일 부분 */
 .attachmentFileDiv {
     display: flex;
-    /* justify-content: flex-end; */
     border-bottom: 1px solid #666666;
-    width: min-content;
+    width: max-content;
     align-items: center;
 }
 
 .attachmentFileDiv div {
     margin: 0 10px;
-    width: max-content;
+    width: 150px;
     padding: 10px 0;
 }
 

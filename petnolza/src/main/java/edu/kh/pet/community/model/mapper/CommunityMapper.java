@@ -1,5 +1,6 @@
 package edu.kh.pet.community.model.mapper;
 
+import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.community.model.dto.Board;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
@@ -64,6 +65,22 @@ public interface CommunityMapper {
 	 * @return result
 	 */
 	int insertNotice(Board board);
+
+	
+	
+	/** 파일 업로드
+	 * @param uf
+	 * @return result
+	 */
+	void insertUploadFile(UploadFile uf);
+
+	
+	
+	/** 파일 가져오기
+	 * @param boardNo
+	 * @return uploadFile
+	 */
+	UploadFile selectUploadFile(int tableNo);
 
 
 }
