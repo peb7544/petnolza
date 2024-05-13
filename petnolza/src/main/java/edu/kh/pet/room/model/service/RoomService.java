@@ -1,5 +1,6 @@
 package edu.kh.pet.room.model.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,6 @@ public interface RoomService {
 	 * @param images
 	 * @return
 	 */
-	int insertRoom(Room inputRoom, List<MultipartFile> images);
+	int insertRoom(Room inputRoom, List<MultipartFile> images) throws IllegalStateException, IOException;
 
 }
