@@ -7,47 +7,54 @@
 
     <link rel="stylesheet" href="/css/common.css"></link>
     <link rel="stylesheet" href="/css/menu.css"></link>
+    <link rel="stylesheet" href="/css/review.css">
+    <link rel="stylesheet" href="/css/main.css"></link>
+    <link rel="stylesheet" href="/css/mypage.css"></link>
 </head>
 <body>
+
+    <section class="topContainer">
 
     <th:block th:replace="~{menu/topMenu}"></th:block>
     <th:block th:replace="~{menu/sideMenu}"></th:block>
 
-    <section class="container">
-        <h2>자주묻는질문</h2>
-        
-        <table class="board-area qnaTable">
-            <thead>
-                
-                <th></th>
-                <th></th>
+        <section class="container">
+            <h2>자주묻는질문</h2>
             
-            </thead>
+            <table class="board-area qnaTable">
+                <thead>
+                    
+                    <th>Q</th>
+                    <th>질문</th>
+                    
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                <tr onclick="listClickFn(this)">
-                    <td class="qa">Q</td>
-                    <td>질문 - 객실 가격은 어디서 확인가능한가요?</td>
-                </tr>
+                    <th:block th:if="${#lists.isEmpty(qnaList)}"> 
+                        <tr>
+                            <td colspan="2" style="text-align: center !important;">게시글이 존재하지 않습니다.</td>
+                        </tr>
+                    </th:block>
 
-                <tr class="contentA" style="display: none;">
-                    <td class="qa">A</td>
-                    <td>답변 - 탑메뉴 객실예약을 클릭하시면 각 객실의 가격과 정보등을 확인하실 수 있습니다.</td>
-                </tr>
+                    <!-- 게시글이 존재할 때 -->
+                    <th:block th:unless="${#lists.isEmpty(qnaList)}" th:each="qna : ${qnaList}" th:object="${qna}">
+                        <tr onclick="listClickFn(this)">
+                            <td class="qa">Q</td>
+                            <td th:text="*{boardTitle}">질문</td>
+                        </tr>
+                        <tr class="contentA" style="display: none;">
+                            <td class="qa">A</td>
+                            <td th:text="*{boardContent}">답변</td>
+                        </tr>
+                    </th:block>
 
-                <tr onclick="listClickFn(this)">
-                    <td class="qa">Q</td>
-                    <td>질문 - 회원탈퇴 방법을 알려주세요</td>
-                </tr>
+                </tbody>
 
-                <tr class="contentA" style="display: none;">
-                    <td class="qa">A</td>
-                    <td>답변 - 마이페이지 사이드바 제일 하단 탈퇴하기 버튼을 통해 진행하실 수 있습니다.</td>
-                </tr>
+            </table>
+            
+        </section>
 
-            </tbody>
-        </table>
     </section>
 
     <script>

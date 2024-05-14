@@ -5,35 +5,40 @@ const loginEmail = document.querySelector("#memberEmail");
 const loginPassword = document.querySelector("#loginForm input[name='memberPassword']");
 
 
+const getCookie = (key) => {
 
-/*
-if(loginForm != null) {
+  const cookies = document.cookie;  
+  const cookieList = cookies.split("; ")    // ["K=V", "K=V", "K=V"]
+                            .map( el => el.split("=") );   // ["K", "V"] ...
 
-  const saveId = getCookie("saveId");
+  
+  const obj = {};   // 비어있는 객체 선언
 
-  const cookieName = `${saveId}=`;
-
-  let cookieData = document.cookie;
-  console.log(cookieData);
-  
-  let cookieValue = "";
-  let start = cookieData.indexOf(saveId);
-  
-  console.log(start);
-  
-  if(start !== -1) {
-  
-    start = cookieName.length;
-    let end = cookieData.indexOf(";", start);
-    if(end === -1) end = cookieData.length;
-    cookieValue = cookieData.substring(start, end);
-  
-    console.log(cookieValue);
-  
+  for(let i = 0; i < cookieList.length; i++) {
+    const k = cookieList[i][0]; // key 값
+    const v = cookieList[i][1]; // value 값
+    obj[k] = v;
   }
 
-}
-*/
+  
+  return obj[key];  
+};
+
+
+if(loginEmail != null) {  // 로그인창의 이메일 입력부분이 화면에 있을 때
+
+  // 쿠키 중 key 값이 "saveId"인 요소의 value 값 얻어오기
+  const saveId = getCookie("saveId");   // undefined or 이메일
+
+  // saveId 값이 있을 경우
+  if(saveId != undefined) {
+    loginEmail.value = saveId;  // 쿠키에서 얻어온 값을 input 에 value 로 세팅
+
+    // 아이디 저장 체크박스에 체크 해두기
+    document.querySelector("input[name='saveId']").checked = true;
+  }
+
+};
 
 
 

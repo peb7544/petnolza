@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -32,6 +33,7 @@ public class CommunityController {
 	private final CommunityService service;
 	public static String NoticeBoardCodeNo = "NOTICE";
 	public static String NoticeGroupCode = "BOARD";
+	public static String FaqBoardCodeNo = "QNA";
 
 	/** 공지사항 목록
 	 * @return
@@ -218,7 +220,7 @@ public class CommunityController {
 			path = "community/noticeList";
 			message = "게시물 삭제가 완료되었습니다.";
 		} else {
-			path = "community/noticeList/" + boardNo;
+			path = "community/noticeDetail/" + boardNo;
 			message = "게시물 삭제 실패하였습니다";
 		}
 		
@@ -284,7 +286,11 @@ public class CommunityController {
 	 * @return
 	 */
 	@GetMapping("faqList")
-	public String faqList() {
+	public String faqList(Model model, 
+						  @RequestParam Map<String, Object> paramMap) {
+		
+		List<Board> faqList = service.selectFaqList(FaqBoardCodeNo);
+		model.addAttribute("faqList", faqList);
 		
 		return "community/faqList";
 	}
@@ -292,10 +298,33 @@ public class CommunityController {
 	/** 자주묻는질문 상세
 	 * @return
 	 */
-	@GetMapping("faqDetail")
-	public String faqDetail() {
+	@GetMapping("faqDetail/{boardNo:[0-9]+}")
+	public String faqDetail(@PathVariable("boardNo") int boardNo,
+							Model model,
+							RedirectAttributes ra) {
+		
+		Board board = service.selectFaqOne(boardNo);
+		
+		model.addAttribute("board", board);
 		
 		return "community/faqDetail";
+	}
+	
+	
+	@PostMapping("updateFaq")
+	public String updateFaq(@ModelAttribute Board board,
+							RedirectAttributes ra) {
+		
+		int result = service.updateNotice(board);
+		
+		String message = null;
+		
+		if(result > 0) message = "자주 묻는 질문 수정이 완료되었습니다.";
+		else message = "자주 묻는 질문 수정에 실패하였습니다.";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/community/faqList";
 	}
 	
 	/** 자주묻는질문 등록
@@ -305,6 +334,52 @@ public class CommunityController {
 	public String faqRegist() {
 		
 		return "community/faqRegist";
+	}
+	
+	@PostMapping("faqRegist")
+	public String faqRegist(@ModelAttribute Board board,
+							@SessionAttribute(value="loginMember", required=false) Member loginMember,
+							RedirectAttributes ra) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		board.setMemberNo(memberNo);
+		board.setGroupCode(NoticeGroupCode);
+		board.setCodeNo(FaqBoardCodeNo);
+		
+		int result = service.insertNotice(board);
+		
+		String message = null;
+		
+		if(result > 0) message = "자주 묻는 질문 등록이 완료되었습니다.";
+		else message = "자주 묻는 질문 등록에 실패하였습니다.";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/community/faqList";
+	}
+	
+	
+	@GetMapping("faqDelete")
+	public String faqDelete(@RequestParam("boardNo") int boardNo,
+							RedirectAttributes ra) {
+		
+		int result = service.deleteNotice(boardNo);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			path = "community/faqList";
+			message = "게시물 삭제가 완료되었습니다.";
+		} else {
+			path = "community/faqDetail/" + boardNo;
+			message = "게시물 삭제 실패하였습니다";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/" + path;
 	}
 
 }

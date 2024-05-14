@@ -90,8 +90,9 @@
                             </div>
                             <input th:if="${uploadFile} == null" type="file" name="uploadFile">
                            
-                            <a th:unless="${uploadFile} == null" 
-                               th:text="${uploadFile.fileOrgName}"></a>
+                            <div th:unless="${uploadFile} == null">
+                                <a th:text="${uploadFile.fileOrgName}"></a>
+                            </div>
                             
                         </div>
 

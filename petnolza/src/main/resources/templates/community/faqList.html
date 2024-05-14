@@ -9,25 +9,19 @@
     <style>
         
 
-        section.max-container {
-            width: 100%;
-            align-items: center;
-            padding: 0 15px;
-        }
+        .insertNotice {
 
-        section.max-container > .btn-area {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            
-        }
+            border: 1px solid black;
+            background-color:#00abe8;
+            color: white;
+            /* font-weight: bold; */
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            height: 31px;
+            padding: 0px 15px;
+            font-size: 15px;
+            margin-top: 3px;
 
-        .answerRequired {
-            color: red;
-        }
-
-        .faqListTable {
-            border-top: solid;
         }
         
 
@@ -45,7 +39,7 @@
 
         <th:block th:replace="~{menu/topMenu}"></th:block>
 
-        <section class="container">
+        <section class="container" style="height: 600px;">
             <h2>커뮤니티</h2>
 
             <div class="middle-menu">
@@ -56,97 +50,47 @@
 <br>
 
             <div>
-                <table class="board-area faqListTable">
+                <table class="board-area faqList">
+
+                    <thead>
+
+                        <th>번호</th>
+                        <th>게시물 종류</th>
+                        <th>제목</th>
+                        <th>닉네임</th>
+
+                    </thead>
 
                     <tbody>
 
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
-                        <tr>
-                            <td>Q</td>
-                            <td>질문</td>
-                            <td>이메일 / 비밀번호를 잊어버렸어요</td>
-                            <td>관리자</td>
-                        </tr>
+                        <th:block th:unless="${#lists.isEmpty(faqList)}">
+
+                            <tr th:each="faq : ${faqList}" th:object="${faq}" th:id="|row${faqStat.index}|">
+                                <td th:text="*{boardNo}">Q</td>
+                                <td th:text="*{codeNo}">질문</td>
+                                <td th:text="*{boardTitle}">이메일 / 비밀번호를 잊어버렸어요</td> 
+                                <td th:text="*{memberNickname}">관리자</td>
+                            </tr>
+
+                        </th:block>
+                        
+                        <th:block th:if="${#lists.isEmpty(faqList)}">
+    
+                                <tr>
+                                    <td colspan="4" style="text-align: center !important;">등록된 질문이 존재하지 않습니다.</td>
+                                </tr>
+    
+                        </th:block>
 
                     </tbody>
+
+
                 </table>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+                <button button="button" class="insertNotice" id="faqRegist">등록</button>
+            </div>
 
                 
 
@@ -157,7 +101,7 @@
     </section>
 
     
-    
+    <script src="/js/faqList.js"></script>
     
     
 </body>
