@@ -23,6 +23,7 @@ public class Room {
 	private int roomPrice; // 객실 가격
 	private String roomInfo; // 객실 상세정보
 	
+	private String info; // 편의시설
 	private List<String> roomInfoList; // 편의시설 리스트
 	private List<UploadFile> imageList; // 객실 이미지
 	private int thumnailYn; // 썸네일여부

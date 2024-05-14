@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,13 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.pet.common.model.dto.CodeMt;
-import edu.kh.pet.common.model.service.UploadFileService;
 import edu.kh.pet.reserve.model.dto.Reserve;
 import edu.kh.pet.reserve.model.service.ReserveService;
 import edu.kh.pet.room.model.dto.Room;
-import edu.kh.pet.room.model.dto.RoomInfo;
 import edu.kh.pet.room.model.service.RoomService;
-import edu.kh.pet.room.model.service.ServiceInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -116,17 +114,86 @@ public class RoomController {
 	 * @return
 	 */
 	@GetMapping("roomUpdate/{roomId:[0-9]+}")
-	public String roomUpdate(Model model) {
+	public String roomUpdate(
+				@PathVariable("roomId") int roomId,
+				Model model,
+				RedirectAttributes ra
+				
+			) {
 		
 		/* 편의시설 조회 */
 		String groupCode = "CONV";
 		
 		List<CodeMt> codeList = service.selectCodeList(groupCode);
 		
+		// 서비스 호출
+		Room room = service.selectRoomDetail(roomId);
 		
+		String path = null;
+		//List<RoomInfo> roomInfoList = new ArrayList<>();
+		
+		// 조회 결과가 없는 경우
+		if(room == null) {
+			path = "redirect:room/roomList";
+			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다");
+		} else {
+			
+			if(room.getInfo() != null) {
+				
+				String[] codeArr = room.getInfo().split(",");
+				//List<String> infoList = new ArrayList<>();
+				
+				for(CodeMt code : codeList) {
+					
+					for(int i=0; i<codeArr.length; i++) {
+						
+						if(code.getCodeNo().equals(codeArr[i])) {
+							code.setCheckYn("Y");
+							
+							break;
+						}
+						else code.setCheckYn("N");
+						
+					}
+				}
+				
+			}
+			
+			path = "room/roomUpdate";
+			
+			model.addAttribute("room", room);
+		}
 		
 		model.addAttribute("codeList", codeList);
 		
-		return "room/roomUpdate";
+		return path;
+	}
+	
+	@PostMapping("roomUpdate/{roomId:[0-9]+}")
+	public String roomUpdate(
+				@PathVariable("roomId") int roomId,
+				Room inputRoom,
+				@RequestParam("images") List<MultipartFile> images,
+				RedirectAttributes ra,
+				@RequestParam(value="deleteOrder", required=false) String deleteOrder,
+				@RequestParam(value="queryString", required=false, defaultValue="") String querystring
+			) throws IllegalStateException, IOException {
+		
+		// 객실번호 세팅
+		inputRoom.setRoomId(roomId);
+		
+		// 서비스 호출
+		int result = service.updateRoomUpdate(inputRoom, images, deleteOrder);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			message = "게시글이 수정되었습니다";
+		} else {
+			message = "수정 실패";
+		}
+		
+		return "redirect:/room/roomUpdate/" + roomId;
 	}
 }

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.kh.pet.room.model.mapper.RoomMapper">
+
+	<resultMap type="Room" id="room_rm">
+		<id property="roomId" column="ROOM_ID"/>
+		
+		<!-- 해당 게시글 이미지 목록 조회 후 필드 저장 -->
+		<collection property="imageList"
+			select = "selectImageList"
+			column = "ROOM_ID"
+			javaType = "java.util.ArrayList"
+			ofType = "UploadFile">
+		</collection>
+	</resultMap>
  	
  	<!-- 편의시설 조회 -->
  	<select id="selectCodeList">
@@ -24,9 +36,11 @@
 			,#{roomPrice}
 			,NULL, NULL
 			,#{roomInfo} 
+			,'N'
 		)
 	</insert>
 	
+	<!-- 편의시설 등록 -->
 	<insert id="insertRoomInfo" parameterType="List">
 		INSERT INTO "ROOM_INFO"
 		
@@ -58,4 +72,90 @@
 			FROM DUAL
 		</foreach>
 	</insert>
+	
+	<!-- 상세조회 -->
+	<select id="selectRoomDetail" resultMap="room_rm">
+		SELECT 
+			 ROOM_ID 
+			,ROOM_NAME
+			,ROOM_INFO 
+			,(SELECT 
+					SUBSTR(
+				        XMLAGG(
+				            XMLELEMENT(COL ,',', CODE_NO) ORDER BY ORDERBY).EXTRACT('//text()'
+				        ).GETSTRINGVAL()
+				  , 2) CODE_NO
+				FROM ROOM_INFO RINFO
+				JOIN CODE_MT USING(CODE_NO)
+				WHERE RINFO.ROOM_ID = R.ROOM_ID
+				AND RINFO.GROUP_CODE = 'CONV' ) INFO
+			,ROOM_PRICE
+		FROM ROOM R
+		WHERE ROOM_ID = #{roomId}
+	</select>
+	
+	<!-- 이미지 조회 -->
+	<select id="selectImageList" resultType="UploadFile">
+		SELECT *
+		FROM UPLOAD_FILE
+		WHERE TABLE_NAME = 'ROOM'
+		AND TABLE_NO = #{roomId}
+	</select>
+	
+	<!-- 객실 수정 -->
+	<update id="updateRoomUpdate">
+		UPDATE ROOM SET 
+			 ROOM_NAME = #{roomName}
+			,ROOM_PRICE = #{roomPrice}
+			,ROOM_INFO = #{roomInfo} 
+			,ROOM_DEL_FL ='N'
+		WHERE ROOM_ID = #{roomId}
+	</update>
+	
+	<!-- 객실 이미지 삭제 -->
+	<delete id="deleteImage">
+		DELETE FROM UPLOAD_FILE
+		WHERE FILE_NO IN (${deleteOrder})
+		AND TABLE_NAME = 'ROOM'
+		AND TABLE_NO = #{roomId}
+	</delete>
+	
+	<!-- 객실 이미지 수정 -->
+	<update id="updateImage">
+		UPDATE UPLOAD_FILE SET
+			 FILE_ORG_NAME = #{fileOrgName}
+			,FILE_RENAME = #{fileRename}
+			,FILE_UPLOAD_DATE = SYSDATE
+			,THUMBNAIL = #{thumbnail} 
+		WHERE FILE_NO = #{fileNo}
+		AND TABLE_NAME = 'ROOM'
+		AND TABLE_NO = #{tableNo}
+	</update>
+	
+	<!-- 객실 이미지 삽입(1행) -->
+	<insert id="insertImage" parameterType="List">
+		INSERT INTO UPLOAD_FILE
+		VALUES(
+			 NEXT_FILE_NO()
+			,#{filePath}
+			,#{fileOrgName}
+			,#{fileRename}
+			,SYSDATE
+			,#{tableName}
+			,#{tableNo}
+			,#{thumbnail} 
+		)
+	</insert>
+	
+	<!-- 편의시설 -->
+	<select id="roomInfoCnt">
+		SELECT COUNT(*) FROM ROOM_INFO
+		WHERE ROOM_ID = #{roomId}
+	</select>
+	
+	<!-- 기존 편의시설 삭제 -->
+	<delete id="deleteRoomInfo">
+		DELETE FROM ROOM_INFO
+		WHERE ROOM_ID = #{roomId}
+	</delete>
 </mapper>
