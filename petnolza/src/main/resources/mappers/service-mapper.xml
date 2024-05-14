@@ -9,7 +9,25 @@
 			,SERVICE_NAME
 			,SERVICE_PRICE 
 			,SERVICE_DETAIL 
+			,SERVICE_DEL_FL
 		FROM SERVICE
+		WHERE SERVICE_DEL_FL = 'N'
 		ORDER BY SERVICE_NO
  	</select>
+ 	
+ 	<insert id="insertService">
+ 		INSERT INTO SERVICE VALUES(
+ 			 SEQ_SERVICE_NO.NEXTVAL
+ 			,#{serviceName}
+ 			,#{servicePrice}
+ 			,NULL, DEFAULT
+ 		)
+ 	</insert>
+ 	
+ 	<!-- 서비스 삭제 -->
+ 	<update id="deleteService">
+ 		UPDATE SERVICE SET
+ 			SERVICE_DEL_FL = 'Y'
+ 		WHERE SERVICE_NO = #{serviceNo}
+ 	</update>
 </mapper>

@@ -24,4 +24,18 @@ public class ServiceInfoServiceImpl implements ServiceInfoService {
 		// TODO Auto-generated method stub
 		return mapper.selectService();
 	}
+
+	// 서비스 등록
+	@Override
+	public int insertService(ServiceInfo serviceInfo) {
+		// TODO Auto-generated method stub
+		return mapper.insertService(serviceInfo);
+	}
+
+	// 서비스 삭제
+	@Override
+	public int deleteService(int serviceNo) {
+		// TODO Auto-generated method stub
+		return mapper.deleteService(serviceNo);
+	}
 }

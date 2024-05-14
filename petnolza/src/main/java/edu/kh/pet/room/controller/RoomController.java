@@ -7,11 +7,14 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -176,14 +179,16 @@ public class RoomController {
 				@RequestParam("images") List<MultipartFile> images,
 				RedirectAttributes ra,
 				@RequestParam(value="deleteOrder", required=false) String deleteOrder,
-				@RequestParam(value="queryString", required=false, defaultValue="") String querystring
+				@RequestParam(value="queryString", required=false, defaultValue="") String querystring,
+				@RequestParam(value="orderList", required=false) String orderList,
+				@RequestParam(value="upList", required=false) String upList
 			) throws IllegalStateException, IOException {
 		
 		// 객실번호 세팅
 		inputRoom.setRoomId(roomId);
 		
 		// 서비스 호출
-		int result = service.updateRoomUpdate(inputRoom, images, deleteOrder);
+		int result = service.updateRoomUpdate(inputRoom, images, deleteOrder, orderList, upList);
 		
 		String message = null;
 		String path = null;
@@ -194,6 +199,21 @@ public class RoomController {
 			message = "수정 실패";
 		}
 		
+		ra.addFlashAttribute("message", message);
+		
 		return "redirect:/room/roomUpdate/" + roomId;
+	}
+	
+	/** 객실 삭제
+	 * @param roomId
+	 * @return
+	 */
+	@ResponseBody
+	@DeleteMapping("roomDelete")
+	public int roomDelete( @RequestBody int roomId ) {
+		
+		int result = service.deleteRoomDelete(roomId);
+		
+		return result;
 	}
 }

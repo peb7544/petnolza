@@ -35,6 +35,12 @@ public interface RoomService {
 	 * @param deleteOrder 
 	 * @return
 	 */
-	int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException;
+	int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder, String orderList, String upList) throws IllegalStateException, IOException;
+
+	/** 객실 삭제
+	 * @param roomId
+	 * @return
+	 */
+	int deleteRoomDelete(int roomId);
 
 }

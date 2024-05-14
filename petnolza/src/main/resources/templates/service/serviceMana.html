@@ -16,39 +16,52 @@
         <h2>서비스 관리</h2>
 
         <div class="inputForm">
-            <label>이미지</label>
+            <label>서비스명</label>
             <div class="inputImg">
-                <input type="text">
+                <input id="serviceName" name="serviceName" type="text">
                 <div class="btn-area">
-                    <button class="grey-btn">추가</button>
+                    <button id="addBtn" class="grey-btn">추가</button>
                 </div>
             </div>
         </div>
 
         <div class="inputForm">
             <label>가격</label>
-            <input type="text">
+            <input id="servicePrice" name="servicePrice" type="text">
          </div>
 
          <div class="content-area">
             <table class="board-area qnaTable">
     
                 <tbody>
+
+                    <th:block th:if="${#lists.isEmpty(serviceInfo)}"> 
+                        <tr>
+                            <td colspan="2" style="text-align: center !important;">서비스가 존재하지 않습니다.</td>
+                        </tr>
+                    </th:block>
     
-                    <tr>
-                        <td>산책(50,000원)</td>
-                        <td class="qa">&times;</td>
-                    </tr>
-    
-                    <tr>
-                        <td>캣타워(50,000원)</td>
-                        <td class="qa">&times;</td>
-                    </tr>
+                    <th:block th:unless="${#lists.isEmpty(serviceInfo)}" th:each="service : ${serviceInfo}" th:object="${service}"> 
+                        <tr>
+                            <td th:text="|*{serviceName}(*{servicePrice}원)|">산책(50,000원)</td>
+                            <td class="qa" th:onclick="delBtn([[*{serviceNo}]])">&times;</td>
+                        </tr>
+                    </th:block>
     
                 </tbody>
             </table>
          </div>
 
     </section>
+
+    <script>
+        // 팝업창 닫을 때 딤프레이어 none
+        window.addEventListener('beforeunload', function(event) {
+            opener.document.getElementById("popOpen").style.display = "none";
+        });
+    </script>
+
+    <script src="/js/service/serviceMana.js"></script>
+
 </body>
 </html>

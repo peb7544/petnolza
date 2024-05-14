@@ -1,5 +1,6 @@
 package edu.kh.pet.room.model.service;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -143,7 +144,7 @@ public class RoomServiceImpl implements RoomService  {
 
 	// 객실 수정
 	@Override
-	public int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException {
+	public int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder, String orderList, String upList) throws IllegalStateException, IOException {
 		
 		int result = mapper.updateRoomUpdate(inputRoom);
 		
@@ -176,16 +177,15 @@ public class RoomServiceImpl implements RoomService  {
 			result = mapper.insertRoomInfo(roomInfo);
 			
 			
-			
 			if(result == 0) return 0;
 		
 		}
 		
+		log.debug("deleteOrder : " + deleteOrder);
+			
 		// 기존에 삭제된 deleteOrder(이미지)가 있는 경우
 		if(deleteOrder != null && !deleteOrder.equals("")) {
 			Map<String, Object> map = new HashMap<>();
-			
-			log.debug("deleteOrder : " + deleteOrder);
 			
 			map.put("deleteOrder", deleteOrder);
 			map.put("roomId", inputRoom.getRoomId());
@@ -201,63 +201,109 @@ public class RoomServiceImpl implements RoomService  {
 		// 파일이 존재하는 경우
 		List<UploadFile> uploadList = new ArrayList<>();
 		
-		for(int i=0; i<images.size(); i++) {
+		for(MultipartFile img : images) {
 			
-			// 실제 선택된 파일이 존재하는 경우
-			if(!images.get(i).isEmpty()) {
+			// 대표 이미지 
+			inputRoom.getThumnailYn();
+			
+			// 실제 이미지 있을 경우
+			if(img.getOriginalFilename() != null && !img.getOriginalFilename().equals("")) {
 				
 				// 원본명
-				String fileOrgName = images.get(i).getOriginalFilename();
+				String fileOrgName = img.getOriginalFilename();
 				
 				// 변경명
 				String fileRename = Utility.fileRename(fileOrgName);
 				
-				String thumbnail = "N";
+				// 파일번호
+				String[] codeArr = upList.split(",");
 				
-				if(i == inputRoom.getThumnailYn()) {
+				for(int i=0; i<codeArr.length; i++) {
 					
-					thumbnail = "Y";
+					// 대표이미지
+					String thumbnail = "N";
+					
+					if(i == inputRoom.getThumnailYn()) {
+						
+						thumbnail = "Y";
+					}
+					
+					UploadFile imgs = UploadFile.builder()
+							.filePath(webPath)
+							.fileOrgName(fileOrgName)
+							.fileRename(fileRename)
+							.tableName("ROOM")
+							.tableNo(inputRoom.getRoomId())
+							.thumbnail(thumbnail)
+							.fileNo(Integer.parseInt(codeArr[i]))
+							.uploadFile(img)
+							.build();
+					
+					uploadList.add(imgs);
+					
+					result = mapper.updateImage(imgs);
+					
+					if(result == 0) {
+						
+						// 새 이미지 추가
+						result = mapper.insertImage(imgs);
+					}
 				}
-				
-				UploadFile img = UploadFile.builder()
-						.filePath(webPath)
-						.fileOrgName(fileOrgName)
-						.fileRename(fileRename)
-						.tableName("ROOM")
-						.tableNo(inputRoom.getRoomId())
-						.thumbnail(thumbnail)
-						.uploadFile(images.get(i))
-						.build();
-				
-				uploadList.add(img);
-				
-				result = mapper.updateImage(img);
 				
 				if(result == 0) {
 					
-					// 새 이미지 추가
-					result = mapper.insertImage(img);
+					throw new ImageUpdateException();
 				}
 				
-			}
-			
-			if(result == 0) {
+				// 이미지 파일 서버에 저장
+				for(UploadFile imgs : uploadList) {
+					imgs.getUploadFile().transferTo(new File(folderPath + imgs.getFileRename()));
+				}
 				
-				throw new ImageUpdateException();
+			} else {
+				
+				
+				// 파일번호
+				String[] codeArr = orderList.split(",");
+				
+				for(int i=0; i<codeArr.length; i++) {
+					
+					String thumbnail = "N";
+					
+					if(i == inputRoom.getThumnailYn()) {
+						
+						thumbnail = "Y";
+					}
+					
+					UploadFile imgs = new UploadFile();
+					
+					imgs.setTableName("ROOM");
+					imgs.setTableNo(inputRoom.getRoomId());
+					imgs.setThumbnail(thumbnail);
+					imgs.setFileNo(Integer.parseInt(codeArr[i]));
+					
+					uploadList.add(imgs);
+					
+					result = mapper.updateThumbnail(imgs);
+				}
 			}
 			
-			//선택한 파일이 없는 경우
-			if(uploadList.isEmpty()) {
-				return result;
-			}
 			
-			// 이미지 파일 서버에 저장
-			for(UploadFile img : uploadList) {
-				img.getUploadFile().transferTo(new File(folderPath + img.getFileRename()));
-			}
+		}
+		
+		//선택한 파일이 없는 경우
+		if(uploadList.isEmpty()) {
+			return result;
 		}
 		
 		return result;
+	}
+	
+	// 객실 삭제
+	@Override
+	public int deleteRoomDelete(int roomId) {
+		// TODO Auto-generated method stub
+		return mapper.deleteRoomDelete(roomId);
 	}
 
 }

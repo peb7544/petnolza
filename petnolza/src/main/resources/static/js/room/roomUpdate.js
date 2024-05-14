@@ -20,6 +20,10 @@ const createImageElement = (divCnt) => {
     imgFileNo.id = `fileNo${divCnt}`;
     imgFileNo.type = 'hidden';
 
+    const imgFileName = document.createElement('input');
+    imgFileNo.id = `fileName${divCnt}`;
+    imgFileNo.type = 'hidden';
+
     // Create imgLabel label element
     const imgLabel = document.createElement('label');
     imgLabel.classList.add('imgLabel');
@@ -62,6 +66,7 @@ const createImageElement = (divCnt) => {
 
     // Append all elements to boardImgDiv
     boardImgDiv.appendChild(imgFileNo);
+    boardImgDiv.appendChild(imgFileName);
     boardImgDiv.appendChild(imgLabel);
     boardImgDiv.appendChild(radioLabel);
     boardImgDiv.appendChild(deleteImageSpan);
@@ -102,20 +107,22 @@ const handler = {
             // (백업 원리 -> 복제품으로 기존 요소를 대체함)
             backupInputList = new Array(inputImageList.length);
 
-            console.log("inputImageList.length : " + inputImageList.length);
+            //console.log("inputImageList.length : " + inputImageList.length);
 
-            console.log(e.target.className);
+            //console.log(e.target.className);
 
             if(e.target.className != 'inputImage') return;
 
-            console.log("이미지 맞다");
+            //console.log("이미지 맞다");
 
-            console.log(e.target.id);
+            //console.log(e.target.id);
             /**** input태그에 이미지가 선택된 경우(값이 변경된 경우) ****/
             let inputImage = e.target.id;
             let order = inputImage.replace('img', '');
 
-            console.log("e.target : " + e.target + " / id : " + order);
+            //console.log("e.target : " + e.target + " / id : " + order);
+            
+            
 
             changeImageFn(e.target, order, previewList, backupInputList);
 
@@ -160,24 +167,34 @@ const handler = {
                         if(fileNo != "") {
                             
 
-                            console.log(fileNo);
+                            //console.log(fileNo);
     
-                            console.log("fileNo : " + fileNo);
+                            //console.log("fileNo : " + fileNo);
 
-                            console.log(orderList);
-                            
-                            if(orderList.includes(fileNo)) {
+                            //console.log(orderList);
 
-                                console.log("들어있니?");
+                            //console.log(orderList.includes(Number(fileNo)));
+                            if(orderList.includes(Number(fileNo))) {
 
-                                deleteOrder.push(fileNo);
+                                //console.log("들어있니?");
+
+                                deleteOrder.add(fileNo);
     
-                                console.log(deleteOrder);
+                                //console.log("deleteOrder : " + deleteOrder);
+
+                                /* 이미지 변경한 파일 번호 넣기 */
+                                for(let i = 0; i < orderList.length; i++) {
+                                    if (orderList[i] === fileNo) {
+                                        orderList.splice(i, 1);
+                                    }
+                                }
+                        
+                                document.querySelector("[name='orderList']").value = Array.from(orderList);
     
                                 /* 삭제 이미지 배열 */
                                 document.querySelector("[name='deleteOrder']").value = Array.from(deleteOrder);
     
-                                console.log(document.querySelector("[name='deleteOrder']"));
+                                //console.log(document.querySelector("[name='deleteOrder']"));
                                 document.querySelector("[name='querystring']").value = location.search;
                             }
                         }
@@ -220,6 +237,20 @@ const changeImageFn = (inputImage, order, previewList, backupInputList) => {
   
     // 업로드된 파일 정보가 담긴 객체를 얻어와 변수에 저장
     const file = inputImage.files[0];
+
+    if(document.querySelector('#fileName' + order).value != file.name ) {
+        for(let i = 0; i < orderList.length; i++) {
+            if (orderList[i] == document.querySelector('#fileNo' + order).value) {
+
+                console.log(document.querySelector('#fileNo' + order).value);
+                upList.push(document.querySelector('#fileNo' + order).value);
+            }
+        }
+        
+        document.querySelector("[name='upList']").value = Array.from(upList);
+    }
+
+    
   
   
     // ------------- 파일 선택 -> 취소 해서 파일이 없는 경우 ----------------
@@ -303,3 +334,7 @@ handler.changeImg();
 handler.delImg();
 
 
+/* 목록 */
+document.querySelector('#cancelBtn').addEventListener('click', () => {
+    location.href = '/room/roomList';
+});
