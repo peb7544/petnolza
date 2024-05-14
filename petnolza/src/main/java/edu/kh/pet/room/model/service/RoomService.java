@@ -23,4 +23,18 @@ public interface RoomService {
 	 */
 	int insertRoom(Room inputRoom, List<MultipartFile> images) throws IllegalStateException, IOException;
 
+	/** 객실 상세
+	 * @param roomId
+	 * @return
+	 */
+	Room selectRoomDetail(int roomId);
+
+	/** 객실 수정
+	 * @param insertRoom
+	 * @param images
+	 * @param deleteOrder 
+	 * @return
+	 */
+	int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException;
+
 }

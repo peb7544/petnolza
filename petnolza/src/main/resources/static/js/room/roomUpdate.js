@@ -8,11 +8,17 @@ let deleteImageList; // x버튼 5개
 let backupInputList;
 let backupInputList1 = [];
 
+const deleteOrder = new Set();
+
 const createImageElement = (divCnt) => {
     // Create boardImg div element
     const boardImgDiv = document.createElement('div');
     boardImgDiv.classList.add('boardImg');
     boardImgDiv.id = `board${divCnt}`;
+
+    const imgFileNo = document.createElement('input');
+    imgFileNo.id = `fileNo${divCnt}`;
+    imgFileNo.type = 'hidden';
 
     // Create imgLabel label element
     const imgLabel = document.createElement('label');
@@ -55,6 +61,7 @@ const createImageElement = (divCnt) => {
     deleteImageSpan.innerHTML = '&times;';
 
     // Append all elements to boardImgDiv
+    boardImgDiv.appendChild(imgFileNo);
     boardImgDiv.appendChild(imgLabel);
     boardImgDiv.appendChild(radioLabel);
     boardImgDiv.appendChild(deleteImageSpan);
@@ -72,45 +79,10 @@ const handler = {
             
             inputImageList = document.getElementsByClassName("inputImage");
 
-            //console.log("inputImageList : ",inputImageList.length);
-            
-
-            //console.log(divCnt);  
 
             if(Number(divCnt) < 10) {
 
                 createImageElement(divCnt);
-
-                /*backupInputList1 = new Array(divCnt);
-
-                for(let i=0; i<divCnt; i++) {
-
-                    backupInputList1[i] = inputImageList[i].cloneNode(true); // 노드 복사
-                }
-                
-                
-                document.querySelector('.img-box').innerHTML += `
-                    <div class="boardImg" id="board` + divCnt + `">
-                        <label class="imgLabel" id="label` + divCnt + `" for="img` + divCnt + `">
-                            <img class="preview" src="">
-                        </label>
-                        <input type="file" name="images" class="inputImage" id="img` + divCnt + `" accept="image/*">
-                        <label id="radio` + divCnt + `" for="thumnail` + divCnt + `" >
-                            <input type="radio" name="thumnailYn" id="thumnail` + divCnt + `" value="` + divCnt +`">
-                            대표이미지
-                        </label>
-                        <span class="delete-image" id="del` + divCnt + `">&times;</span>
-                    </div>
-                    `;
-
-                
-                for(let i=0; i<divCnt; i++) {
-                    inputImageList[i].replaceWith( backupInputList1[i]); // 값 덮어씌우기
-                }*/
-               
-
-        
-
                 
             } else {
                 alert("객실 이미지는 10개 미만으로 등록이 가능합니다");
@@ -173,14 +145,44 @@ const handler = {
                 let delBtn = e.target.id;
                 let order = delBtn.replace('del', '');
 
-                //
-
                 let divCnt = document.querySelector('.img-box').childElementCount;
+
+
 
                 for(let i=0; i<divCnt; i++) {
 
                     if(i == order) {
+
                         document.querySelector('#board' + i).setAttribute("id", "boardDel");
+
+                        let fileNo = document.querySelector('#fileNo' + i).value;
+
+                        if(fileNo != "") {
+                            
+
+                            console.log(fileNo);
+    
+                            console.log("fileNo : " + fileNo);
+
+                            console.log(orderList);
+                            
+                            if(orderList.includes(fileNo)) {
+
+                                console.log("들어있니?");
+
+                                deleteOrder.push(fileNo);
+    
+                                console.log(deleteOrder);
+    
+                                /* 삭제 이미지 배열 */
+                                document.querySelector("[name='deleteOrder']").value = Array.from(deleteOrder);
+    
+                                console.log(document.querySelector("[name='deleteOrder']"));
+                                document.querySelector("[name='querystring']").value = location.search;
+                            }
+                        }
+                       
+                        
                     } if(i > order) { 
                         // 이미지
                         document.querySelector('#board' + i).setAttribute("id", "board" + (i-1));
@@ -295,9 +297,9 @@ const changeImageFn = (inputImage, order, previewList, backupInputList) => {
   }
 
 
+
 handler.init();
 handler.changeImg();
 handler.delImg();
-
 
 

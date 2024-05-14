@@ -20,4 +20,6 @@ public class CodeMt {
 	private String codeNo;
 	private String codeName;
 	private String groupCode;
+	
+	private String checkYn; /*체크여부*/
 }

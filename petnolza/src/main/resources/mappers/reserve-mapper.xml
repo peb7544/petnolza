@@ -41,6 +41,7 @@
 			LEFT OUTER JOIN RESERVE RES ON R.ROOM_ID = RES.ROOM_ID
 			LEFT OUTER JOIN UPLOAD_FILE UF ON R.ROOM_ID = UF.TABLE_NO AND UF.TABLE_NAME = 'ROOM' AND UF.THUMBNAIL = 'Y'
 			WHERE 1=1
+			AND ROOM_DEL_FL = 'N'
 			<if test='inputStart != null  and inputEnd != null'>
 			AND (R.ROOM_ID NOT IN (SELECT ROOM_ID  
 													FROM RESERVE
@@ -105,6 +106,7 @@
 			,#{reservePrice}
 			,NULL
 			,#{reserveUser}
+			,DEFAULT
 		)
  	</insert>
  	
@@ -117,4 +119,22 @@
 			,#{serviceNo}
 		)
  	</insert>
+ 	
+ 	<select id="selectRoomDetail">
+ 		SELECT 
+			 ROOM_ID 
+			,ROOM_INFO 
+			,(SELECT 
+					SUBSTR(
+				        XMLAGG(
+				            XMLELEMENT(COL ,',', CODE_NAME) ORDER BY ORDERBY).EXTRACT('//text()'
+				        ).GETSTRINGVAL()
+				  , 2) CODE_NAME
+				FROM ROOM_INFO RINFO
+				JOIN CODE_MT USING(CODE_NO)
+				WHERE RINFO.ROOM_ID = R.ROOM_ID
+				AND RINFO.GROUP_CODE = 'CONV' ) ROOM_INFO_LIST
+			,ROOM_PRICE
+		FROM ROOM R
+ 	</select>
 </mapper>
