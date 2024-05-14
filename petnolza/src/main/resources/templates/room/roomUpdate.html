@@ -43,11 +43,13 @@
                         <div class="img-box">
                             <th:block th:each="img, imgStat : *{imageList}" th:object="${img}">
                                 <div class="boardImg"  th:id="|board${imgStat.count-1}|"> 
-                                    <input type="hidden" th:id="|fileNo${imgStat.count-1}|" th:value="*{fileNo}">
+                                    <input type="hidden" th:id="|fileNo${imgStat.count-1}|"  th:value="*{fileNo}">
+                                    <input type="hidden" th:id="|fileName${imgStat.count-1}|"  th:value="*{fileRename}">
                                     <label class="imgLabel" th:id="|label${imgStat.count-1}|" th:for="|img${imgStat.count-1}|"> 
                                         <img class="preview" th:src="|*{filePath}*{fileRename}|">
+                                        <input type="file" name="images" class="inputImage"  accept="image/*" th:id="|img${imgStat.count-1}|"> 
                                     </label>
-                                    <input type="file" name="images" class="inputImage"  accept="image/*" th:id="|img${imgStat.count-1}|"> 
+                                    
                                     <label th:id="|radio${imgStat.count-1}|" th:for="|thumnail${imgStat.count-1}|"> 
                                         <input type="radio" name="thumnailYn" th:id="|thumnail${imgStat.count-1}|" th:value="${imgStat.count-1}" th:checked="*{thumbnail eq 'Y'}"> 
                                         대표이미지
@@ -84,14 +86,16 @@
                      <div>
                         <div class="btn-area" style="display: flex; justify-content: center;">
                             <button id="saveBtn" class="main-blue">등록</button>
-                            <button style="background-color: #666666; margin-left: 5px;">취소</button>
+                            <button id="cancelBtn" type="button" style="background-color: #666666; margin-left: 5px;">취소</button>
                         </div>
                     </div>
                 </th:block>
 
                 <!-- 기존 이미지가 있다면 삭제된 이미지의 순서를 기록 -->
                 <input type="hidden" name="deleteOrder" value="">
-                
+                <input type="hidden" name="upList" value="">
+                <input type="hidden" name="orderList" value="">
+                                           
                 <!-- 수정 성공 시 주소(쿼리스트림) 유지 용도 -->
                 <input type="hidden" name="querystring">
                 
@@ -108,6 +112,7 @@
         const previewList1 = document.querySelectorAll('img.preview');
 
         const orderList = [];
+        const upList = [];
 
         for(let img of imageList) {
             //previewList1[img.fileNo].src = img.imgPath + img.imgRename;
@@ -115,6 +120,8 @@
             // 기존 이미지 넣기
             orderList.push(img.fileNo);
         }
+
+        document.querySelector("[name='orderList']").value = Array.from(orderList);
 
        
     </script>

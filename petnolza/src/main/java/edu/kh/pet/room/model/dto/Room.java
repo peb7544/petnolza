@@ -27,4 +27,6 @@ public class Room {
 	private List<String> roomInfoList; // 편의시설 리스트
 	private List<UploadFile> imageList; // 객실 이미지
 	private int thumnailYn; // 썸네일여부
+	
+	private String roomDelFl; // 삭제 여부  
 }

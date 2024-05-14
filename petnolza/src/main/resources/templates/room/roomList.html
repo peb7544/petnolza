@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/menu.css"></link>
     <link rel="stylesheet" href="/css/reserve.css"></link>
     <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
+    <link rel="stylesheet" href="/css/mypage.css"></link> <!-- 딤프레이어 (부모창 비활성화) -->
 
     <script src="https://kit.fontawesome.com/fb582154d7.js" crossorigin="anonymous"></script><!-- 폰트어썸 -->
 
@@ -38,7 +39,7 @@
             <section class="">
 
                 <div class="btn-area" style="margin-top: 10%;">
-                    <button class="main-blue">서비스 등록</button>
+                    <button id="serviceRegist" class="main-blue">서비스 관리</button>
                     <form action="roomRegist">
                         <button class="grey-btn">객실 등록</button>
                     </form>
@@ -82,7 +83,7 @@
                                 <button class="main-blue">수정</button>
                             </form>
                             
-                            <button class="grey-btn">삭제</button>
+                            <button class="grey-btn" th:onclick="delBtn([[*{roomId}]])">삭제</button>
                         </div>
                     </div>
                 </div>
@@ -93,6 +94,11 @@
         <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
 
     </section>
+
+    <!-- 딤프레이어 (부모창 비활성화) -->
+    <div id="popOpen"></div>
+
+    <script src="/js/room/roomList.js"></script>
     
 </body>
 </html>

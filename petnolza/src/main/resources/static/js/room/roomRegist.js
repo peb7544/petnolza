@@ -299,5 +299,8 @@ handler.init();
 handler.changeImg();
 handler.delImg();
 
-
+/* 목록 */
+document.querySelector('#cancelBtn').addEventListener('click', () => {
+    location.href = '/room/roomList';
+});
 

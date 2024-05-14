@@ -14,4 +14,15 @@ public interface ServiceInfoMapper {
 	 */
 	List<ServiceInfo> selectService();
 
+	/** 서비스 등록
+	 * @return
+	 */
+	int insertService(ServiceInfo serviceInfo);
+
+	/** 서비스 삭제
+	 * @param serviceNo
+	 * @return
+	 */
+	int deleteService(int serviceNo);
+
 }

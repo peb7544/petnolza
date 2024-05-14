@@ -133,7 +133,7 @@
 	</update>
 	
 	<!-- 객실 이미지 삽입(1행) -->
-	<insert id="insertImage" parameterType="List">
+	<insert id="insertImage">
 		INSERT INTO UPLOAD_FILE
 		VALUES(
 			 NEXT_FILE_NO()
@@ -158,4 +158,20 @@
 		DELETE FROM ROOM_INFO
 		WHERE ROOM_ID = #{roomId}
 	</delete>
+	
+	<!-- 대표이미지 수정 -->
+	<update id="updateThumbnail" parameterType="List">
+		UPDATE UPLOAD_FILE SET
+			 THUMBNAIL = #{thumbnail} 
+		WHERE FILE_NO = #{fileNo}
+		AND TABLE_NAME = 'ROOM'
+		AND TABLE_NO = #{tableNo}
+	</update>
+	
+	<!-- 객실 삭제 -->
+	<update id="deleteRoomDelete">
+		UPDATE ROOM SET
+			ROOM_DEL_FL = 'Y'
+		WHERE ROOM_ID = #{roomId}
+	</update>
 </mapper>

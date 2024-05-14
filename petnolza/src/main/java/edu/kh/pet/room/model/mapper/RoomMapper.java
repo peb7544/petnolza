@@ -80,5 +80,18 @@ public interface RoomMapper {
 	 */
 	int deleteRoomInfo(Room inputRoom);
 	
+	/** 대표 이미지 수정
+	 * @param img
+	 * @return
+	 */
+	int updateThumbnail(UploadFile img);
+
+	/** 객실 삭제
+	 * @param roomId
+	 * @return
+	 */
+	int deleteRoomDelete(int roomId);
+	
+	
 
 }
