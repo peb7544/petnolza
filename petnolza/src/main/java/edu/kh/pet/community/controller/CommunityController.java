@@ -183,17 +183,28 @@ public class CommunityController {
 	
 	@PostMapping("updateNotice")
 	public String updateNotice(@ModelAttribute Board board,
-							   @RequestParam("uploadFile") MultipartFile uploadFile,
+							   @RequestParam(value="uploadFile", required=false) MultipartFile uploadFile,
 							   RedirectAttributes ra) throws Exception {
 		
 		
-		int result = service.updateNotice(board);
-		
+		int result = 0;
 		String message = null;
+		
+		if(uploadFile != null) {
+			
+			if(!uploadFile.isEmpty()) {
+				
+				service.fileUpload(uploadFile, board.getBoardNo());
+				
+			}
+			
+		}
+		
+		
+		result = service.updateNotice(board);
 		
 		if(result > 0) {
 			
-			service.fileUpload(uploadFile, board.getBoardNo());
 			message = "공지사항 변경이 완료되었습니다.";
 			
 		} else {
@@ -201,9 +212,8 @@ public class CommunityController {
 			message = "공지사항 변경에 실패하였습니다.";
 			
 		}
-		
-		ra.addFlashAttribute("message", message);
 
+		ra.addFlashAttribute("message", message);
 		return "redirect:/community/noticeList";
 	}
 	

@@ -4,7 +4,6 @@ const faqRegist = document.querySelector("#faqRegist");
 
 for(let i = 0; i < faqList-1; i++) {
 
-    console.log("테스트");
 
     document.querySelector('#row'+i).addEventListener("click", () => {
 

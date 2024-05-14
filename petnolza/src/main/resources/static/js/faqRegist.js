@@ -3,6 +3,8 @@ const boardContent = document.querySelector("#boardContent");
 
 const faqRegist = document.querySelector("#faqRegist");
 
+const backToList = document.querySelector("#backToList");
+
 faqRegist.addEventListener("submit", e => {
 
     if(boardTitle.value.trim().length === 0) {
@@ -18,5 +20,12 @@ faqRegist.addEventListener("submit", e => {
         e.preventDefault();
         return;
     }
+
+});
+
+
+backToList.addEventListener("click", () => {
+
+    location.href = "/community/faqList";
 
 });

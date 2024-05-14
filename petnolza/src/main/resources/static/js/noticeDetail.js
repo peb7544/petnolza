@@ -2,8 +2,6 @@ const backToList = document.querySelector("#backToList");
 const updateNotice = document.querySelector("#updateNotice");
 const deleteNotice = document.querySelector("#deleteNotice");
 
-const boardTitle = document.querySelector("#boardTitle");
-const boardContent = document.querySelector("#boardContent");
 
 
 backToList.addEventListener("click", () => {
@@ -24,3 +22,5 @@ deleteNotice.addEventListener("click", () => {
   location.href = "/community/deleteNotice?boardNo=" + boardNo;
 
 });
+
+
