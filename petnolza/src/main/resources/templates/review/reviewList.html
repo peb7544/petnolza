@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="/css/common.css"> <!-- 공통 CSS -->
     <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
+
 </head>
 <body>
     
@@ -34,8 +35,8 @@
 
                     <!-- 게시글이 존재할 때-->    
                     <th:block th:unless="${#lists.isEmpty(reviewList)}">
-                        <tr th:each="review:${reviewList}" th:object="${review}">
-                            <td th:text="*{roomId}">5</td>
+                        <tr th:each="review:${reviewList}" th:object="${review}" th:id="|row${reviewStat.index}|">
+                            <td th:text="*{reviewNo}">5</td>
                             <td th:text="*{reviewTitle}">정말 좋아요!</td>
                             <td th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></td>
                             <td th:text="*{memberName}">유저일</td>
@@ -84,5 +85,11 @@
             
         </div>
     </section>
+
+    <script th:inline="javascript">
+        const cp = /*[[${pagination.currentPage}]]*/ "현재페이지";
+    </script>
+    
+    <script src="/js/review/reviewList.js"></script>
 </body>
 </html>

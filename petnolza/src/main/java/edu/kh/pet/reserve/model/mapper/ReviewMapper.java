@@ -22,6 +22,13 @@ public interface ReviewMapper {
 	 * @return
 	 */
 	List<Review> selectReviewList(int roomId, RowBounds rowBounds);
+
+	/** 후기상세
+	 * 
+	 * @param reviewNo
+	 * @return review
+	 */
+	Review selectReviewDetail(int reviewNo);
 	
 	
 }

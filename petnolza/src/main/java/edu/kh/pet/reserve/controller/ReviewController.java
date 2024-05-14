@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.pet.reserve.model.dto.Review;
 import edu.kh.pet.reserve.model.service.ReviewService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,9 @@ import lombok.RequiredArgsConstructor;
 public class ReviewController {
 	
 	private final ReviewService service;
+	
+	
+	/* Controller / Service(Interface) / ServiceImple(Class) / Mapper(Class) / Mapper.xml */
 	
 	
 	/** 리뷰목록조회
@@ -41,10 +46,24 @@ public class ReviewController {
 		return "review/reviewList";
 	}
 	
-	@GetMapping("reviewDetail")
-	public String reviewDetail(HttpServletRequest req) {
+	//review/reviewDetail/리뷰번호
+	/** 리뷰상세
+	 * @param reviewNo 리뷰번호
+	 * @param model 
+	 * @param ra
+	 * @return
+	 */
+	@GetMapping("reviewDetail/{reviewNo:[0-9]+}")
+	public String reviewDetail(
+				@PathVariable("reviewNo") int reviewNo,
+				Model model ,
+				RedirectAttributes ra
+			) {
 		
-		req.setAttribute("reviewGrade", 4);
+		// 서비스 호출
+		Review review = service.selectReviewDetail(reviewNo);
+		
+		model.addAttribute("review", review);
 		
 		return "review/reviewDetail";
 	}
