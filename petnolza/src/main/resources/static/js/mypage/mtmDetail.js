@@ -25,8 +25,8 @@ document.querySelector("#mtmDel").addEventListener("click", ()=>{
             console.log(result);
             alert("문의가 정상적으로 삭제되었습니다.");
 
-            opener.location.reload();
-            window.close();
+            opener.location.reload(); // 새로고침
+            window.close(); // 팝업창을 닫기
 
         } else {
             alert("문의 삭제 실패!");

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>후기 작성</title>
+    <title>후기 상세</title>
 
     <link rel="stylesheet" href="/css/common.css"> <!-- 공통 CSS -->
     <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
@@ -31,9 +31,9 @@
             <textarea class="content-area" th:text="${review.reviewContent}" readonly>후기 상세내용</textarea>
         </div>
         <div class="btn-area">
-            <button class="main-blue" th:oneclick="">목록</button>
-            <button class="grey-btn" th:oneclick="updatebtn">수정</button>
-            <button class="grey-btn">삭제</button>
+            <button type="button" class="main-blue" id="backToList">목록</button>
+            <button class="grey-btn" th:onclick="|openReviewWritePage('${cp}')|" id="update">수정</button>
+            <button type="button" class="grey-btn" id="deleteReview">삭제</button>
          </div>
         <!--<div class="comment">
             <table class="reviewTable">
@@ -76,6 +76,17 @@
         </div>-->
     </section>
 
+    <script th:inline="javascript">
+        const reviewNo = /*[[${review.reviewNo}]]*/ "리뷰번호";
+        const roomId = /*[[${review.roomId}]]*/ "객실아이디";
+    </script>
+
     <script src="/js/review/reviewDetail.js"></script>
+
+    <script th:inline="javascript">
+        const message =  /*[[${message}]]*/ "전달 받은 message";
+      
+        if(message != null) alert(message);
+    </script>
 </body>
 </html>

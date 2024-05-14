@@ -21,9 +21,9 @@ for(let i=0; i<listCnt-1; i++) {
 
         console.log(location);
         
-        path = '../reviewDetail/' + rowChild[0].innerText + "?cp=" + cp;
+        location.href = '../reviewDetail/' + rowChild[0].innerText + "?cp=" + cp;
         
-        window.open(path,'','width='+popupW+',height='+popupH+',left='+tempLeft+',top='+tempTop+',popup=true');
+        //window.open(path,'','width='+popupW+',height='+popupH+',left='+tempLeft+',top='+tempTop+',popup=true');
 
         // 팝업창 닫을 때 딤프레이어 block
         document.getElementById("popOpen").style.display = "block";

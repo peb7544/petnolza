@@ -4,3 +4,12 @@ opener.document.getElementById("popOpen").style.display = "block";
 window.addEventListener('beforeunload', function(event) {
     opener.document.getElementById("popOpen").style.display = "none";
 });
+
+
+const reviewCancel = document.querySelector("#reviewCancel");
+
+reviewCancel.addEventListener("click", () => {
+
+    location.href = "/review/reviewDetail/" + reviewNo;
+
+});

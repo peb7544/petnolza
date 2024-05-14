@@ -3,7 +3,6 @@ package edu.kh.pet.reserve.model.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +45,27 @@ public class ReviewServiceImpl implements ReviewService {
 		Review review = mapper.selectReviewDetail(reviewNo); 
 		
 		return review;
+	}   
+
+	@Override
+	public int reviewUpdate(Review inputReview) {
+		
+		return mapper.reviewUpdate(inputReview);
 	}
+
+	@Override
+	public int selectReviewDelete(int reviewNo) {
+		
+		return mapper.ReviewDelete(reviewNo);
+	}
+
+	/*
+	@Override
+	public int reviewUpdate(int reviewNo) {
+		
+		
+		return mapper.reviewUpdate(reviewNo);
+	}
+	*/
 
 }
