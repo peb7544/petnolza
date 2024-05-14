@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import edu.kh.pet.community.model.dto.Board;
 import edu.kh.pet.community.model.service.CommunityService;
+import edu.kh.pet.member.model.dto.Member;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -51,5 +53,14 @@ public class IntroController {
 	public String route() {
 		
 		return "main/route";
+	}
+	
+	@GetMapping("comingSoon")
+	public String comingSoon(@SessionAttribute("loginMember") Member loginMember,
+							Model model) {
+		
+		model.addAttribute("codeNo", loginMember.getCodeNo());
+		
+		return "main/comingSoon";
 	}
 }

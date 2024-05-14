@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.pet.member.model.dto.Member;
 import edu.kh.pet.reserve.model.dto.Review;
 import edu.kh.pet.reserve.model.service.ReviewService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -60,14 +62,18 @@ public class ReviewController {
 	@GetMapping("reviewDetail/{reviewNo:[0-9]+}")
 	public String reviewDetail(
 				@PathVariable("reviewNo") int reviewNo,
+				@SessionAttribute("loginMember") Member loginMember,
 				Model model ,
 				RedirectAttributes ra
 			) {
+		
+		int loginMemberNo = loginMember.getMemberNo();
 		
 		// 서비스 호출
 		Review review = service.selectReviewDetail(reviewNo);
 		
 		model.addAttribute("review", review);
+		model.addAttribute("loginMemberNo", loginMemberNo);
 		
 		return "review/reviewDetail";
 	}

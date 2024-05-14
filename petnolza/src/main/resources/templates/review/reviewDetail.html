@@ -32,8 +32,10 @@
         </div>
         <div class="btn-area">
             <button type="button" class="main-blue" id="backToList">목록</button>
-            <button class="grey-btn" th:onclick="|openReviewWritePage('${cp}')|" id="update">수정</button>
-            <button type="button" class="grey-btn" id="deleteReview">삭제</button>
+            <th:block th:if="${loginMemberNo} == ${review.memberNo}">
+                <button class="grey-btn" th:onclick="|openReviewWritePage('${cp}')|" id="update">수정</button>
+                <button type="button" class="grey-btn" id="deleteReview">삭제</button>
+            </th:block>
          </div>
         <!--<div class="comment">
             <table class="reviewTable">
