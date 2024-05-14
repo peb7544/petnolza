@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://kit.fontawesome.com/fa0ef5fd68.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/common.css"></link>
+    <link rel="stylesheet" href="/css/menu.css"></link>
+
+    <style>
+
+      .container {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <section class="topContainer">
+
+      <th:block th:replace="~{menu/topMenu}"></th:block>
+      <th:block th:unless="${codeNo.equals('ADMIN')}">
+        <th:block th:replace="~{menu/sideMenu}"></th:block>
+      </th:block>
+
+      <section class="container" style="height: 600px;">
+
+        <i class="fa-solid fa-triangle-exclamation" style="font-size: 200px;"></i>
+
+        <div style="font-size: 100px; font-weight: bold;">서비스 준비중입니다.</div>
+        <div style="font-size: 30px; text-align: center;">
+          이용에 불편을 드려 죄송합니다. <br>
+          보다 나은 서비스 제공을 위하여 페이지 준비중에 있습니다.<br>
+          빠른 시일내에 준비하여 찾아뵙겠습니다.
+        </div>
+
+      </section>
+
+      <th:block th:replace="~{menu/footer}"></th:block>
+
+    </section>
+
+    
+  </body>
+</html>

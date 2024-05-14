@@ -74,7 +74,11 @@
 <body>
 
 <th:block th:replace="~{menu/topMenu}"></th:block>
-<th:block th:replace="~{menu/sideMenu}"></th:block>
+<th:block th:unless="${session.loginMember == null}">
+    <th:block th:unless="${session.loginMember.codeNo.equals('ADMIN')}">
+        <th:block th:replace="~{menu/sideMenu}"></th:block>
+    </th:block>
+</th:block>
 
 <section class="container">
 
