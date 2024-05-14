@@ -11,12 +11,7 @@ import edu.kh.pet.member.model.dto.Member;
 public class MainController {
 
 	@RequestMapping("/")
-	public String mainPage(@SessionAttribute("loginMember") Member loginMember,
-						   Model model) {
-		
-		String codeNo = loginMember.getCodeNo();
-		
-		model.addAttribute("codeNo", codeNo);
+	public String mainPage() {
 		
 		return "main/intro";
 	}
