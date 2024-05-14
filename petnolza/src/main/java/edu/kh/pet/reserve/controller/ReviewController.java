@@ -5,7 +5,9 @@ import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -14,10 +16,12 @@ import edu.kh.pet.reserve.model.dto.Review;
 import edu.kh.pet.reserve.model.service.ReviewService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("review")
 @RequiredArgsConstructor
+@Slf4j
 public class ReviewController {
 	
 	private final ReviewService service;
@@ -67,4 +71,100 @@ public class ReviewController {
 		
 		return "review/reviewDetail";
 	}
+	
+	@GetMapping("reviewUpdate")
+	public String reivewUpdate(@RequestParam ("reviewNo") int reviewNo,
+			Model model) {
+		
+		Review review = service.selectReviewDetail(reviewNo);
+		
+		model.addAttribute("review", review);
+		
+		return "review/reviewUpdate";
+	}
+	
+	
+	@PostMapping("reviewUpdate")
+	public String reviewUpdate(
+				@ModelAttribute Review inputReview,
+				Model model,
+				RedirectAttributes ra
+				) {
+		
+	int result = service.reviewUpdate(inputReview);
+	
+	String message = null;
+	
+	if(result > 0) message = "후기 수정을 완료했습니다";
+	
+	else message = "후기 수정에 실패했습니다";
+	
+	ra.addFlashAttribute("message", message);
+
+	
+	return "redirect:/review/reviewDetail/" + inputReview.getReviewNo();
+	}
+	
+	
+	@GetMapping("reviewdeleteReview")
+	public String reviewdeleteReview(@RequestParam ("reviewNo") int reviewNo,
+			@RequestParam("roomId") int roomId,
+			Model model, 
+			RedirectAttributes ra
+			) {
+		
+		log.debug("roomId : " + roomId);
+		
+		int result = service.selectReviewDelete(reviewNo);
+		
+		String message = null;
+		
+		if(result > 0) message = "삭제 완료";
+		
+		else message = "삭제에 실패하였습니다";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/review/reviewList/" + roomId;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

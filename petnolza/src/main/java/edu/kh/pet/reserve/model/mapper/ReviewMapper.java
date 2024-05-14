@@ -29,6 +29,24 @@ public interface ReviewMapper {
 	 * @return review
 	 */
 	Review selectReviewDetail(int reviewNo);
+
+	int reviewUpdate(Review inputReview);
+
+	/** 후기삭제
+	 * 
+	 * @param reviewNo
+	 * @return result
+	 */
+	int ReviewDelete(int reviewNo);
+
+	/** 후기수정
+	 * 
+	 * @param reviewNo
+	 * @return result
+	 */
+	/*
+	int reviewUpdate(int reviewNo);
+	*/
 	
 	
 }

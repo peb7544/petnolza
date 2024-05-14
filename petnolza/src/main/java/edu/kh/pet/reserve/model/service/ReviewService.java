@@ -18,5 +18,29 @@ public interface ReviewService {
 	 * @param reviewNo
 	 * @return review
 	 */
-	Review selectReviewDetail(int reviewNo); 
+	Review selectReviewDetail(int reviewNo);
+
+	/** 리뷰수정
+	 * 
+	 * @param reviewNo
+	 * @return result
+	 */
+	int reviewUpdate(Review inputReview);
+
+	/** 리뷰삭제
+	 * 
+	 * @param reviewNo
+	 * @return result
+	 */
+	int selectReviewDelete(int reviewNo);
+
+	/** 리뷰수정
+	 * 
+	 * @param reviewNo
+	 * @return result
+	 */
+	/*
+	int reviewUpdate(int reviewNo); 
+	*/
+	
 }

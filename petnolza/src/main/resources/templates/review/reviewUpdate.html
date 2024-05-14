@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후기 등록</title>
+
+    <link rel="stylesheet" href="/css/common.css"> <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
+</head>
+<body>
+    <section class="container">
+        <h2>[객실1] 후기 상세</h2>
+    <form action="/review/reviewUpdate" method="post" name="reviewUpdate">
+        <div class="inputForm">
+            <label>제목</label>
+            <input type="text" th:value="${review.reviewTitle}" name="reviewTitle">
+        </div>
+
+        <div class="inputForm">
+            <label>내용</label>
+            <textarea class="content-area" th:text="${review.reviewContent}" name="reviewContent"></textarea>
+        </div>
+<!--
+        <div class="inputForm">
+            <label>이미지</label>
+            <div class="inputImg">
+                <input type="text">
+                <div class="btn-area">
+                    <button class="grey-btn">첨부파일</button>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="inputForm">
+            <label>평점</label>
+            <div class="commentStar">
+                <input type="radio" name="reviewGrade" value="5" id="star5"><label for="star5">★</label>
+                <input type="radio" name="reviewGrade" value="4" id="star4"><label for="star4">★</label>
+                <input type="radio" name="reviewGrade" value="3" id="star3"><label for="star3">★</label>
+                <input type="radio" name="reviewGrade" value="2" id="star2"><label for="star2">★</label>
+                <input type="radio" name="reviewGrade" value="1" id="star1"><label for="star1">★</label>
+            </div>
+        </div>
+
+        <input type="hidden" th:value="${review.reviewNo}" name="reviewNo">
+    
+        <div class="btn-area">
+            <button class="main-blue">등록</button>
+            <button type="button" class="grey-btn" id="reviewCancel">취소</button>
+        </div>
+    </form>
+    </section>
+
+    <script th:inline="javascript">
+        const reviewNo = /*[[${review.reviewNo}]]*/ "전달 받은 review";
+    </script>
+
+    <script src="/js/mypage/reviewWrite.js"></script>
+
+    <script th:inline="javascript">
+        const message =  /*[[${message}]]*/ "전달 받은 message";
+      
+        if(message != null) alert(message);
+    </script>
+</body>
+</html>
