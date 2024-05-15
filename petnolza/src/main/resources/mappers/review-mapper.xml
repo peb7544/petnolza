@@ -8,6 +8,10 @@
 		WHERE REVIEW_DEL_FL = 'N' 
 		AND ROOM_ID = #{roomId}
  	</select>
+
+ 	<select id="getMaxNoForInsert">
+ 		SELECT MAX(REVIEW_NO) FROM REVIEW
+ 	</select>	
  	
  	<select id="selectReviewList">
  		SELECT 
@@ -55,6 +59,12 @@
  		WHERE REVIEW_NO = #{reviewNo}
  		AND REVIEW_DEL_FL = 'N'
  	</update>
+
+ 	<insert id="reviewInsert">
+ 		INSERT INTO REVIEW (REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT,
+		REVIEW_GRADE, MEMBER_NO, ROOM_ID)
+		values(#{reviewNo}, #{reviewTitle}, #{reviewContent}, #{reviewGrade}, #{memberNo}, #{roomId})
+ 	</insert>	
  	
  	<update id="ReviewDelete">
  		UPDATE REVIEW SET

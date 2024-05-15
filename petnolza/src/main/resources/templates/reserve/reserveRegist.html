@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>객실예약</title>
     <style>
 
         /* 부트스트랩으로 인해 처리*/
@@ -83,8 +83,8 @@
 
         <section class="container" th:object="${reserve}">
 
-            <!--<section class="max-container">
-                <h2>객실 예약</h2>-->
+            <!--<section class="max-container">-->
+                <h2>객실 예약</h2>
                 <br>
     
                 <!-- 객실 이미지 -->
@@ -114,12 +114,13 @@
                   </div>
     
                 <!-- 객실 상세 -->
-                <form th:action="@{/reserve/reserveRegist/{roomId} (roomId=*{roomId})}" method="post">
+                <form th:action="@{/reserve/reserveRegist/{roomId} (roomId=*{roomId})}" method="post" id="reserveRegist">
                     <div class="reserveRegistDiv">
                         <h4 th:text="*{roomName}">객실1</h4>
                         <input th:value="*{roomName}" hidden>
                         <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
                         <textarea th:text="*{roomInfo}" readonly></textarea>
+                        가격 : <label name="roomPrice" th:text="*{roomPrice}"></label>원(부가세포함)
                     </div>
         
                     <div class="reserveRegistDiv">
@@ -165,7 +166,7 @@
                         <h4>예약 정보</h4>
                         <div class="inputForm">
                             <label>예약자 이름</label>
-                            <input class="div-border" id="reserveRegist" name="reserveUser" th:value="${session.loginMember.memberName}">
+                            <input type="text" class="div-border" id="reserveRegist" name="reserveUser" th:value="${session.loginMember.memberName}">
                         </div>
                         <div class="inputForm">
                             <div>
@@ -184,7 +185,7 @@
                     </div>
         
                     <div class="btn-area btnres">
-                        <button class="main-blue">예약</button>
+                        <button id="reserveBtn" class="main-blue">예약</button>
                         <button id="cancelBtn" style="background-color: #666666; margin-left: 5px;" type="button">취소</button>
                     </div>
                 </form>
@@ -198,7 +199,7 @@
         <th:block th:replace="~{menu/footer}"></th:block> <!-- 풋터 -->
     </section>
     
-    <script src="/js/reserve.js"></script>
+    <script src="/js/reserve/reserveRegist.js"></script>
 
 </body>
 </html>
