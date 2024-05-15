@@ -286,7 +286,7 @@ public class CommunityController {
 			
 		}
 		
-		ra.addFlashAttribute(message);
+		ra.addFlashAttribute("message", message);
 		
 		return "redirect:/community/noticeList";
 	}

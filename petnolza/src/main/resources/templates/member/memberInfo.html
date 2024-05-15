@@ -168,7 +168,7 @@
                             
                             <!-- 보고있지 않은 페이지 -->
                             <li th:unless="${i} == *{currentPage}">
-                                <a th:href="@{/member/memberInfo/{memberNo}(memberNo=${memberNo}, cp=${i})}">2</a>
+                                <a th:href="@{/member/memberInfo/{memberNo}(memberNo=${memberNo}, cp=${i})}" th:text="${i}">2</a>
                             </li>
     
                         </th:block>
