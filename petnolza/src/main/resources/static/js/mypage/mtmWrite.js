@@ -4,6 +4,24 @@ const mtmTitle = document.querySelector('#mtmTitle');
 const mtmContent = document.querySelector('#mtmContent');
 
 document.querySelector("#mtmSave").addEventListener("click", ()=>{
+
+
+    const mtmTitle = document.querySelector("[name='mtmTitle']");
+    const mtmContent = document.querySelector("[name='mtmContent']");
+
+    if(mtmTitle.value.trim().length == 0){
+        alert("제목을 작성해주세요.");
+        mtmTitle.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(mtmContent.value.trim().length == 0){
+        alert("문의 내용을 작성해주세요.");
+        mtmTitle.focus();
+        e.mtmContent();
+        return;
+    }
     
     const param = {
         "mtmTitle" : mtmTitle.value,

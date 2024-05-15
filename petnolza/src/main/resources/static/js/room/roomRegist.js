@@ -143,7 +143,7 @@ const handler = {
             let inputImage = e.target.id;
             let order = inputImage.replace('img', '');
 
-            console.log("e.target : " + e.target + " / id : " + order);
+            console.log("e.target : " + e.target.id + " / id : " + order);
 
             changeImageFn(e.target, order, previewList, backupInputList);
 
@@ -304,3 +304,63 @@ document.querySelector('#cancelBtn').addEventListener('click', () => {
     location.href = '/room/roomList';
 });
 
+
+// 작성 폼 유효성 검사
+document.querySelector("#roomRegist").addEventListener("submit", e => {
+
+    const roomName = document.querySelector("[name='roomName']");
+    const roomInfo = document.querySelector("[name='roomInfo']");
+    const imgCnt = document.querySelector('.img-box');
+    const roomPrice = document.querySelector("[name='roomPrice']");
+
+    if(roomName.value.trim().length == 0){
+        alert("객실 이름을 작성해주세요.");
+        roomName.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(roomInfo.value.trim().length == 0){
+        alert("객실 상세 내용을 작성해주세요.");
+        roomInfo.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(imgCnt.childElementCount == 0) {
+        alert("객실 이미지를 등록해주세요.");
+        imgCnt.focus();
+        e.preventDefault();
+        return;
+    } 
+
+    if(imgCnt.childElementCount != 0) {
+        for(let i = 0; i < imgCnt.childElementCount; i++) {
+
+            if(!document.querySelector('#img' + i).value) {
+                alert("객실 이미지를 등록해주세요.");
+                imgCnt.focus();
+                e.preventDefault();
+                return;
+            }
+
+            
+        }
+    }
+
+    if(document.querySelector("[name='thumnailYn']:checked").value
+ == "") {
+        alert("대표로 보여질 이미지를 선택해주세요.");
+        imgCnt.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(roomPrice.value.trim().length == 0){
+        alert("객실 가격을 작성해주세요.");
+        roomPrice.focus();
+        e.preventDefault();
+        return;
+    }
+
+});

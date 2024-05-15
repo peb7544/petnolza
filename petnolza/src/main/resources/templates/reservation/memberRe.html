@@ -108,7 +108,8 @@
                             
                             <!-- 보고있지 않은 페이지 -->
                             <li th:unless="${i} == *{currentPage}">
-                                <a th:text="${i}">2</a>
+                                <a th:text="${i}"
+                                th:href="@{/reservation/memberRe(cp=${i})}">2</a>
                             </li>
     
                         </th:block>

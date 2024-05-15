@@ -144,7 +144,7 @@ public class RoomServiceImpl implements RoomService  {
 
 	// 객실 수정
 	@Override
-	public int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder, String orderList, String upList) throws IllegalStateException, IOException {
+	public int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder, String orderList, String upList, UploadFile inputUploadFile) throws IllegalStateException, IOException {
 		
 		int result = mapper.updateRoomUpdate(inputRoom);
 		
@@ -206,90 +206,139 @@ public class RoomServiceImpl implements RoomService  {
 			// 대표 이미지 
 			inputRoom.getThumnailYn();
 			
+			
+				
 			// 실제 이미지 있을 경우
-			if(img.getOriginalFilename() != null && !img.getOriginalFilename().equals("")) {
+			//if(img.getOriginalFilename() != null && !img.getOriginalFilename().equals("")) {
 				
-				// 원본명
-				String fileOrgName = img.getOriginalFilename();
-				
-				// 변경명
-				String fileRename = Utility.fileRename(fileOrgName);
-				
-				// 파일번호
-				String[] codeArr = upList.split(",");
-				
-				for(int i=0; i<codeArr.length; i++) {
+				log.debug(img.getOriginalFilename() + "파일 왜들어가 ㅠㅜ");
+				if(!img.getOriginalFilename().isEmpty()) {
 					
-					// 대표이미지
-					String thumbnail = "N";
+					log.debug(img.getOriginalFilename());
 					
-					if(i == inputRoom.getThumnailYn()) {
+					// 원본명
+					String fileOrgName = img.getOriginalFilename();
+					
+					// 변경명
+					String fileRename = Utility.fileRename(fileOrgName);
+					
+					// 파일번호
+					//String[] codeArr = upList.split(",");
+					
+					//log.debug(codeArr.length + "개수");
+					//log.debug(upList + " : upList");
+					//log.debug(upList.trim().length() + " : upList222");
+					
+					
+					//String[] codeArr = upList.split(",");
+					
+					//for(int i=0; i<codeArr.length; i++) {
 						
-						thumbnail = "Y";
-					}
-					
-					UploadFile imgs = UploadFile.builder()
-							.filePath(webPath)
-							.fileOrgName(fileOrgName)
-							.fileRename(fileRename)
-							.tableName("ROOM")
-							.tableNo(inputRoom.getRoomId())
-							.thumbnail(thumbnail)
-							.fileNo(Integer.parseInt(codeArr[i]))
-							.uploadFile(img)
-							.build();
-					
-					uploadList.add(imgs);
-					
-					result = mapper.updateImage(imgs);
+						//log.debug(codeArr[i] + "  /  ");
+						
+						// 대표이미지
+						//String thumbnail = "N";
+						
+						//if(i == inputRoom.getThumnailYn()) {
+							
+							//thumbnail = "Y";
+						//}
+						
+						if(!img.getOriginalFilename().isEmpty()) {
+							UploadFile imgs = UploadFile.builder()
+									.filePath(webPath)
+									.fileOrgName(fileOrgName)
+									.fileRename(fileRename)
+									.tableName("ROOM")
+									.tableNo(inputRoom.getRoomId())
+									//.thumbnail(thumbnail)
+									.uploadFile(img)
+									.build();
+						
+						
+							/*if(upList.trim().length() != 0) {
+							
+								imgs.setFileNo(Integer.parseInt(codeArr[i]));
+								
+							} */
+							
+							log.debug("uploadList : " + img);
+							
+							uploadList.add(imgs);
+							
+							//result = mapper.updateImage(imgs); 
+							
+							//if(result == 0) {
+								
+								result = mapper.insertImage(imgs);
+								
+							//}
+						
+						
+						log.debug("uploadList2 : " + imgs.getUploadFile());
+						
+						log.debug("uploadList3 : " + uploadList);
+						}
+					//}
 					
 					if(result == 0) {
 						
-						// 새 이미지 추가
-						result = mapper.insertImage(imgs);
+						throw new ImageUpdateException();
 					}
-				}
-				
-				if(result == 0) {
 					
-					throw new ImageUpdateException();
-				}
-				
-				// 이미지 파일 서버에 저장
-				for(UploadFile imgs : uploadList) {
-					imgs.getUploadFile().transferTo(new File(folderPath + imgs.getFileRename()));
-				}
-				
-			} else {
-				
-				
-				// 파일번호
-				String[] codeArr = orderList.split(",");
-				
-				for(int i=0; i<codeArr.length; i++) {
-					
-					String thumbnail = "N";
-					
-					if(i == inputRoom.getThumnailYn()) {
+					// 이미지 파일 서버에 저장
+					for(UploadFile imgs : uploadList) {
 						
-						thumbnail = "Y";
+						
+						
+						if(imgs.getUploadFile() != null) {
+							
+							imgs.getUploadFile().transferTo(new File(folderPath + imgs.getFileRename()));
+						}
 					}
 					
-					UploadFile imgs = new UploadFile();
+				} //else {
 					
-					imgs.setTableName("ROOM");
-					imgs.setTableNo(inputRoom.getRoomId());
-					imgs.setThumbnail(thumbnail);
-					imgs.setFileNo(Integer.parseInt(codeArr[i]));
+					String[] codeArr = orderList.split(",");
 					
-					uploadList.add(imgs);
+					for(int i=0; i<codeArr.length; i++) {
+						
+						log.debug(codeArr[i] + "  /  ");
 					
-					result = mapper.updateThumbnail(imgs);
+						String thumbnail = "N";
+						
+						if(i == inputRoom.getThumnailYn()) {
+							
+							thumbnail = "Y";
+						}
+						
+						UploadFile imgs = new UploadFile();
+						
+						imgs.setTableName("ROOM");
+						imgs.setTableNo(inputRoom.getRoomId());
+						imgs.setThumbnail(thumbnail);
+						
+						int fileNo = inputUploadFile.getFileNo();
+						
+						log.debug(codeArr[i] + "");
+						
+						if(codeArr[i] != null && !codeArr[i].equals("")) {
+							imgs.setFileNo(Integer.parseInt(codeArr[i]));
+						} else {
+							
+							imgs.setFileNo(fileNo);
+						}
+						
+						uploadList.add(imgs);
+						
+						result = mapper.updateThumbnail(imgs);
+					//}
 				}
-			}
-			
+			//}
 			
 		}
+		
+		
 		
 		//선택한 파일이 없는 경우
 		if(uploadList.isEmpty()) {

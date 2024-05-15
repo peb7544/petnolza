@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.pet.common.model.dto.CodeMt;
+import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.room.model.dto.Room;
 
 public interface RoomService {
@@ -35,7 +36,7 @@ public interface RoomService {
 	 * @param deleteOrder 
 	 * @return
 	 */
-	int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder, String orderList, String upList) throws IllegalStateException, IOException;
+	int updateRoomUpdate(Room inputRoom, List<MultipartFile> images, String deleteOrder, String orderList, String upList,UploadFile inputUploadFile) throws IllegalStateException, IOException;
 
 	/** 객실 삭제
 	 * @param roomId

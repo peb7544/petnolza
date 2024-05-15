@@ -22,7 +22,7 @@ for(let i=0; i<mtmListCnt-1; i++) {
         window.open(path,'','width='+popupW+',height='+popupH+',left='+tempLeft+',top='+tempTop+',popup=true');
 
         // 팝업창 닫을 때 딤프레이어 block
-        document.getElementById("popOpen").style.display = "block";
+        //document.getElementById("popOpen").style.display = "block";
 
     });
 }

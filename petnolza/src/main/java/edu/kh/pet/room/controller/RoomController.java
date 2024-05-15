@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.pet.common.model.dto.CodeMt;
+import edu.kh.pet.common.model.dto.UploadFile;
 import edu.kh.pet.reserve.model.dto.Reserve;
 import edu.kh.pet.reserve.model.service.ReserveService;
 import edu.kh.pet.room.model.dto.Room;
@@ -181,14 +183,15 @@ public class RoomController {
 				@RequestParam(value="deleteOrder", required=false) String deleteOrder,
 				@RequestParam(value="queryString", required=false, defaultValue="") String querystring,
 				@RequestParam(value="orderList", required=false) String orderList,
-				@RequestParam(value="upList", required=false) String upList
+				@RequestParam(value="upList", required=false) String upList,
+				UploadFile inputUploadFile
 			) throws IllegalStateException, IOException {
 		
 		// 객실번호 세팅
 		inputRoom.setRoomId(roomId);
 		
 		// 서비스 호출
-		int result = service.updateRoomUpdate(inputRoom, images, deleteOrder, orderList, upList);
+		int result = service.updateRoomUpdate(inputRoom, images, deleteOrder, orderList, upList, inputUploadFile);
 		
 		String message = null;
 		String path = null;

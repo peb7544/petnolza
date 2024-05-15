@@ -133,10 +133,14 @@
 	</update>
 	
 	<!-- 객실 이미지 삽입(1행) -->
-	<insert id="insertImage">
+	<insert id="insertImage" useGeneratedKeys="true" parameterType="UploadFile">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="fileNo">
+			SELECT SEQ_FILE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		
 		INSERT INTO UPLOAD_FILE
 		VALUES(
-			 NEXT_FILE_NO()
+			 #{fileNo}
 			,#{filePath}
 			,#{fileOrgName}
 			,#{fileRename}

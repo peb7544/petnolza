@@ -34,8 +34,6 @@ document.querySelector("#reserveRegist").addEventListener("submit", e => {
 
     const reserveUser = document.querySelector("[name='reserveUser']");
 
-    console.log("gg : " + reserveUser.value.trim().length);
-
     if(reserveUser.value.trim().length == 0){
         alert("예약자를 작성해주세요.");
         reserveUser.focus();
