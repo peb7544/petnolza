@@ -106,6 +106,8 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public String emailFind(String inputTel) {
 		
+		log.debug("mail : " + mapper.emailFind(inputTel));
+		
 		return mapper.emailFind(inputTel);
 	}
 
@@ -223,6 +225,13 @@ public class AuthServiceImpl implements AuthService {
 		
 		return pw;
 		
+	}
+
+	// 전화번호 중복 검사
+	@Override
+	public int checkTel(String memberTel) {
+		
+		return mapper.checkTel(memberTel);
 	}
 	
 

@@ -18,3 +18,26 @@ deleteBtn.addEventListener("click", () => {
     location.href = "/community/faqDelete?boardNo=" + boardNo;
 
 });
+
+const updateFaq = document.querySelector("#updateFaq");
+
+updateFaq.addEventListener("submit", e => {
+
+    const boardTitle = document.querySelector("#boardTitle");
+    const boardContent = document.querySelector("#boardContent");
+
+    if(boardTitle.value.trim().length === 0) {
+        alert("질문 제목을 작성해주세요.");
+        e.preventDefault();
+        boardTitle.focus();
+        return;
+    }
+
+    if(boardContent.value.trim().length === 0) {
+        alert("질문 내용을 작성해주세요.");
+        e.preventDefault();
+        boardContent.focus();
+        return;
+    }
+
+});

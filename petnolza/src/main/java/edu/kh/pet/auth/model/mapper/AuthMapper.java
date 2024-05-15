@@ -57,6 +57,14 @@ public interface AuthMapper {
 
 
 
+	/** 전화번호 중복검사
+	 * @param memberTel
+	 * @return result
+	 */
+	int checkTel(String memberTel);
+
+
+
 	
 
 }
