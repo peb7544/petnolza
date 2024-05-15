@@ -52,4 +52,12 @@ public interface AuthService {
 	 */
 	int pwFind(String htmlName, String inputEmail);
 
+
+
+	/** 전화번호 중복검사
+	 * @param memberTel
+	 * @return result
+	 */
+	int checkTel(String memberTel);
+
 }

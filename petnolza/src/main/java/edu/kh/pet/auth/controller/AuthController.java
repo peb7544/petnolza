@@ -176,6 +176,14 @@ public class AuthController {
 		
 		return service.checkNickname(memberNickname);
 	}
+	
+	@ResponseBody
+	@GetMapping("checkTel")
+	public int checkTel(@RequestParam("memberTel") String memberTel) {
+		
+		return service.checkTel(memberTel);
+		
+	}
 
 }
 

@@ -49,6 +49,7 @@
 	<select id="emailFind">
 		SELECT MEMBER_EMAIL FROM "MEMBER"
 		WHERE MEMBER_TEL = #{inputTel}
+		AND MEMBER_DEL_FL = 'N'
 	</select>
 	
 	
@@ -59,6 +60,13 @@
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_EMAIL = #{memberEmail}
 	</update>
+	
+	
+	<!-- 전화번호 중복검사 -->
+	<select id="checkTel">
+		SELECT COUNT(*) FROM "MEMBER"
+		WHERE MEMBER_TEL = #{memberTel}
+	</select>
 
 </mapper>
 

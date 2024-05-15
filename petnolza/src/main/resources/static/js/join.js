@@ -253,10 +253,25 @@ memberTel.addEventListener("input", e => {
 
     }
 
-    telText.innerText = "전화번호 입력이 완료되었습니다.";
-    telText.classList.add('confirm');
-    telText.classList.remove('error');
-    checkObj.memberTel = true;
+    fetch("/member/checkTel?memberTel=" + inputTel)
+    .then( resp => resp.text() )
+    .then( result => {
+        
+        if (result == 1) {
+            telText.innerText = "전화번호를 다시 확인해주세요.";
+            telText.classList.add('error');
+            telText.classList.remove('confirm');
+            checkObj.memberTel = false;
+            return;
+        }
+        
+        telText.innerText = "전화번호 입력이 완료되었습니다.";
+        telText.classList.add('confirm');
+        telText.classList.remove('error');
+        checkObj.memberTel = true;
+
+    })
+    .catch( err => console.log(err) );
 
 })
 

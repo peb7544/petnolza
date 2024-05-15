@@ -21,7 +21,8 @@ emailFindBtn.addEventListener("click", () => {
     .then(resp => resp.text())
     .then(result => {
 
-
+        console.log(result);
+        
         if(result == "") {
             alert("입력한 전화번호와 일치하는 아이디가 없습니다.");
             return;
