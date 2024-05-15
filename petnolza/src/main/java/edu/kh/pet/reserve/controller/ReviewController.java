@@ -25,152 +25,149 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ReviewController {
-	
+
 	private final ReviewService service;
-	
-	
-	/* Controller / Service(Interface) / ServiceImple(Class) / Mapper(Class) / Mapper.xml */
-	
-	
-	/** 리뷰목록조회
+
+	/*
+	 * Controller / Service(Interface) / ServiceImple(Class) / Mapper(Class) /
+	 * Mapper.xml
+	 */
+
+	/**
+	 * 리뷰목록조회
+	 * 
 	 * @param req
 	 * @return
 	 */
-	@GetMapping("reviewList/{roomId:[0-9]+}") 
+	@GetMapping("reviewList/{roomId:[0-9]+}")
 	public String reviewList(
-				@PathVariable("roomId") int roomId,
-				Model model ,
-				@RequestParam(value="cp", required=false, defaultValue="1") int cp
-			) { 
-		
+			@PathVariable("roomId") int roomId,
+			Model model,
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp) {
+
 		// 조회 서비스 호출 후 결과 반환
 		Map<String, Object> map = service.selectReviewList(roomId, cp);
-		
+
+		model.addAttribute("roomNo", roomId);
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("reviewList", map.get("reviewList"));
-		
+
 		return "review/reviewList";
 	}
-	
-	//review/reviewDetail/리뷰번호
-	/** 리뷰상세
+
+	// review/reviewDetail/리뷰번호
+	/**
+	 * 리뷰상세
+	 * 
 	 * @param reviewNo 리뷰번호
-	 * @param model 
+	 * @param model
 	 * @param ra
 	 * @return
 	 */
 	@GetMapping("reviewDetail/{reviewNo:[0-9]+}")
 	public String reviewDetail(
-				@PathVariable("reviewNo") int reviewNo,
-				@SessionAttribute("loginMember") Member loginMember,
-				Model model ,
-				RedirectAttributes ra
-			) {
-		
+			@PathVariable("reviewNo") int reviewNo,
+			@SessionAttribute("loginMember") Member loginMember,
+			Model model,
+			RedirectAttributes ra) {
+
 		int loginMemberNo = loginMember.getMemberNo();
-		
+
 		// 서비스 호출
 		Review review = service.selectReviewDetail(reviewNo);
-		
+
 		model.addAttribute("review", review);
 		model.addAttribute("loginMemberNo", loginMemberNo);
-		
+
 		return "review/reviewDetail";
 	}
-	
+
 	@GetMapping("reviewUpdate")
-	public String reivewUpdate(@RequestParam ("reviewNo") int reviewNo,
+	public String reivewUpdate(@RequestParam("reviewNo") int reviewNo,
 			Model model) {
-		
+
 		Review review = service.selectReviewDetail(reviewNo);
-		
+
 		model.addAttribute("review", review);
-		
+
 		return "review/reviewUpdate";
 	}
-	
-	
+
 	@PostMapping("reviewUpdate")
 	public String reviewUpdate(
-				@ModelAttribute Review inputReview,
-				Model model,
-				RedirectAttributes ra
-				) {
-		
-	int result = service.reviewUpdate(inputReview);
-	
-	String message = null;
-	
-	if(result > 0) message = "후기 수정을 완료했습니다";
-	
-	else message = "후기 수정에 실패했습니다";
-	
-	ra.addFlashAttribute("message", message);
+			@ModelAttribute Review inputReview,
+			Model model,
+			RedirectAttributes ra) {
 
-	
-	return "redirect:/review/reviewDetail/" + inputReview.getReviewNo();
-	}
-	
-	
-	@GetMapping("reviewdeleteReview")
-	public String reviewdeleteReview(@RequestParam ("reviewNo") int reviewNo,
-			@RequestParam("roomId") int roomId,
-			Model model, 
-			RedirectAttributes ra
-			) {
-		
-		log.debug("roomId : " + roomId);
-		
-		int result = service.selectReviewDelete(reviewNo);
-		
+		int result = service.reviewUpdate(inputReview);
+
 		String message = null;
-		
-		if(result > 0) message = "삭제 완료";
-		
-		else message = "삭제에 실패하였습니다";
-		
+
+		if (result > 0)
+			message = "후기 수정을 완료했습니다";
+
+		else
+			message = "후기 수정에 실패했습니다";
+
 		ra.addFlashAttribute("message", message);
-		
+
+		return "redirect:/review/reviewDetail/" + inputReview.getReviewNo();
+	}
+
+	@PostMapping("reviewInsert")
+	public String reviewInsert(
+			@ModelAttribute Review inputReview,
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("roomNo") int roomNo,
+			Model model,
+			RedirectAttributes ra) {
+
+		int loginMemberNo = loginMember.getMemberNo();
+
+		Integer maxReviewNo = service.getMaxNoForInsert();
+		if (maxReviewNo == null) {
+			maxReviewNo = 0;
+		}
+		maxReviewNo++;
+
+		int result = service.reviewInsert(inputReview);
+		inputReview.setReviewNo(maxReviewNo);
+		inputReview.setMemberNo(loginMemberNo);
+		inputReview.setRoomId(roomNo);
+
+		String message = null;
+
+		if (result > 0)
+			message = "후기 추가를 완료했습니다";
+
+		else
+			message = "후기 추가 실패했습니다";
+
+		ra.addFlashAttribute("message", message);
+
+		return "redirect:/review/reviewDetail/" + maxReviewNo;
+	}
+
+	@GetMapping("reviewdeleteReview")
+	public String reviewdeleteReview(@RequestParam("reviewNo") int reviewNo,
+			@RequestParam("roomId") int roomId,
+			Model model,
+			RedirectAttributes ra) {
+
+		log.debug("roomId : " + roomId);
+
+		int result = service.selectReviewDelete(reviewNo);
+
+		String message = null;
+
+		if (result > 0)
+			message = "삭제 완료";
+
+		else
+			message = "삭제에 실패하였습니다";
+
+		ra.addFlashAttribute("message", message);
+
 		return "redirect:/review/reviewList/" + roomId;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

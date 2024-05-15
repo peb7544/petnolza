@@ -7,7 +7,13 @@
 
     <link rel="stylesheet" href="/css/common.css"> <!-- 공통 CSS -->
     <link rel="stylesheet" href="/css/menu.css"></link>
-    <link rel="stylesheet" href="/css/mypage.css"></link>
+    <link rel="stylesheet" href="/css/mypage.css"></link> <!-- 딤프레이어 (부모창 비활성화) -->
+
+    <style>
+        section.mypageContainer {
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -100,7 +106,8 @@
                                 
                                 <!-- 보고있지 않은 페이지 -->
                                 <li th:unless="${i} == *{currentPage}">
-                                    <a th:text="${i}">2</a>
+                                    <a th:text="${i}"
+                                    th:href="@{/mypage/reserveList(cp=${i})}">2</a>
                                 </li>
         
                             </th:block>

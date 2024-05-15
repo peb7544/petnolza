@@ -10,20 +10,27 @@ import edu.kh.pet.reserve.model.dto.Review;
 @Mapper
 public interface ReviewMapper {
 
-	/** 삭제되지 않은 게시글 수
+	/**
+	 * 삭제되지 않은 게시글 수
+	 * 
 	 * @param roomId
 	 * @return
 	 */
 	int getListCount(int roomId);
 
-	/** 후기리스트
+	Integer getMaxNoForInsert();
+
+	/**
+	 * 후기리스트
+	 * 
 	 * @param roomId
 	 * @param rowBounds
 	 * @return
 	 */
 	List<Review> selectReviewList(int roomId, RowBounds rowBounds);
 
-	/** 후기상세
+	/**
+	 * 후기상세
 	 * 
 	 * @param reviewNo
 	 * @return review
@@ -32,21 +39,24 @@ public interface ReviewMapper {
 
 	int reviewUpdate(Review inputReview);
 
-	/** 후기삭제
+	int reviewInsert(Review inputReview);
+
+	/**
+	 * 후기삭제
 	 * 
 	 * @param reviewNo
 	 * @return result
 	 */
 	int ReviewDelete(int reviewNo);
 
-	/** 후기수정
+	/**
+	 * 후기수정
 	 * 
 	 * @param reviewNo
 	 * @return result
 	 */
 	/*
-	int reviewUpdate(int reviewNo);
-	*/
-	
-	
+	 * int reviewUpdate(int reviewNo);
+	 */
+
 }
