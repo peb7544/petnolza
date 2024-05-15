@@ -35,12 +35,12 @@
                 </div>
             </div>
             
-            <input type="text" th:value="*{mtmTitle}" readonly>
+            <input type="text" th:value="*{mtmTitle}" name="mtmTitle" readonly>
         </div>
 
         <div class="inputForm">
             <label>내용</label>
-            <textarea class="content-area" th:text="*{mtmContent}" readonly></textarea>
+            <textarea class="content-area" th:text="*{mtmContent}" name="mtmContent" readonly></textarea>
         </div>
 
         <div class="inputForm">
@@ -49,7 +49,7 @@
         </div>
     </section>
 
-    <script>
+    <!--<script>
         if(typeof(opener) != "undefined") { /* 수정해야함 ㅜㅜ */
             opener.document.getElementById("popOpen").style.display = "block";
         }
@@ -58,7 +58,7 @@
         window.addEventListener('beforeunload', function(event) {
             opener.document.getElementById("popOpen").style.display = "none";
         });
-    </script>
+    </script>-->
 
     <script th:inline="javascript">
         const mtmNo = /*[[${mtmNo}]]*/ "1:1번호";

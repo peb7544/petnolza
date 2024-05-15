@@ -21,8 +21,8 @@ const createImageElement = (divCnt) => {
     imgFileNo.type = 'hidden';
 
     const imgFileName = document.createElement('input');
-    imgFileNo.id = `fileName${divCnt}`;
-    imgFileNo.type = 'hidden';
+    imgFileName.id = `fileName${divCnt}`;
+    imgFileName.type = 'hidden';
 
     // Create imgLabel label element
     const imgLabel = document.createElement('label');
@@ -167,16 +167,8 @@ const handler = {
                         if(fileNo != "") {
                             
 
-                            //console.log(fileNo);
-    
-                            //console.log("fileNo : " + fileNo);
-
-                            //console.log(orderList);
-
-                            //console.log(orderList.includes(Number(fileNo)));
                             if(orderList.includes(Number(fileNo))) {
 
-                                //console.log("들어있니?");
 
                                 deleteOrder.add(fileNo);
     
@@ -243,7 +235,16 @@ const changeImageFn = (inputImage, order, previewList, backupInputList) => {
             if (orderList[i] == document.querySelector('#fileNo' + order).value) {
 
                 console.log(document.querySelector('#fileNo' + order).value);
-                upList.push(document.querySelector('#fileNo' + order).value);
+
+                for(let x = 0; x < upList.length; x++) {
+                    if( orderList[i] != upList[x]) {
+
+                        console.log(orderList[i] + " / " + upList[x] );
+                        upList.push(document.querySelector('#fileNo' + order).value);
+
+                        console.log(upList[x]);
+                    }
+                }
             }
         }
         
@@ -337,4 +338,68 @@ handler.delImg();
 /* 목록 */
 document.querySelector('#cancelBtn').addEventListener('click', () => {
     location.href = '/room/roomList';
+});
+
+// 작성 폼 유효성 검사
+document.querySelector("#roomUpdate").addEventListener("submit", e => {
+
+    const roomName = document.querySelector("[name='roomName']");
+    const roomInfo = document.querySelector("[name='roomInfo']");
+    const imgCnt = document.querySelector('.img-box');
+    const roomPrice = document.querySelector("[name='roomPrice']");
+
+    if(roomName.value.trim().length == 0){
+        alert("객실 이름을 작성해주세요.");
+        roomName.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(roomInfo.value.trim().length == 0){
+        alert("객실 상세 내용을 작성해주세요.");
+        roomInfo.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(imgCnt.childElementCount == 0) {
+        alert("객실 이미지를 등록해주세요.");
+        imgCnt.focus();
+        e.preventDefault();
+        return;
+    } 
+
+    if(imgCnt.childElementCount != 0) {
+        for(let i = 0; i < imgCnt.childElementCount; i++) {
+
+            if(document.querySelector('#fileName' + i).value.trim().length == 0){
+
+                console.log(document.querySelector('#fileName' + i).value + " : " + i);
+                if(!document.querySelector('#img' + i).value) {
+                    alert("객실 이미지를 등록해주세요.");
+                    imgCnt.focus();
+                    e.preventDefault();
+                    return;
+                }
+            }
+
+            
+        }
+    }
+
+    if(document.querySelector("[name='thumnailYn']:checked").value
+ == "") {
+        alert("대표로 보여질 이미지를 선택해주세요.");
+        imgCnt.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(roomPrice.value.trim().length == 0){
+        alert("객실 가격을 작성해주세요.");
+        roomPrice.focus();
+        e.preventDefault();
+        return;
+    }
+
 });

@@ -3,6 +3,20 @@
  const servicePrice = document.querySelector('#servicePrice');
  
  document.querySelector("#addBtn").addEventListener("click", ()=>{
+
+    if(serviceName.value.trim().length == 0){
+        alert("서비스명을 작성해주세요.");
+        mtmTitle.focus();
+        e.preventDefault();
+        return;
+    }
+
+    if(servicePrice.value.trim().length == 0){
+        alert("서비스 가격을 작성해주세요.");
+        mtmTitle.focus();
+        e.mtmContent();
+        return;
+    }
      
      const param = {
          "serviceName" : serviceName.value,
@@ -24,7 +38,7 @@
              location.reload();
 
              // 팝업창 닫을 때 딤프레이어 block
-             opener.document.getElementById("popOpen").style.display = "block";
+             //opener.document.getElementById("popOpen").style.display = "block";
  
          } else {
              alert("서비스 등록 실패!");
@@ -51,7 +65,7 @@ function delBtn(serviceNo) {
             location.reload(); // 새로고침
 
             // 팝업창 닫을 때 딤프레이어 block
-            opener.document.getElementById("popOpen").style.display = "block";
+            //opener.document.getElementById("popOpen").style.display = "block";
 
         } else {
             alert("서비스 삭제 실패!");

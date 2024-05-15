@@ -52,7 +52,7 @@
         <!--</form>-->
     </section>
 
-    <script>
+    <!--<script>
         if(typeof(opener) != "undefined") { /* 수정해야함 ㅜㅜ */
             opener.document.getElementById("popOpen").style.display = "block";
         }
@@ -61,7 +61,7 @@
         window.addEventListener('beforeunload', function(event) {
             opener.document.getElementById("popOpen").style.display = "none";
         });
-    </script>
+    </script>-->
 
     <script th:inline="javascript">
         const mtmNo = /*[[${mtm.mtmNo}]]*/ "1:1문의 번호";

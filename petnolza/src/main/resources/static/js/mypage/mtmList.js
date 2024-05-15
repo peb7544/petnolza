@@ -19,8 +19,8 @@ document.querySelector("#mtminsert").addEventListener("click", () => {
 
     window.open(path,'','width='+popupW+',height='+popupH+',left='+tempLeft+',top='+tempTop+',popup=true');
 
-    // 팝업창 닫을 때 딤프레이어 block
-    document.getElementById("popOpen").style.display = "block";
+    /*// 팝업창 닫을 때 딤프레이어 block
+    document.getElementById("popOpen").style.display = "block";*/
 });
 
 // 상세화면이동
@@ -36,7 +36,7 @@ for(let i=0; i<mtmListCnt-1; i++) {
         window.open(path,'','width='+popupW+',height='+popupH+',left='+tempLeft+',top='+tempTop+',popup=true');
 
         // 팝업창 닫을 때 딤프레이어 block
-        document.getElementById("popOpen").style.display = "block";
+        //document.getElementById("popOpen").style.display = "block";
 
     });
 }

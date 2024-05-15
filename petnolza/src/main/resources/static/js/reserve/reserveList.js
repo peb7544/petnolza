@@ -1,3 +1,4 @@
+/* 후기 등록 */
 function reviewBtn(roomId,roomName) {
 
    // 팝업 경로

@@ -29,12 +29,12 @@
         <!--</form>-->
     </section>
 
-    <script>
+    <!--<script>
         // 팝업창 닫을 때 딤프레이어 none
         window.addEventListener('beforeunload', function(event) {
             opener.document.getElementById("popOpen").style.display = "none";
         });
-    </script>
+    </script>-->
 
     <script th:inline="javascript">
         const memberNo = /*[[${session.loginMember.memberNo}]]*/ "로그인아이디";

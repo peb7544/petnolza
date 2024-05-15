@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="/css/mypage.css"></link>
     <link rel="stylesheet" href="/css/menu.css"></link>
 
+    section.mypageContainer {
+        height: auto;
+        min-height: 600px;
+    }
 </head>
 <body>
 
     <section class="topContainer">
         <th:block th:replace="~{menu/topMenu}"></th:block>
 
-        <section class="mypageContainer" style="height: 700px;">
+        <section class="mypageContainer">
 
             <th:block th:replace="~{menu/myPageMenu}"></th:block>
 
@@ -150,7 +154,7 @@
     </section>
 
     <!-- 딤프레이어 (부모창 비활성화) -->
-    <div id="popOpen"></div>
+    <!--<div id="popOpen"></div>-->
 
     <script th:inline="javascript">
         const cp = /*[[${pagination.currentPage}]]*/ "현재페이지";

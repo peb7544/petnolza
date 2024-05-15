@@ -66,7 +66,7 @@
                             <div th:with="reviewGrade=*{reviewGrade}"><th:block th:if="*{reviewGrade} != 0"><th:block th:each="i : *{#numbers.sequence(1,reviewGrade)}"><label class="star_y">★</label></th:block></th:block><th:block th:if="*{reviewGrade} != 5"><th:block th:each="i : *{#numbers.sequence(1,5-reviewGrade)}"><label class="star_n">★</label></th:block></th:block></div>
                         
                             <div class="btn-area">
-                                <button class="grey-btn">후기</button>
+                                <button class="grey-btn" th:onclick="reviewBtn([[*{roomId}]],[[*{roomName}]])">후기</button>
                             </div>
                         </div>
                             
@@ -96,7 +96,7 @@
     </section>
 
     <!-- 딤프레이어 (부모창 비활성화) -->
-    <div id="popOpen"></div>
+    <!--<div id="popOpen"></div>-->
 
     <script src="/js/room/roomList.js"></script>
     

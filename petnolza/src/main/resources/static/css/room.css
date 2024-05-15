@@ -50,3 +50,14 @@
     .content-area table {
         width: 95%;
     }
+
+    .block {
+        border: 1px solid;
+        height: 230px;
+        width: 230px;
+        display: block;
+        position: absolute;
+        top: 0%;
+        background-color: rgb(0, 0, 0);
+        opacity: 0.2;
+    }
