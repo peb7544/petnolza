@@ -10,7 +10,7 @@
 </head>
 <body>
     <section class="container">
-        <h2>[객실1] 후기 상세</h2>
+        <h2>후기 상세</h2>
         <div>
             <table class="reviewTable" th:object="${review}">
                 <tr>
@@ -32,10 +32,13 @@
         </div>
         <div class="btn-area">
             <button type="button" class="main-blue" id="backToList">목록</button>
+
+            
             <th:block th:if="${loginMemberNo} == ${review.memberNo}">
                 <button class="grey-btn" th:onclick="|openReviewWritePage('${cp}')|" id="update">수정</button>
                 <button type="button" class="grey-btn" id="deleteReview">삭제</button>
             </th:block>
+            
          </div>
         <!--<div class="comment">
             <table class="reviewTable">

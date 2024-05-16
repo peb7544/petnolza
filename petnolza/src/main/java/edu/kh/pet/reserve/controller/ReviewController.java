@@ -67,17 +67,35 @@ public class ReviewController {
 	@GetMapping("reviewDetail/{reviewNo:[0-9]+}")
 	public String reviewDetail(
 			@PathVariable("reviewNo") int reviewNo,
-			@SessionAttribute("loginMember") Member loginMember,
+			@SessionAttribute(value="loginMember", required=false) Member loginMember,
 			Model model,
 			RedirectAttributes ra) {
+		
+		String message = null;
+		
+		if(loginMember == null) {
+			
+			log.debug("test");
+			
+			message = "로그인 후 이용 가능합니다.";
+		
+			ra.addFlashAttribute("message", message);
+		}
+		
+		if(loginMember != null) {
+			
+			int loginMemberNo = loginMember.getMemberNo();
+			
+			// 서비스 호출
+			Review review = service.selectReviewDetail(reviewNo);
+			
+			
+			model.addAttribute("review", review);
+			model.addAttribute("loginMemberNo", loginMemberNo);
+			
+		}
 
-		int loginMemberNo = loginMember.getMemberNo();
-
-		// 서비스 호출
-		Review review = service.selectReviewDetail(reviewNo);
-
-		model.addAttribute("review", review);
-		model.addAttribute("loginMemberNo", loginMemberNo);
+		
 
 		return "review/reviewDetail";
 	}
