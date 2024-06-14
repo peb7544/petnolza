@@ -63,7 +63,7 @@
  	<insert id="reviewInsert">
  		INSERT INTO REVIEW (REVIEW_NO, REVIEW_TITLE, REVIEW_CONTENT,
 		REVIEW_GRADE, MEMBER_NO, ROOM_ID)
-		values(#{reviewNo}, #{reviewTitle}, #{reviewContent}, #{reviewGrade}, #{memberNo}, #{roomId})
+		values(SEQ_REVIEW_NO.NEXTVAL, #{reviewTitle}, #{reviewContent}, #{reviewGrade}, #{memberNo}, #{roomId})
  	</insert>	
  	
  	<update id="ReviewDelete">

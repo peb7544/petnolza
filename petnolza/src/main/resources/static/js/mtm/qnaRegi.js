@@ -14,7 +14,7 @@ document.querySelector("#mtmSave").addEventListener("click", ()=>{
         body : JSON.stringify(param)
     })
     .then(resp => resp.text())
-    .then(result => {
+    .then(resulet => {
 
         if(result > 0) {
             alert("답변이 정상적으로 등록되었습니다.");

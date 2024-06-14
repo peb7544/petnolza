@@ -77,7 +77,7 @@ public class ReviewController {
 		Review review = service.selectReviewDetail(reviewNo);
 
 		model.addAttribute("review", review);
-		model.addAttribute("loginMemberNo", loginMemberNo);
+		//model.addAttribute("loginMemberNo", loginMemberNo);
 
 		return "review/reviewDetail";
 	}
@@ -113,27 +113,36 @@ public class ReviewController {
 
 		return "redirect:/review/reviewDetail/" + inputReview.getReviewNo();
 	}
+	
+	@GetMapping("reviewInsrt")
+	public String reviewInsert() {
+	
+		return "review/reviewInsert";
+	}
 
-	@PostMapping("reviewInsert")
+
+	@PostMapping("reviewInsert/{roomId:[0-9]+}")
 	public String reviewInsert(
 			@ModelAttribute Review inputReview,
 			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("roomNo") int roomNo,
+			@PathVariable("roomId") int roomId,
 			Model model,
 			RedirectAttributes ra) {
 
 		int loginMemberNo = loginMember.getMemberNo();
 
-		Integer maxReviewNo = service.getMaxNoForInsert();
+		/*Integer maxReviewNo = service.getMaxNoForInsert();
 		if (maxReviewNo == null) {
 			maxReviewNo = 0;
 		}
-		maxReviewNo++;
+		maxReviewNo++;*/
+		
+		log.debug("ddd");
 
 		int result = service.reviewInsert(inputReview);
-		inputReview.setReviewNo(maxReviewNo);
+		/*inputReview.setReviewNo(maxReviewNo);*/
 		inputReview.setMemberNo(loginMemberNo);
-		inputReview.setRoomId(roomNo);
+		inputReview.setRoomId(roomId);
 
 		String message = null;
 
@@ -145,7 +154,7 @@ public class ReviewController {
 
 		ra.addFlashAttribute("message", message);
 
-		return "redirect:/review/reviewDetail/" + maxReviewNo;
+		return "redirect:/review/reviewDetail/";
 	}
 
 	@GetMapping("reviewdeleteReview")

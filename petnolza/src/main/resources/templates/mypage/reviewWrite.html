@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="/css/review.css"> <!-- 후기 CSS -->
 </head>
 <body>
-    <section class="container">
-        <h2>[객실1] 후기 등록</h2>
+    <form action="/review/reviewInsert" method="post" class="container">
+        <h2>후기 등록</h2>
 
         <div class="inputForm">
             <label>제목</label>
@@ -48,7 +48,7 @@
             <button class="main-blue">등록</button>
             <button class="grey-btn">취소</button>
          </div>
-    </section>
+    </form>
 
     <script src="/js/mypage/reviewWrite.js"></script>
 </body>
